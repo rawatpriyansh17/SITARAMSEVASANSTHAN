@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# सीताराम सेवा संस्थान (Sitaram Seva Sansthan) Website
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project is a website for सीताराम सेवा संस्थान (Sitaram Seva Sansthan), an NGO dedicated to supporting breast cancer patients and raising awareness. The website is built using Next.js and React, with Tailwind CSS for styling.
 
-```bash
+## Prerequisites
+
+Before you begin, ensure you have the following installed on your local machine:
+
+- Node.js (v14.0.0 or later)
+- npm (v6.0.0 or later)
+
+## Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/sitaram-seva-sansthan.git
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd sitaram-seva-sansthan
+   ```
+
+3. Install the dependencies:
+   ```
+   npm install
+   ```
+
+## Running the Development Server
+
+To start the development server, run:
+
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/`: Contains the main page component
+- `components/`: Contains reusable React components
+- `public/`: Stores static assets like images
 
-## Learn More
+## Key Components
 
-To learn more about Next.js, take a look at the following resources:
+- `Header`: Website header with logo, navigation, and donate button
+- `ImageCarousel`: Displays a carousel of images with descriptions
+- `MissionStatement`: Shows the organization's mission
+- `ServiceGrid`: Displays information about services and events
+- `Footer`: Website footer
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+We welcome contributions to improve the website. Please follow these steps:
 
-## Deploy on Vercel
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/AmazingFeature`)
+3. Make your changes
+4. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+5. Push to the branch (`git push origin feature/AmazingFeature`)
+6. Open a Pull Request
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
