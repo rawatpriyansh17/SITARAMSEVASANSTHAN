@@ -3,20 +3,20 @@ import Link from 'next/link'
 
 export default function Header() {
   return (
-    <header className="bg-pink-600 text-white p-6">
+    <header className="bg-pink-600 text-white p-2">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <div className="rounded-full w-40 h-40 mr-6 relative overflow-hidden">
+        <div className="rounded-full w-30 h-30 mr-5 relative overflow-auto" style={{ width: '100px', height: '100px' }}>
             <Image
               src="/logo.png"
-              alt="सीताराम सेवा संस्थान Logo"
+              alt="सीताराम सेवा संस्थान Logo" 
               layout="fill"
               objectFit="cover"
             />
           </div>
-          <h1 className="text-6xl font-bold">    
+          <h1 className="text-4xl font-bold">    
             <span className="text-6xl">सीताराम सेवा संस्थान</span>
-            <span className="text-4xl ml-4 italic">सेवा से समाधान...</span>
+            <span className="text-2xl ml-2 italic">सेवा से समाधान...</span>
           </h1>
         </div>
         <nav>

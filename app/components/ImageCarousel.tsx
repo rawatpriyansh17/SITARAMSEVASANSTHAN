@@ -51,13 +51,13 @@ export default function ImageCarousel({ slides, currentSlide, setCurrentSlide }:
         </div>
       </div>
       <button
-        onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
+        onClick={() => setCurrentSlide((prev: number) => (prev - 1 + slides.length) % slides.length)}
         className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/50 rounded-full p-2"
       >
         <ChevronLeft className="w-6 h-6 text-pink-600" />
       </button>
       <button
-        onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
+        onClick={() => setCurrentSlide((prev: number) => (prev + 1) % slides.length)}
         className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/50 rounded-full p-2"
       >
         <ChevronRight className="w-6 h-6 text-pink-600" />

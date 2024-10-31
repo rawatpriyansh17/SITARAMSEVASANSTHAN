@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const slides = [
+  const slides = [  
     {
       image: '/image1.jpeg',
       title: 'स्तन कैंसर जागरूकता',
