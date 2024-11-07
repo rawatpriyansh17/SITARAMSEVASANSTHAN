@@ -1,23 +1,22 @@
 'use client'
 
-import Image from 'next/legacy/image'
-import Link from 'next/link'
-import { useState, useEffect } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import Header from './components/Header'
-import ImageCarousel from './components/ImageCarousel'
-import MissionStatement from './components/MissionStatement'
-import Moreinfo from './components/Moreinfo'
-import Footer from './components/Footer'
-
+import { useState } from 'react'
+import Header from '@/components/Header'
+import ImageCarousel from '@/components/ImageCarousel'
+import MissionStatement from '@/components/MissionStatement'
+import Services from '@/components/Services'
+import Footer from '@/components/Footer'
+import Sidebar from '@/components/Sidebar'
+import Moreinfo from '@/components/Moreinfo'
 export default function HomePage() {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
   const slides = [  
     {
       image: '/image1.jpeg',
       title: 'स्तन कैंसर जागरूकता',
       description: 'स्तन कैंसर के बारे में जानें और इसे कैसे रोका जा सकता है।',
-      link: '/awareness'
+      link: './awareness/page.tsx'
     },
     {
       image: '/image2.jpeg',
@@ -33,19 +32,14 @@ export default function HomePage() {
     },
   ]
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <div className="min-h-screen bg-pink-50">
-      <Header />
-      <main className="container mx-auto mt-8">
-        <ImageCarousel slides={slides} currentSlide={currentSlide} setCurrentSlide={setCurrentSlide} />
+      <Header setIsSidebarOpen={setIsSidebarOpen} />
+      <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+      <main className="container mx-auto mt-8 px-4">
+        <ImageCarousel slides={slides} />
         <MissionStatement />
+        <Services />
         <Moreinfo />
       </main>
       <Footer />
