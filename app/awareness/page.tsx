@@ -5,7 +5,7 @@ import Image from 'next/image'
 export default function AwarenessPage() {
   return (
     <div className="min-h-screen bg-pink-50">
-      <Header setIsSidebarOpen={() => {}} />
+      <Header  />
       <main className="container mx-auto mt-8 px-4">
         <h1 className="text-4xl font-bold text-pink-800 mb-8 text-center">स्तन कैंसर जागरूकता</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -34,9 +34,9 @@ export default function AwarenessPage() {
 function NewsStory({ image, title, content }: { image: string; title: string; content: string }) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <Image src={image} alt={title} width={400} height={300} className="w-full h-48 object-cover" />
+      <Image src={image} alt={title} width={400} height={300} className="w-full h-100 object-cover" />
       <div className="p-4">
-        <h2 className="text-xl font-semibold mb-2">{title}</h2>
+        <h2 className="text-xl font-semibold mb-2 text-pink-800">{title}</h2>
         <p className="text-gray-700">{content}</p>
       </div>
     </div>

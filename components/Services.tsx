@@ -2,11 +2,11 @@
 export default function Services() {
   return (
     <section id="services-section" className="mt-16 scroll-mt-24">
-      <h2 className="text-6xl font-bold text-pink-800 mb-8 text-center">हमारी सेवाएँ</h2>
-      <p className="text-2xl text-gray-700 mb-8 text-center px-4 font-bold">
+      <h2 className=" text-4xl md-text-6xl font-bold text-pink-800 mb-2 md-mb-8 text-center">हमारी सेवाएँ</h2>
+      <p className=" text-base md-text-2xl text-gray-700 mb-8 text-center px-4 font-bold">
         सीताराम सेवा संस्थान "सेवा से समाधान" की विचार धारा का अनुसरण करते हुए कैंसर पीड़ित महिलाओं के लिए समर्पित है, हमारे NGO द्वारा संचालित प्रोग्राम:
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 px-4 font-semibold">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 px-4 font-semibold text-xl">
         <ServiceCard>
           ब्रेस्ट कैंसर पेशेंट महिलाओं को आर्टिफिशियल ओरिजिनल सिलिकॉन ब्रेस्ट निःशुल्क वितरण।
         </ServiceCard>
