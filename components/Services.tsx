@@ -2,8 +2,8 @@
 export default function Services() {
   return (
     <section id="services-section" className="mt-16 scroll-mt-24">
-      <h2 className=" text-4xl md-text-6xl font-bold text-pink-800 mb-2 md-mb-8 text-center">हमारी सेवाएँ</h2>
-      <p className=" text-base md-text-2xl text-gray-700 mb-8 text-center px-4 font-bold">
+      <h2 className=" text-4xl md:text-6xl font-bold text-pink-800 mb-2 md-mb-8 text-center">हमारी सेवाएँ</h2>
+      <p className=" text-base md:text-2xl text-gray-700 mb-8 text-center px-4 font-bold">
         सीताराम सेवा संस्थान "सेवा से समाधान" की विचार धारा का अनुसरण करते हुए कैंसर पीड़ित महिलाओं के लिए समर्पित है, हमारे NGO द्वारा संचालित प्रोग्राम:
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 px-4 font-semibold text-xl">
@@ -32,7 +32,8 @@ export default function Services() {
 
 function ServiceCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md border-2 border-pink-300 hover:border-pink-500 transition-colors">
+    <div className="bg-white p-6 rounded-3xl shadow-md border-2 border-pink-300 hover:border-pink-500
+    hover:border-6 transition-colors">
       <p className="text-lg text-gray-800">{children}</p>
     </div>
   )

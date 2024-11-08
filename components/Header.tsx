@@ -39,7 +39,7 @@ export default function Header() {
                 <li><a href="#bottom-of-page" className="hover:underline text-2xl font-semibold">Contact</a></li>
               </ul>
             </nav>
-            <Link href="/donate" className="bg-white text-pink-600 px-2 md-px-12 py-4 rounded-full text-2xl md-text-3xl font-semibold hover:bg-pink-100 transition-colors">
+            <Link href="/donate" className="bg-white text-pink-600 px-2 md:px-12 py-4 rounded-full text-2xl md:text-3xl font-semibold hover:bg-pink-100 transition-colors">
               Donate Now
             </Link>
             <button className="md:hidden pl-[125px]" onClick={() => setIsSidebarOpen(true)}>
