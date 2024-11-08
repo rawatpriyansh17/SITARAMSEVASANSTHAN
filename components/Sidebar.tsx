@@ -16,9 +16,9 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
      
       <nav className="mt-8">
         <ul className="space-y-4">
-          <li><Link href="/" className="block px-4 py-4 hover:bg-pink-700 text-2xl" onClick={() => setIsOpen(false)}>Home</Link></li>
-          <li><Link href="#services-section" className="block px-4 py-4 hover:bg-pink-700 text-2xl" onClick={() => setIsOpen(false)}>Services</Link></li>
-          <li><Link href="#bottom-of-page" className="block px-4 py-4 hover:bg-pink-700 text-2xl" onClick={() => setIsOpen(false)}>Contact</Link></li>
+          <li><Link href="/" className="block px-4 py-4 hover:bg-pink-700 text-2xl font-bold" onClick={() => setIsOpen(false)}>Home</Link></li>
+          <li><Link href="#services-section" className="block px-4 py-4 hover:bg-pink-700 text-2xl font-bold" onClick={() => setIsOpen(false)}>Services</Link></li>
+          <li><Link href="#bottom-of-page" className="block px-4 py-4 hover:bg-pink-700 text-2xl font-bold" onClick={() => setIsOpen(false)}>Contact</Link></li>
         </ul>
       </nav>
       <div className="flex justify-start p-4 mr-1">

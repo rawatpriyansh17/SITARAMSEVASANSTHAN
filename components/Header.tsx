@@ -29,8 +29,10 @@ export default function Header() {
             <h1 className="text-2xl md:text-4xl font-bold">
               <span className="text-4xl md:text-6xl inline">सीताराम सेवा संस्थान</span>
               <span className="text-xl md:text-2xl  ml-2 md:ml-3 italic inline">सेवा से समाधान...</span>
+          <div className="text-xl font-bold">Reg.No:03/27/01/2596/24</div>
+
             </h1>
-          </div>
+          </div>  
           <div className="flex items-center space-x-5">
             <nav className="hidden md:flex items-center space-x-5">
               <ul className="flex space-x-5">
@@ -42,6 +44,7 @@ export default function Header() {
             <Link href="/donate" className="bg-white text-pink-600 px-2 md:px-12 py-4 rounded-full text-2xl md:text-3xl font-semibold hover:bg-pink-100 transition-colors">
               Donate Now
             </Link>
+
             <button className="md:hidden pl-[125px]" onClick={() => setIsSidebarOpen(true)}>
               <Menu size={24} />
             </button>
