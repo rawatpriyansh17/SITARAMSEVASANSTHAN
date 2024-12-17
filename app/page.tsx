@@ -1,4 +1,4 @@
-
+import { Analytics } from "@vercel/analytics/react"
 import Header from '@/components/Header'
 import ImageCarousel from '@/components/ImageCarousel'
 import Services from '@/components/Services'
@@ -9,6 +9,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-pink-50">
+        <Analytics />
       <Header />
       <main className="container mx-auto mt-8 px-4">
       <Services />
