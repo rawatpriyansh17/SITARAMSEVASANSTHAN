@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react'
-
+import PulsatingButton from "@/components/PulsatingButton";
 export default function ImageCarousel() {
   const VideoPlayer = ({ src }: { src: string }) => {
     const [isPlaying, setIsPlaying] = useState(false)
@@ -191,9 +191,9 @@ export default function ImageCarousel() {
         <div className="w-full md:w-[850px] bg-pink-100 p-6 flex flex-col justify-center">
           <h2 className="text-2xl md:text-4xl font-bold mb-4 text-pink-800"> ओवेरियन कैंसर पेशेंट महिलाओं को कीमो थैरेपी में दी जाने वाली दवाई निःशुल्क दी गई</h2>
           <p className="mb-6 font-semibold text-base md-text-xl text-pink-900">05 अक्टूबर 2024, 18 अक्टूबर 2024, 19 अक्टूबर 2024, 25 अक्टूबर 2024 को ओवेरियन कैंसर पेशेंट महिलाओं को कीमो थैरेपी में दी जाने वाली दवाई निःशुल्क दी गई, इसमें डॉक्टर अनूप मंत्री के द्वारा प्रिस्क्राइब दवाई निःशुल्क प्रदान की गई..</p>
-          <Link href="/awareness/october-event" className="bg-pink-500 text-white px-0 py-2 rounded-full text-lg font-semibold hover:bg-pink-600 transition-colors inline-block text-center">
+         <PulsatingButton> <Link href="/awareness/october-event" className="bg-pink-500 text-white px-0 py-2 rounded-lg text-lg font-semibold hover:bg-pink-600 transition-colors text-center">
             Read More
-          </Link>
+          </Link></PulsatingButton>
         </div>
       </div>
       <div className="mt-8">
@@ -206,9 +206,9 @@ export default function ImageCarousel() {
             <p className="text-lg text-gray-700 mb-2">
               21 सितंबर 2024 को पुनः संस्था द्वारा संचालित कार्यक्रम के अंतर्गत ब्रेस्ट कैंसर पेशेंट महिलाओं को ओरिजिनल सिलिकॉन ब्रेस्ट निःशुल्क डिस्ट्रीब्यूट किए गए।
             </p>
-            <Link href="/awareness/september-event" className="bg-pink-500 text-white px-3 py-3 rounded-full text-lg font-semibold hover:bg-pink-600 transition-colors inline-block text-center">
+            <PulsatingButton>  <Link href="/awareness/september-event" className="bg-pink-500 text-white px-3 py-3 rounded-lg text-lg font-semibold hover:bg-pink-600 transition-colors inline-block text-center">
               Read More
-            </Link>
+            </Link></PulsatingButton>
           </div>
         </div>
       </div>
@@ -222,9 +222,9 @@ export default function ImageCarousel() {
             <p className="text-lg text-gray-700 mb-2">
               15 अगस्त 2024 को संस्था द्वारा संचालित कार्यक्रम के अंतर्गत ब्रेस्ट कैंसर पेशेंट महिलाओं को ओरिजिनल सिलिकॉन डिस्ट्रीब्यूट किए।
             </p>
-            <Link href="/awareness/august-event" className="bg-pink-500 text-white px-3 py-3 rounded-full text-lg font-semibold hover:bg-pink-600 transition-colors inline-block text-center">
+            <PulsatingButton> <Link href="/awareness/august-event" className="bg-pink-500 text-white px-3 py-3 rounded-lg text-lg font-semibold hover:bg-pink-600 transition-colors inline-block text-center">
               Read More
-            </Link>
+            </Link></PulsatingButton>
           </div>
         </div>
       </div>

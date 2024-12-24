@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "SITARAMSEVASANSTHAN",
+  title: "Sitaram Seva Sansthan",
   description: "Sitaram Seva Sansthan-Seva Se Samadhan"
 };
 

@@ -8,16 +8,53 @@ import { useState } from 'react'
 import Sidebar from './Sidebar'
 import SidebarTrigger from './SidebarTrigger'
 import { LanguageSwitch, LanguageToggle } from '@/components/LanguageSwitch'
+import React from "react";
+
+import { cn } from "@/lib/utils";
+
+interface PulsatingButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  pulseColor?: string;
+  duration?: string;
+}
+
+export function PulsatingButton({
+  className,
+  children,
+  pulseColor = "#ffffff",
+  duration = "1.5s",
+  ...props
+}: PulsatingButtonProps) {
+  return (
+    <button
+      className={cn(
+        "relative text-center cursor-pointer flex justify-center items-center rounded-full",
+        className,
+      )}
+      style={
+        {
+          "--pulse-color": pulseColor,
+          "--duration": duration,
+        } as React.CSSProperties
+      }
+      {...props}
+    >
+      <div className="relative z-10">{children}</div>
+      <div className="absolute top-1/2 left-1/2 size-full rounded-full bg-inherit animate-pulse -translate-x-1/2 -translate-y-1/2" />
+    </button>
+  );
+}
+
 
 export default function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   return (
     <>
-      <header className="bg-pink-600 text-white p-2">
+      <header className="motion-preset-rebound-down motion-delay-[400ms] bg-pink-600 text-white p-2">
         <div className="container mx-auto flex flex-wrap justify-between items-center">
           <div className="flex items-center w-full md:w-auto mb-4 md:mb-0">
-            <div className="rounded-full h-[80px] w-[120px] md:h-[120px] md:w-[120px] mr-1 md:mr-5 relative overflow-auto">
+            <div className="rounded-full h-[80px] w-[120px] md:h-[120px] md:w-[120px] mr-1 md:mr-5 relative overflow-auto motion-preset-rebound-right motion-delay-[800ms]">
               <Link href="/">
                 <Image
                   src="/logo.png"
@@ -29,22 +66,22 @@ export default function Header() {
             </div>
             <h1 >
               <span><LanguageSwitch
-                  en="Sitaram Seva Sansthan"
-                  hi="सीताराम सेवा संस्थान"
-                  tailwindStyles={{
-                    en: "font-serif font-extrabold text-2xl md:text-5xl mt-4 inline",
-                    hi: "text-4xl md:text-6xl font-bold"
-                  }}
-                /></span>
+                en="Sitaram Seva Sansthan"
+                hi="सीताराम सेवा संस्थान"
+                tailwindStyles={{
+                  en: "font-serif font-extrabold text-2xl md:text-5xl mt-4 inline motion-preset-rebound-down motion-delay-[800ms]",
+                  hi: "text-4xl md:text-6xl font-bold"
+                }}
+              /></span>
               <span className="text-xl md:text-2xl  ml-2 md:ml-3 italic inline"><LanguageSwitch
-                  en="Seva se Samadhan..."
-                  hi="सेवा से समाधान..."
-                  tailwindStyles={{
-                    en: "font-serif text-lg md:text-xl font-medium ml-0 md:ml-0 italic ",
-                    hi: "text- md:text-2xl font-medium ml-0 italic inline"
-                  }}
-                /></span>
-              <div className=" text-sm md:text-xl font-bold">Reg.No:03/27/01/2596/24</div>
+                en="Seva se Samadhan..."
+                hi="सेवा से समाधान..."
+                tailwindStyles={{
+                  en: "font-serif text-lg md:text-xl font-medium ml-0 md:ml-0 italic motion-preset-rebound-down motion-delay-[850ms]",
+                  hi: "text- md:text-2xl font-medium ml-0 italic inline"
+                }}
+              /></span>
+              <div className=" text-sm md:text-xl font-bold motion-preset-rebound-down motion-delay-[850ms]">Reg.No:03/27/01/2596/24</div>
 
             </h1>
           </div>
@@ -55,7 +92,7 @@ export default function Header() {
                   en="Home"
                   hi="होम"
                   tailwindStyles={{
-                    en: "text-white text-2xl font-bold hover:underline",
+                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[900ms]",
                     hi: "text-white text-3xl space-x-8 font-semibold hover:underline"
                   }}
                 /></Link></li>
@@ -63,7 +100,7 @@ export default function Header() {
                   en="Services"
                   hi="सेवाएं"
                   tailwindStyles={{
-                    en: "text-white text-2xl font-bold hover:underline",
+                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[900ms]",
                     hi: "text-white text-3xl space-x-8 font-semibold hover:underline"
                   }}
                 /></a></li>
@@ -71,25 +108,27 @@ export default function Header() {
                   en="Contact"
                   hi="संपर्क"
                   tailwindStyles={{
-                    en: "text-white text-2xl font-bold hover:underline",
+                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[900ms]",
                     hi: "text-white text-3xl space-x-8 font-semibold hover:underline"
                   }}
                 /></a></li>
               </ul>
             </nav>
-            <Link href="/donate" className="bg-white text-pink-600 text-center px-6 md:px-9 py-2 rounded-full text-2xl md:text-3xl text-nowrap font-serif font-semibold hover:bg-pink-100 transition-colors">
-          <LanguageSwitch
-                  en="Donate Now!"
-                  hi="अभी दान करें!"
-                />
-            </Link>
-            <LanguageToggle />
-            <button className="md:hidden pl-[10px]" onClick={() => setIsSidebarOpen(true)}>
-              <Menu size={24} />
-            </button>
-          </div>
+ <PulsatingButton > 
+            <Link href="/donate" className="bg-white text-pink-600 text-center px-6 md:px-9 py-2 rounded-full text-2xl md:text-3xl text-nowrap font-serif font-semibold hover:bg-pink-100 transition-colors ">
+             <LanguageSwitch
+                en="Donate Now!"
+                hi="अभी दान करें!"
+              />
+            </Link></PulsatingButton>
+          <LanguageToggle />
+
+          <button className="md:hidden pr-[7px]" onClick={() => setIsSidebarOpen(true)}>
+            <Menu size={24} />
+          </button>
         </div>
-      </header>
+      </div>
+    </header >
       <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
       <SidebarTrigger setIsOpen={setIsSidebarOpen} />
     </>
