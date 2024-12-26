@@ -77,7 +77,7 @@ export default function Header() {
                 en="Seva se Samadhan..."
                 hi="सेवा से समाधान..."
                 tailwindStyles={{
-                  en: "font-serif text-lg md:text-xl font-medium ml-0 md:ml-0 italic motion-preset-rebound-down motion-delay-[850ms]",
+                  en: "font-serif text-lg md:text-xl font-medium ml-0 md:ml-0 italic motion-preset-rebound-right motion-delay-[850ms]",
                   hi: "text- md:text-2xl font-medium ml-0 italic inline"
                 }}
               /></span>
@@ -100,7 +100,7 @@ export default function Header() {
                   en="Services"
                   hi="सेवाएं"
                   tailwindStyles={{
-                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[900ms]",
+                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[950ms]",
                     hi: "text-white text-3xl space-x-8 font-semibold hover:underline"
                   }}
                 /></a></li>
@@ -108,17 +108,21 @@ export default function Header() {
                   en="Contact"
                   hi="संपर्क"
                   tailwindStyles={{
-                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[900ms]",
+                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[1000ms]",
                     hi: "text-white text-3xl space-x-8 font-semibold hover:underline"
                   }}
                 /></a></li>
               </ul>
             </nav>
  <PulsatingButton > 
-            <Link href="/donate" className="bg-white text-pink-600 text-center px-6 md:px-9 py-2 rounded-full text-2xl md:text-3xl text-nowrap font-serif font-semibold hover:bg-pink-100 transition-colors ">
+            <Link href="/donate" className="bg-white text-pink-600 text-center px-6 md:px-9 py-3 rounded-full text-2xl md:text-3xl text-nowrap font-serif font-semibold  transition-colors ">
              <LanguageSwitch
                 en="Donate Now!"
                 hi="अभी दान करें!"
+                tailwindStyles={{
+                  en: "motion-translate-y-loop-25/mirror",
+                  hi: "motion-translate-y-loop-25/mirror"
+                }}
               />
             </Link></PulsatingButton>
           <LanguageToggle />

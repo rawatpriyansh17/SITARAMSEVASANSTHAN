@@ -52,7 +52,7 @@ export function LanguageSwitch({ en, hi, className, tailwindStyles }: LanguageSw
   return (
     <span className={`inline-block relative ${className || ''}`}>
       {/* Container with fixed width based on the longest text */}
-      <span className="inline-block relative" style={{ width: 'max-content' }}>
+      <span className="inline-block" >
         {/* English text */}
         <span 
           className={`block transition-all duration-300 ${
@@ -91,7 +91,7 @@ export function LanguageToggle() {
       />
       <span className="toggle">
         <span className="left">EN</span>
-        <span className="right">HN</span>
+        <span className="right">हिंदी</span>
       </span>
     </label>
   )
