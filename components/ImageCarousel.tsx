@@ -185,6 +185,17 @@ export default function ImageCarousel() {
 
   return (
     <div className="relative w-full overflow-hidden rounded-lg">
+ 
+            <button className=" motion-scale-in-[0.5] motion-translate-x-in-[26%] motion-translate-y-in-[17%] motion-opacity-in-[0%] motion-rotate-in-[24deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate motion-delay-1500 text-center bg-gradient-to-b from-violet-500 via-purple-800 to-violet-600 p-2 rounded-lg mb-3  ">
+              <LanguageSwitch
+                      en=" Previous program ran by our NGO:-"
+                        hi="हमारे NGO द्वारा संचालित पूर्व प्रोग्राम:-"
+                        tailwindStyles={{
+                          en: "motion-scale-loop-95 motion-duration-[3s] motion-ease-spring-smooth font-serif text-lg md:text-3xl text-white mb-2  px-4 font-bold ",
+                          hi: "motion-scale-loop-95 motion-duration-[3s] motion-ease-spring-smooth text-xl md:text-2xl text-white  mb-2  px-4 font-bold"
+                        }}
+                      />
+            </button>
         <div className='intersect:motion-preset-fade motion-delay-[100ms]'>
           <div className="flex flex-col md:flex-row gap-2">
             <div className="w-full md:w-1/2 h-[400px] md:h-[725px] relative">
@@ -199,8 +210,8 @@ export default function ImageCarousel() {
                                   en=" Know More..."
                                   hi="और जाने..."
                                   tailwindStyles={{
-                                    en: "font-mono text-lg font-semibold py-3 px-[60px] transition-colors text-center",
-                                    hi: "text-xl font-bold  py-3 px-[60px]  transition-colors text-center"
+                                    en: "bg-gradient-to-b from-pink-500 to-pink-700 font-mono text-lg font-semibold py-3 px-[60px] transition-colors text-center",
+                                    hi: "bg-gradient-to-b from-pink-500 to-pink-700 text-xl font-bold  py-3 px-[60px]  transition-colors text-center"
                                   }}
                                 />
                 </Link></PulsatingButton>
@@ -208,7 +219,7 @@ export default function ImageCarousel() {
             </div>
           </div>
         </div>
-      <div className='intersect:motion-preset-fade motion-delay-[200ms]'>
+      <div className='intersect:motion-preset-fade motion-delay-[300ms]'>
         <div className="mt-8">
           <div className="flex flex-col md:flex-row gap-2">
             <div className="w-full md:w-1/2 relative h-[300px] md:h-[400px]">
@@ -225,8 +236,8 @@ export default function ImageCarousel() {
                                   en=" Know More..."
                                   hi="और जाने..."
                                   tailwindStyles={{
-                                    en: "font-mono text-lg font-semibold py-3 px-[60px] transition-colors text-center",
-                                    hi: "text-xl font-bold  py-3 px-[60px]  transition-colors text-center"
+                                    en: "bg-gradient-to-b from-pink-500 to-pink-700 font-mono text-lg font-semibold py-3 px-[60px] transition-colors text-center",
+                                    hi: "bg-gradient-to-b from-pink-500 to-pink-700 text-xl font-bold  py-3 px-[60px]  transition-colors text-center"
                                   }}
                                 />
                 </Link></PulsatingButton>
@@ -235,7 +246,7 @@ export default function ImageCarousel() {
           </div>
         </div>
       </div>
-      <div className="intersect:motion-preset-fade motion-delay-[300ms]">
+      <div className="intersect:motion-preset-fade motion-delay-[500ms]">
         <div className="mt-8">
           <div className="flex flex-col md:flex-row gap-2">
             <div className="w-full md:w-1/2 relative h-[300px] md:h-[400px]">
@@ -252,8 +263,8 @@ export default function ImageCarousel() {
                                   en=" Know More..."
                                   hi="और जाने..."
                                   tailwindStyles={{
-                                    en: "font-mono text-lg font-semibold py-3 px-[60px]  transition-colors text-center",
-                                    hi: "text-xl font-bold  py-3 px-[60px]  transition-colors text-center"
+                                    en: "bg-gradient-to-b from-pink-500 to-pink-700 font-mono text-lg font-semibold py-3 px-[60px]  transition-colors text-center",
+                                    hi: "bg-gradient-to-b from-pink-500 to-pink-700 text-xl font-bold  py-3 px-[60px]  transition-colors text-center"
                                   }}
                                 />
                 </Link></PulsatingButton>

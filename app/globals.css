@@ -47,7 +47,7 @@ body {
   width: 50%;
   height: 88%;
   background-color: #f3f3f3;
-  color: #373737;
+  color: #487bdb;
   left: 0;
   bottom: 0;
   align-items: center;
@@ -84,7 +84,7 @@ body {
   width: 50%;
   height: 88%;
   background-color: #f3f3f3;
-  color: rgb(206, 206, 206);
+  color: rgb(109, 106, 106);
   right: 1px;
   bottom: 0;
   align-items: center;
@@ -117,7 +117,7 @@ body {
 
 .switch input:checked + .toggle > .left {
   transform: rotateX(10deg) rotateY(45deg);
-  color: rgb(206, 206, 206);
+  color: rgb(111, 108, 108);
 }
 
 .switch input:checked + .toggle > .right {

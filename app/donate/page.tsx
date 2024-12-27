@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function DonatePage() {
   return (
-    <div className="min-h-screen bg-pink-50">
+    <div className="min-h-screen bg-gradient-to-b from-pink-100 via-pink-300 to-pink-100">
       <Header />
       <main className="container mx-auto mt-8 px-4">
         <h1 className="text-4xl font-bold text-pink-800 mb-8 text-center">Donate to Our Cause</h1>

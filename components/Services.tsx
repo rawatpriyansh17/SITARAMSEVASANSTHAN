@@ -3,29 +3,20 @@ import { LanguageSwitch, LanguageToggle } from '@/components/LanguageSwitch'
 
 export default function Services() {
   return (
-    <section id="services-section" className="mt-10 scroll-mt-24 ">
+    <section id="services-section">
       <h2 className="  motion-scale-in-[0.5] motion-translate-x-in-[-25%] motion-translate-y-in-[25%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate motion-delay-1000 text-center "><LanguageSwitch
-                  en="Our Services..."
-                  hi=" हमारी सेवाएँ..."
+                  en="Our Services:-"
+                  hi=" हमारी सेवाएँ:-"
                   tailwindStyles={{
-                    en: " font-serif text-4xl md:text-6xl font-bold text-pink-800 mb-2 md-mb-8  ",
-                    hi: "text-4xl md:text-6xl font-bold text-pink-800 mb-2 md-mb-8"
+                    en: " font-serif text-4xl md:text-6xl font-bold text-pink-700 mb-2 md-mb-8  ",
+                    hi: "text-4xl md:text-6xl font-bold text-pink-700 mb-2 md-mb-8"
                   }}
                 /></h2>
-      <p className=" motion-scale-in-[0.5] motion-translate-x-in-[26%] motion-translate-y-in-[17%] motion-opacity-in-[0%] motion-rotate-in-[24deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate motion-delay-1500 text-center ">
-        <LanguageSwitch
-                en="Sitaram Seva Sansthan is dedicated to the women suffering from cancer following the ideology of 'Seva se Samadhan', Programs run by our NGO:"
-                  hi=" सीताराम सेवा संस्थान 'सेवा से समाधान' की विचार धारा का अनुसरण करते हुए कैंसर पीड़ित महिलाओं के लिए समर्पित है, हमारे NGO द्वारा संचालित प्रोग्राम:"
-                  tailwindStyles={{
-                    en: "font-serif text-base md:text-xl text-gray-700 mb-8  px-4 font-bold ",
-                    hi: "text-base md:text-2xl text-gray-700 mb-8  px-4 font-bold"
-                  }}
-                />
-      </p>
+  
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7 ">
         <div className='motion-preset-rebound-right motion-delay-[800ms]'>
           <ServiceCard><LanguageSwitch
-                  en="Free distribution of artificial silicone breasts to breast cancer patient women."
+                  en="Free distribution of artificial silicone breasts to women suffering from breast cancer."
                   hi=" ब्रेस्ट कैंसर पेशेंट महिलाओं को आर्टिफिशियल ओरिजिनल सिलिकॉन ब्रेस्ट निःशुल्क वितरण।"
                   tailwindStyles={{
                     en: "font-serif text-center font-extrabold text-lg md:text-2xl  ",

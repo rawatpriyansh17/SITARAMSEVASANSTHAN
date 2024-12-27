@@ -52,9 +52,9 @@ export default function Header() {
   return (
     <>
       <header className="motion-preset-rebound-down motion-delay-[400ms] bg-gradient-to-b from-pink-700 to-pink-500 text-white p-3">
-        <div className="container mx-auto flex flex-wrap justify-between items-center">
-          <div className="flex items-center w-full md:w-auto mb-4 md:mb-0">
-            <div className="rounded-full h-[80px] w-[120px] md:h-[120px] md:w-[120px] mr-1 md:mr-5 relative overflow-auto motion-preset-rebound-right motion-delay-[200ms]">
+        <div className=" mx-auto  w-full flex flex-wrap justify-between items-center">
+          <div className="flex place-items-stretch  md:flex items-center w-full md:w-auto mb-4 md:mb-0">
+            <div className="rounded-full h-[80px] w-[140px] md:h-[120px] md:w-[120px] mr-1 md:mr-5 relative overflow-auto motion-preset-rebound-right motion-delay-[200ms] shadow-xl">
               <Link href="/">
                 <Image
                   src="/logo.png"
@@ -69,7 +69,7 @@ export default function Header() {
                 en="Sitaram Seva Sansthan"
                 hi="सीताराम सेवा संस्थान"
                 tailwindStyles={{
-                  en: "font-serif font-extrabold text-[26px] md:text-5xl mt-4 inline motion-preset-rebound-down motion-delay-[800ms]",
+                  en: "font-serif font-extrabold text-nowrap text-[26px] md:text-5xl mt-4 inline motion-preset-rebound-down motion-delay-[800ms]",
                   hi: "text-4xl md:text-6xl text-nowrap font-bold"
                 }}
               /></span>
@@ -87,7 +87,7 @@ export default function Header() {
           </div>
           <div className="flex items-center space-x-5">
             <nav className="hidden md:flex items-center space-x-3">
-              <ul className="flex space-x-6 font-mono ">
+              <ul className="flex space-x-5 font-mono ">
                 <li><Link href="/" ><LanguageSwitch
                   en="Home"
                   hi="होम"
@@ -104,6 +104,14 @@ export default function Header() {
                     hi: "text-white text-3xl space-x-8 font-semibold hover:underline"
                   }}
                 /></a></li>
+                   <li><Link href="/about" ><LanguageSwitch
+                  en="About"
+                  hi="और-जाने"
+                  tailwindStyles={{
+                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[950ms]",
+                    hi: "text-white text-3xl font-semibold hover:underline"
+                  }}
+                /></Link></li>
                 <li><a href="#bottom-of-page" ><LanguageSwitch
                   en="Contact"
                   hi="संपर्क"

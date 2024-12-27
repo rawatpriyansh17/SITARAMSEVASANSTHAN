@@ -3,7 +3,7 @@ import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react
 
 export default function Footer() {
   return (
-    <footer id="bottom-of-page" className="bg-gradient-to-b from-pink-500 to-pink-700 text-white mt-10 py-4 scroll-mt-24">
+    <footer id="bottom-of-page" className="motion-preset-rebound-up motion-delay-[1000ms] bg-gradient-to-b from-pink-500 to-pink-700 text-white mt-10 py-4 scroll-mt-24">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-start">
           <div className="mb-6 md:mb-0 w-full md:w-1/2">
