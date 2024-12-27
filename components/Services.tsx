@@ -6,7 +6,7 @@ export default function Services() {
     <section id="services-section" className="mt-10 scroll-mt-24 ">
       <h2 className="  motion-scale-in-[0.5] motion-translate-x-in-[-25%] motion-translate-y-in-[25%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate motion-delay-1000 text-center "><LanguageSwitch
                   en="Our Services..."
-                  hi=" हमारी सेवाएँ"
+                  hi=" हमारी सेवाएँ..."
                   tailwindStyles={{
                     en: " font-serif text-4xl md:text-6xl font-bold text-pink-800 mb-2 md-mb-8  ",
                     hi: "text-4xl md:text-6xl font-bold text-pink-800 mb-2 md-mb-8"
@@ -98,7 +98,7 @@ export default function Services() {
 
 function ServiceCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className=" font-semibold  text-wrap  h-auto p-2 items-center justify-center overflow-hidden rounded-md  bg-gradient-to-r dark:from-[#070e41] dark:to-[#263381] from-[#f6f7ff] to-[#f5f6ff] dark:border-[rgb(206_67_117)] border-2 border-[#a31b93]  bg-transparent px-6  dark:text-white text-black transition-all duration-100 [box-shadow:5px_5px_rgb(206_67_125)] dark:[box-shadow:5px_5px_rgb(76_100_255)] hover:translate-x-[3px] hover:translate-y-[3px] hover:[box-shadow:0px_0px_rgb(38_51_129)] dark:hover:[box-shadow:0px_0px_rgb(76_100_255)]">
+    <div className=" font-semibold  text-wrap  h-auto p-2 items-center justify-center overflow-hidden rounded-md  bg-gradient-to-r dark:from-[#070e41] dark:to-[#263381] from-[#f6f7ff] to-[#f5f6ff] dark:border-[rgb(206_67_117)] border-2 border-[#a31b93]  bg-transparent px-6  dark:text-white text-black transition-all duration-100 [box-shadow:5px_5px_rgb(206_67_125)] dark:[box-shadow:5px_5px_rgb(76_100_255)] hover:translate-x-[3px] hover:translate-y-[3px] hover:[box-shadow:0px_0px_rgb(38_51_129)] dark:hover:[box-shadow:0px_0px_rgb(76_100_255)] motion-scale-loop-95 motion-duration-[6s] motion-ease-spring-smooth">
       <p className=" text-gray-800">{children}</p>
     </div>
   )

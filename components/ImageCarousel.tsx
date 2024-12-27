@@ -252,7 +252,7 @@ export default function ImageCarousel() {
                                   en=" Know More..."
                                   hi="और जाने..."
                                   tailwindStyles={{
-                                    en: "font-mono text-lg font-semibold py-3 px-[60px] transition-colors text-center",
+                                    en: "font-mono text-lg font-semibold py-3 px-[60px]  transition-colors text-center",
                                     hi: "text-xl font-bold  py-3 px-[60px]  transition-colors text-center"
                                   }}
                                 />
