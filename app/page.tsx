@@ -14,16 +14,15 @@ export default function HomePage() {
     <ObserverProvider>
                 <Analytics />
        <Header />
-      <div className=" min-h-screen bg-gradient-to-b from-pink-100 via-pink-300 to-pink-100">
+      <div className=" min-h-screen bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
 
        
         <main className="container mx-auto p-4">
         <Services />
-        <br /><br />
         <div className="motion-preset-rebound-down motion-delay-[400ms]">
-          <div className="text-center mt-8 md:mb-2 ">
-              <Link href="/latest-event" className=" text-xl md:text-2xl font-semibold transition-colors inline-block">
-              <div className="-motion-translate-y-loop-50 motion-duration-[3s] motion-ease-spring-smooth">
+          <div className="text-center mt-2 md:mb-2 ">
+              <Link href="/latest-event" className=" text-xl md:text-2xl font-semibold transition-colors inline-block rounded-2xl">
+              <div className="motion-translate-y-loop-25 motion-duration-[3s] motion-ease-spring-smooth ">
                 <PulsatingButton><LanguageSwitch
                                   en="Click here for information on upcoming programs..."
                                   hi="संस्था द्वारा संचालित आगामी कार्यक्रम की जानकारी की लिए यहाँ क्लिक करें..."
@@ -33,7 +32,7 @@ export default function HomePage() {
                                   }}
                                 />
                 </PulsatingButton>
-              </div></Link>;
+              </div></Link>
             </div>
         </div>
             <ImageCarousel />

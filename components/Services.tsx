@@ -3,7 +3,7 @@ import { LanguageSwitch, LanguageToggle } from '@/components/LanguageSwitch'
 
 export default function Services() {
   return (
-    <section id="services-section">
+    <div id="services-section">
       <h2 className="  motion-scale-in-[0.5] motion-translate-x-in-[-25%] motion-translate-y-in-[25%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate motion-delay-1000 text-center "><LanguageSwitch
                   en="Our Services:-"
                   hi=" हमारी सेवाएँ:-"
@@ -83,7 +83,7 @@ export default function Services() {
           </ServiceCard>
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 

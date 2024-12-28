@@ -54,7 +54,7 @@ export default function Header() {
       <header className="motion-preset-rebound-down motion-delay-[400ms] bg-gradient-to-b from-pink-700 to-pink-500 text-white p-3">
         <div className=" mx-auto  w-full flex flex-wrap justify-between items-center">
           <div className="flex place-items-stretch  md:flex items-center w-full md:w-auto mb-4 md:mb-0">
-            <div className="rounded-full h-[80px] w-[140px] md:h-[120px] md:w-[120px] mr-1 md:mr-5 relative overflow-auto motion-preset-rebound-right motion-delay-[200ms] shadow-xl">
+            <div className="rounded-full h-[80px] w-[140px] md:h-[120px] md:w-[120px] mr-1 md:mr-5 overflow-auto motion-preset-rebound-right motion-delay-[200ms] shadow-xl">
               <Link href="/">
                 <Image
                   src="/logo.png"
@@ -108,7 +108,7 @@ export default function Header() {
                   en="About"
                   hi="और-जाने"
                   tailwindStyles={{
-                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[950ms]",
+                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[1000ms]",
                     hi: "text-white text-3xl font-semibold hover:underline"
                   }}
                 /></Link></li>
@@ -116,7 +116,7 @@ export default function Header() {
                   en="Contact"
                   hi="संपर्क"
                   tailwindStyles={{
-                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[1000ms]",
+                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[1050ms]",
                     hi: "text-white text-3xl space-x-8 font-semibold hover:underline"
                   }}
                 /></a></li>

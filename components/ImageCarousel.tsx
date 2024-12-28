@@ -186,13 +186,13 @@ export default function ImageCarousel() {
   return (
     <div className="relative w-full overflow-hidden rounded-lg">
  
-            <button className=" motion-scale-in-[0.5] motion-translate-x-in-[26%] motion-translate-y-in-[17%] motion-opacity-in-[0%] motion-rotate-in-[24deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate motion-delay-1500 text-center bg-gradient-to-b from-violet-500 via-purple-800 to-violet-600 p-2 rounded-lg mb-3  ">
+            <button className=" motion-scale-in-[0.5] motion-translate-x-in-[26%] motion-translate-y-in-[17%] motion-opacity-in-[0%] motion-rotate-in-[24deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate motion-delay-1500 text-center bg-gradient-to-b from-violet-500 via-purple-800 to-violet-600 p-2 rounded-lg mb-3 mt-8 md:mt-4 ">
               <LanguageSwitch
                       en=" Previous program ran by our NGO:-"
                         hi="हमारे NGO द्वारा संचालित पूर्व प्रोग्राम:-"
                         tailwindStyles={{
-                          en: "motion-scale-loop-95 motion-duration-[3s] motion-ease-spring-smooth font-serif text-lg md:text-3xl text-white mb-2  px-4 font-bold ",
-                          hi: "motion-scale-loop-95 motion-duration-[3s] motion-ease-spring-smooth text-xl md:text-2xl text-white  mb-2  px-4 font-bold"
+                          en: "font-mono motion-scale-loop-95 motion-duration-[3s] motion-ease-spring-smooth text-lg md:text-2xl text-white mb-2  px-4 font-bold ",
+                          hi: "font-mono motion-scale-loop-95 motion-duration-[3s] motion-ease-spring-smooth text-xl md:text-2xl text-white  mb-2  px-4 font-bold"
                         }}
                       />
             </button>
