@@ -25,7 +25,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center">
               <Mail className="mr-2 flex-shrink-0" size={18} />
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sansthansitaramseva@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:underline font-semibold text-xl">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sansthansitaramseva@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:underline font-semibold sm text-md:text-xl">
                 sansthansitaramseva@gmail.com
               </a>
             </div>
