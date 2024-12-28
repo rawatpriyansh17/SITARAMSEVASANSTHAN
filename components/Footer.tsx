@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-start">
           <div className="mb-3 md:mb-0 w-full md:w-1/2">
-            <h3 className="font-serif text-3xl md:text-4xl font-bold mb-4">Contact Us:-</h3>
+            <h3 className="font-serif text-2xl md:text-4xl font-bold mb-4">Contact Us:-</h3>
             <div className="flex items-start mb-2">
               <MapPin className="mr-2 mt-1 flex-shrink-0 font-semibold " size={18} />
               <p className="text-xl"><LanguageSwitch
@@ -21,7 +21,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center mb-2">
               <Phone className="mr-2 flex-shrink-0 font-semibold" size={18} />
-              <p className="text-xl">+91 9111311301</p>
+              <p className="text-lg md:text-xl">+91 9111311301</p>
             </div>
             <div className="flex items-center">
               <Mail className="mr-2 flex-shrink-0" size={18} />

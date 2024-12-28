@@ -8,7 +8,7 @@ export default function Services() {
                   en="Our Services:-"
                   hi=" हमारी सेवाएँ:-"
                   tailwindStyles={{
-                    en: " font-serif text-4xl md:text-6xl font-bold text-pink-700 mb-2 md-mb-8  ",
+                    en: " font-serif text-3xl md:text-6xl font-bold text-pink-700 mb-2 md-mb-8  ",
                     hi: "text-4xl md:text-6xl font-bold text-pink-700 mb-2 md-mb-8"
                   }}
                 /></h2>
@@ -19,7 +19,7 @@ export default function Services() {
                   en="Free distribution of artificial silicone breasts to women suffering from breast cancer."
                   hi=" ब्रेस्ट कैंसर पेशेंट महिलाओं को आर्टिफिशियल ओरिजिनल सिलिकॉन ब्रेस्ट निःशुल्क वितरण।"
                   tailwindStyles={{
-                    en: "font-serif text-center font-extrabold text-lg md:text-2xl  ",
+                    en: "font-serif text-center font-extrabold text-base md:text-2xl  ",
                     hi: "text-xl text-center md:text-2xl font-bold"
                   }}
                 />
@@ -30,7 +30,7 @@ export default function Services() {
                   en="Free distribution of medicines given in chemotherapy to women breast cancer patients."
                   hi=" ब्रेस्ट कैंसर पेशेंट महिलाओं को कीमो थैरेपी में दी जाने वाली दवाई का निःशुल्क वितरण।"
                   tailwindStyles={{
-                    en: "font-serif text-center font-extrabold text-lg md:text-2xl  ",
+                    en: "font-serif text-center font-extrabold text-base md:text-2xl  ",
                     hi: "text-xl text-center md:text-2xl font-bold"
                   }}
                 />
@@ -41,7 +41,7 @@ export default function Services() {
                   en="Free distribution of medicines given in chemotherapy to women suffering from ovarian cancer."
                   hi=" ओवेरियन कैंसर पेशेंट महिलाओं को कीमो थैरेपी में दी जाने वाली दवाई का निःशुल्क वितरण।"
                   tailwindStyles={{
-                    en: "font-serif text-center font-extrabold text-lg md:text-2xl  ",
+                    en: "font-serif text-center font-extrabold text-base md:text-2xl  ",
                     hi: "text-xl text-center md:text-2xl font-bold"
                   }}
                 />
@@ -52,7 +52,7 @@ export default function Services() {
                   en="Organizing multiple blood donation camps"
                   hi="रक्तदान शिविर का आयोजन।"
                   tailwindStyles={{
-                    en: "font-serif md:p-4 w-auto md:w-[680px] text-wrap text-center font-extrabold text-lg md:text-2xl ",
+                    en: "font-serif md:p-4 w-auto md:w-[680px] text-wrap text-center font-extrabold text-base md:text-2xl ",
                     hi: "text-xl px-11 md:p-4  md:w-[680px] text-center md:text-2xl font-bold"
                   }}
                 />
@@ -64,7 +64,7 @@ export default function Services() {
                     en="Free distribution of essential supplies to the students studying in government schools."
                     hi=" सरकारी स्कूलों में पढ़ने वाले विद्यार्थियों को आवश्यक सामग्री का वितरण।"
                     tailwindStyles={{
-                      en: "font-serif text-center font-extrabold text-lg md:text-2xl  ",
+                      en: "font-serif text-center font-extrabold text-base md:text-2xl  ",
                       hi: "text-xl text-center md:text-2xl font-bold py-4 px-10"
                     }}
                   />
@@ -76,7 +76,7 @@ export default function Services() {
                   en="Programs organized for free thermal mammography test for breast cancer patients"
                   hi="स्तन कैंसर रोगियों के लिए निःशुल्क थर्मल मैमोग्राफी परीक्षण हेतु कार्यक्रम का आयोजन"
                   tailwindStyles={{
-                    en: "font-serif text-center font-extrabold text-lg md:text-2xl  ",
+                    en: "font-serif text-center font-extrabold text-base md:text-2xl  ",
                     hi: "text-xl text-center md:text-2xl font-bold"
                   }}
                 />

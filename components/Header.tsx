@@ -70,7 +70,7 @@ export default function Header() {
                 en="Sitaram Seva Sansthan"
                 hi="सीताराम सेवा संस्थान"
                 tailwindStyles={{
-                  en: "font-serif md:font-serif font-extrabold text-nowrap text-[22px] md:text-5xl mt-1 md:mt-0 inline motion-preset-rebound-down motion-delay-[800ms]",
+                  en: "font-serif md:font-serif font-extrabold text-nowrap text-[22px] ml-1 md:text-5xl mt-1 md:mt-0 inline motion-preset-rebound-down motion-delay-[800ms]",
                   hi: "text-3xl md:text-6xl text-nowrap font-bold"
                 }}
               /></span>
@@ -78,7 +78,7 @@ export default function Header() {
                 en="Seva se Samadhan..."
                 hi="सेवा से समाधान..."
                 tailwindStyles={{
-                  en: "font-serif text-lg md:text-xl font-medium mt-1 md:mt-0 ml-0 md:ml-2 italic -motion-translate-y-loop-50/mirror motion-duration-[6s] md:motion-paused",
+                  en: "font-serif text-lg md:text-xl font-medium mt-1 md:mt-0 ml-1 md:ml-2 italic -motion-translate-y-loop-50/mirror motion-duration-[6s] md:motion-paused",
                   hi: "text-sm md:text-2xl font-medium ml-0 italic inline -motion-translate-y-loop-25/mirror motion-duration-[6s] md:motion-paused"
                 }}
               /></span>
