@@ -4,9 +4,8 @@
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react'
 import PulsatingButton from "@/components/PulsatingButton";
-import { LanguageSwitch, LanguageToggle } from '@/components/LanguageSwitch'
+import { LanguageSwitch } from '@/components/LanguageSwitch'
 import ReactPlayer from 'react-player'
 export default function ImageCarousel() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
