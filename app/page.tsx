@@ -14,12 +14,12 @@ export default function HomePage() {
     <ObserverProvider>
                 <Analytics />
        <Header />
-      <div className=" min-h-screen w-full max-w-full bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
+      <div className=" min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
 
        
-        <main className="container mx-auto p-4">
+        <main className="container mx-auto p-4 ">
         <Services />
-        <div className="motion-preset-rebound-down motion-delay-[400ms]">
+        <div className="motion-preset-rebound-down motion-delay-[400ms] ">
           <div className="text-center mt-2 md:mb-2 ">
               <Link href="/latest-event" className=" text-xl md:text-2xl font-semibold transition-colors inline-block rounded-2xl">
               <div className="motion-translate-y-loop-25 motion-duration-[3s] motion-ease-spring-smooth ">

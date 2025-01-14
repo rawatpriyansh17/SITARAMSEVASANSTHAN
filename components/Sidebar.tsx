@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { X, ChevronRight } from 'lucide-react'
 import { useEffect } from 'react'
-
+import { LanguageSwitch } from '@/components/LanguageSwitch'
 interface SidebarProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -16,8 +16,11 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
 
       <nav className="mt-60 ml-6">
         <ul className="space-y-4">
-          <li><Link href="/" className="block px-4 py-4  text-2xl font-bold font-mono" onClick={() => setIsOpen(false)}><div className={`sidebar ${isOpen ? 'motion-preset-rebound-left motion-delay-[200ms]' : ''}`}>Home</div></Link></li>
-          <li><Link href="#services-section" className="block px-4 py-4  text-2xl font-mono font-bold" onClick={() => setIsOpen(false)}><div className={`sidebar ${isOpen ? 'motion-preset-rebound-left motion-delay-[250ms]' : ''}`}>Services</div></Link></li>
+          <li><Link href="/" className="block px-4 py-4  text-2xl font-bold font-mono" onClick={() => setIsOpen(false)}><div className={`sidebar ${isOpen ? 'motion-preset-rebound-left motion-delay-[200ms]' : ''}`}><LanguageSwitch
+                                  en="Home"
+                                  hi="होम"
+                                /></div></Link></li>
+          <li><Link href="/" className="block px-4 py-4  text-2xl font-mono font-bold" onClick={() => setIsOpen(false)}><div className={`sidebar ${isOpen ? 'motion-preset-rebound-left motion-delay-[250ms]' : ''}`}>Services</div></Link></li>
           <li><Link href="/about" className="block px-4 py-4  text-2xl font-mono font-bold" onClick={() => setIsOpen(false)}><div className={`sidebar ${isOpen ? 'motion-preset-rebound-left motion-delay-[300ms]' : ''}`}>About</div></Link></li>
           <li><Link href="#bottom-of-page" className="block px-4 py-4  text-2xl font-mono font-bold" onClick={() => setIsOpen(false)}><div className={`sidebar ${isOpen ? 'motion-preset-rebound-left motion-delay-[350ms]' : ''}`}>Contact</div></Link></li>
           

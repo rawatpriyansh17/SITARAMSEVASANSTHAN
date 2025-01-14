@@ -10,7 +10,14 @@ body {
 }
 html, body {
   overflow-x: hidden;
+  width: 100%;
+ 
 }
+.react-player .react-player__thumbnail {
+  object-fit: contain; /* Ensures the thumbnail maintains aspect ratio without getting distorted */
+  object-position: center; /* Keeps the image centered */
+}
+
 .switch {
   font-size: 17px;
   position: relative;

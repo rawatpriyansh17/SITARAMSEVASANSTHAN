@@ -7,7 +7,7 @@ export default function LatestEventPage() {
   return (
     <div className="min-h-screen bg-pink-50">
       <Header />
-      <h1 className="text-5xl font-bold underline text-pink-800 mt-3 text-center">
+      <h1 className="motion-preset-rebound-left motion-delay-[800ms] text-center">
         <LanguageSwitch
                                           en="Upcoming Programs:"
                                           hi="आगामी कार्यक्रम:"
@@ -18,7 +18,7 @@ export default function LatestEventPage() {
                                         />
       </h1>
       <div className="flex items-center justify-center p-1">
-        <div className="bg-white rounded-lg shadow-md p-2 w-full sm:w-auto mt-4 sm:mt-8"> {/* Adjusted margin */}
+        <div className="bg-white rounded-lg shadow-md p-2 w-full sm:w-auto mt-4 sm:mt-8 motion-preset-rebound-left motion-delay-[900ms]"> {/* Adjusted margin */}
           <div >
             <Image
               src="/flyer.png"
@@ -26,7 +26,7 @@ export default function LatestEventPage() {
               width={1200}
               height={800}
               layout="responsive"
-              className="rounded"
+              className="rounded-xl  motion-preset-rebound-right motion-delay-[900ms]"
               sizes="(max-width: 640px) 100vw, 600px"
             />
           </div>

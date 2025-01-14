@@ -7,181 +7,8 @@ import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react'
+import ReactPlayer from 'react-player'
 
-
-const VideoPlayer = ({ src }: { src: string }) => {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [isMuted, setIsMuted] = useState(true)
-  const [volume, setVolume] = useState(1)
-  const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const [showControls, setShowControls] = useState(true)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const progressRef = useRef<HTMLInputElement>(null)
-  const controlsTimerRef = useRef<NodeJS.Timeout | null>(null)
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (videoRef.current.paused) {
-        videoRef.current.play()
-        setIsPlaying(true)
-      } else {
-        videoRef.current.pause()
-        setIsPlaying(false)
-      }
-    }
-  }
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted
-      setIsMuted(videoRef.current.muted)
-    }
-  }
-
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newVolume = parseFloat(e.target.value)
-    setVolume(newVolume)
-    if (videoRef.current) {
-      videoRef.current.volume = newVolume
-      setIsMuted(newVolume === 0)
-    }
-  }
-
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      setCurrentTime(videoRef.current.currentTime)
-    }
-  }
-
-  const handleLoadedMetadata = () => {
-    if (videoRef.current) {
-      setDuration(videoRef.current.duration)
-    }
-  }
-
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const time = parseFloat(e.target.value)
-    setCurrentTime(time)
-    if (videoRef.current) {
-      videoRef.current.currentTime = time
-    }
-  }
-  const resetControlsTimer = () => {
-    if (controlsTimerRef.current) {
-      clearTimeout(controlsTimerRef.current)
-    }
-    setShowControls(true)
-    controlsTimerRef.current = setTimeout(() => {
-      setShowControls(false)
-    }, 3000)
-  }
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (video) {
-      video.addEventListener('loadedmetadata', handleLoadedMetadata)
-      video.addEventListener('timeupdate', handleTimeUpdate)
-      video.addEventListener('ended', () => setIsPlaying(false))
-
-      return () => {
-        video.removeEventListener('loadedmetadata', handleLoadedMetadata)
-        video.removeEventListener('timeupdate', handleTimeUpdate)
-        video.removeEventListener('ended', () => setIsPlaying(false))
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.volume = volume
-    }
-  }, [volume])
-
-  useEffect(() => {
-    resetControlsTimer()
-    return () => {
-      if (controlsTimerRef.current) {
-        clearTimeout(controlsTimerRef.current)
-      }
-    }
-  }, [])
-
-  return (
-    <div
-      className="relative w-full h-full"
-      onMouseMove={resetControlsTimer}
-      onMouseEnter={() => setShowControls(true)}
-      onMouseLeave={() => setShowControls(false)}
-    >
-      <div className="absolute inset-0 cursor-pointer" onClick={togglePlay}>
-        <video
-          ref={videoRef}
-          className="w-full h-auto  rounded"
-          loop
-          muted={isMuted}
-          playsInline
-        >
-          <source src={src} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div
-        className={`absolute bottom-0 left-0 right-0 bg-opacity-90 p-2 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}
-      >
-        <input
-          ref={progressRef}
-          type="range"
-          min={0}
-          max={duration || 100}
-          value={currentTime}
-          onChange={handleSeek}
-          className="w-full h-2 bg-white opacity-100 rounded-lg appearance-none cursor-pointer"
-          style={{
-            backgroundImage: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(currentTime / (duration || 1)) * 100}%, #ffffff ${(currentTime / (duration || 1)) * 100}%, #ffffff 100%)`,
-            backgroundSize: '100% 100%',
-            backgroundRepeat: 'no-repeat'
-          }}
-        />
-        <div className="flex items-center justify-between mt-2">
-          <div className="flex items-center space-x-2">
-            <button
-              className="md:text-white text-pink-900 md:text-2xl font-extrabold p-1 rounded-full md:hover:bg-black md:hover:bg-opacity-60"
-              onClick={togglePlay}
-            >
-              {isPlaying ? <Pause size={36} /> : <Play size={36} />}
-            </button>
-            <button
-              className="md:text-white text-pink-900 md:text-2xl font-extrabold p-1 rounded-full md:hover:bg-black md:hover:bg-opacity-60"
-              onClick={toggleMute}
-            >
-              {isMuted ? <VolumeX size={36} /> : <Volume2 size={36} />}
-            </button>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.1"
-              value={volume}
-              onChange={handleVolumeChange}
-              className="w-20 h-1 bg-blue-700 bg-opacity-80 rounded-lg appearance-none cursor-pointer"
-            />
-          </div>
-          <div className="md:text-white text-pink-900 md:text-xl text-base font-semibold">
-            {formatTime(currentTime)}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-const formatTime = (time: number) => {
-  const minutes = Math.floor(time / 60)
-  const seconds = Math.floor(time % 60)
-  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
-}
 export default function SeptemberEventPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
@@ -199,15 +26,57 @@ export default function SeptemberEventPage() {
         </div>
 
         <h2 className="text-3xl font-bold text-pink-800 mb-6">वीडियो कवरेज</h2>
-        <div className="grid grid-cols-1 gap-8">
-          <div className="bg-white p-4 rounded-lg shadow-md h-[270px] md:h-[850px] sm:h-[375px]">
-            <VideoPlayer src="/septvideo3.mp4" />
+        <div className="md:grid grid-cols-2 gap-8">
+          <div className="bg-white p-4 rounded-md shadow-md h-[270px] md:h-[450px] sm:h-[375px]">
+            {/* <VideoPlayer src="/septvideo3.mp4" /> */}
+             <ReactPlayer url='https://youtu.be/EszTiupSP64'
+                      controls
+                      light="/interview.png" // Custom thumbnail URL
+                      config={{
+                        youtube: {
+                          playerVars: {
+                            modestbranding: 1, // Remove YouTube logo
+                            showinfo: 0,       // Hide video title and uploader info (deprecated but still works on some videos)
+                            rel: 0,            // Prevent showing related videos at the end
+                          },
+                        },
+                      }}
+                      width="100%"
+                      height="100%" />
           </div>
-          <div className="bg-white p-4 rounded-lg shadow-md h-[270px] md:h-[850px] sm:h-[375px]">
-            <VideoPlayer src="/septvideo2.mp4" />
+          <div className="bg-white p-4 rounded-md shadow-md h-[270px] md:h-[450px] sm:h-[375px]">
+            {/* <VideoPlayer src="/septvideo2.mp4" /> */}
+             <ReactPlayer url='https://youtu.be/WXV-oHRYSK8'
+                      controls
+                      light="/distribution.png" // Custom thumbnail URL
+                      config={{
+                        youtube: {
+                          playerVars: {
+                            modestbranding: 1, // Remove YouTube logo
+                            showinfo: 0,       // Hide video title and uploader info (deprecated but still works on some videos)
+                            rel: 0,            // Prevent showing related videos at the end
+                          },
+                        },
+                      }}
+                      width="100%"
+                      height="100%" />
           </div>
-          <div className="bg-white p-4 rounded-lg shadow-md h-[270px] md:h-[850px] sm:h-[375px]">
-            <VideoPlayer src="/septvideo.mp4" />
+          <div className="bg-white p-4 rounded-md shadow-md h-[270px] md:h-[450px] sm:h-[375px]">
+            {/* <VideoPlayer src="/septvideo.mp4" /> */}
+             <ReactPlayer url='https://youtu.be/jRsZ14DnqM0'
+                      controls
+                      light="/distribution.png" // Custom thumbnail URL
+                      config={{
+                        youtube: {
+                          playerVars: {
+                            modestbranding: 1, // Remove YouTube logo
+                            showinfo: 0,       // Hide video title and uploader info (deprecated but still works on some videos)
+                            rel: 0,            // Prevent showing related videos at the end
+                          },
+                        },
+                      }}
+                      width="100%"
+                      height="100%" />
           </div>
         </div>
       </main>
