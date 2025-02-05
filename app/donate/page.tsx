@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { LanguageSwitch, LanguageToggle } from '@/components/LanguageSwitch'
 export default function DonatePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-100 via-purple-300 to-pink-500">
+    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-pink-100 via-purple-300 to-pink-500">
       <Header />
       <main className="container mx-auto mt-2 px-4">
         <h1 className="text-center "><LanguageSwitch

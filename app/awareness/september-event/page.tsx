@@ -11,7 +11,7 @@ import ReactPlayer from 'react-player'
 
 export default function SeptemberEventPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
+    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
       <Header />
       <main className="container mx-auto mt-8 px-4">
         <h1 className="text-4xl font-bold text-pink-800 mb-8 text-center">पुनः संस्था द्वारा संचालित कार्यक्रम 21 सितंबर 2024</h1>

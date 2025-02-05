@@ -14,7 +14,7 @@ export default function HomePage() {
     <ObserverProvider>
                 <Analytics />
        <Header />
-      <div className=" min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
+      <div className=" min-h-screen w-full max-w-full overflow-hidden bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
 
        
         <main className="container mx-auto p-4 ">

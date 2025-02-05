@@ -4,7 +4,7 @@ import { LanguageSwitch } from '@/components/LanguageSwitch'
 import Image from 'next/image'
 export default function DonatePage() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-pink-100 via-purple-200 to-pink-600">
+    <div className="flex flex-col min-h-screen overflow-hidden bg-gradient-to-b from-pink-100 via-purple-200 to-pink-600">
       <Header />
       <main className="flex-grow mx-auto mt-8 px-4">
         <p className="motion-scale-in-[0.5] motion-translate-x-in-[26%] motion-translate-y-in-[17%] motion-opacity-in-[0%] motion-rotate-in-[24deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate motion-delay-800 text-center  text-transparent bg-clip-text bg-gradient-to-br from-pink-600 to-purple-800">

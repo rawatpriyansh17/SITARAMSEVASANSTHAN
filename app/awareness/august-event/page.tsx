@@ -13,7 +13,7 @@ import ReactPlayer from 'react-player'
 
 export default function AugustEventPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
+    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
       <Header />
       <main className="container mx-auto mt-8 px-4">
         <h1 className="text-4xl font-bold text-pink-800 mb-8 text-center">15th अगस्त ओरिजिनल सिलिकॉन ब्रेस्ट निःशुल्क डिस्ट्रिब्यूशन</h1>

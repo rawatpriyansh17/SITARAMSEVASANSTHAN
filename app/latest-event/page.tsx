@@ -5,7 +5,7 @@ import { LanguageSwitch, LanguageToggle } from '@/components/LanguageSwitch'
 
 export default function LatestEventPage() {
   return (
-    <div className="min-h-screen bg-pink-50">
+    <div className="min-h-screen overflow-hidden bg-pink-50">
       <Header />
       <h1 className="motion-preset-rebound-left motion-delay-[800ms] text-center">
         <LanguageSwitch

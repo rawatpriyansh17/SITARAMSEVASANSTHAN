@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function AwarenessPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
+    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
       <Header  />
       <main className="container mx-auto mt-8 px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
