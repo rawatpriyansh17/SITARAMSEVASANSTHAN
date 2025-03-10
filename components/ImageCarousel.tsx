@@ -37,6 +37,14 @@ export default function ImageCarousel() {
           }}
         />
       </button>
+      {/* feb events */}
+      {/* jan events */}
+      
+      {/* december events */}
+
+      {/* november events */}
+
+      {/* october events */}
       <div className='intersect:motion-preset-fade motion-delay-[100ms]'>
         <div className="flex flex-col md:flex-row gap-2">
           <div className="w-full md:w-1/2 h-[25rem] md:h-[45.313rem] relative rounded-2xl overflow-hidden">
@@ -75,6 +83,7 @@ export default function ImageCarousel() {
           </div>
         </div>
       </div>
+      {/* september events */}
       <div className='intersect:motion-preset-fade motion-delay-[300ms]'>
         <div className="mt-8">
           <div className="flex flex-col md:flex-row gap-2">
@@ -135,6 +144,7 @@ export default function ImageCarousel() {
           </div>
         </div>
       </div>
+      {/* august events */}
       <div className="intersect:motion-preset-fade motion-delay-[500ms]">
         <div className="mt-8">
           <div className="flex flex-col md:flex-row gap-2">
