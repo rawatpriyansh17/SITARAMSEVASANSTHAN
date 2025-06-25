@@ -4,10 +4,10 @@
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import PulsatingButton from "@/components/PulsatingButton";
-import { LanguageSwitch } from '@/components/LanguageSwitch'
+import PulsatingButton from "@/app/components/PulsatingButton";
+import { LanguageSwitch } from '@/app/components/LanguageSwitch'
 import ReactPlayer from 'react-player'
-export default function ImageCarousel() {
+export default function PostSection() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
@@ -37,15 +37,9 @@ export default function ImageCarousel() {
           }}
         />
       </button>
-      {/* feb events */}
-      {/* jan events */}
-      
-      {/* december events */}
 
-      {/* november events */}
-
-      {/* october events */}
-      <div className='intersect:motion-preset-fade motion-delay-[100ms]'>
+      {/*  post 3 */}
+      <div >
         <div className="flex flex-col md:flex-row gap-2">
           <div className="w-full md:w-1/2 h-[25rem] md:h-[45.313rem] relative rounded-2xl overflow-hidden">
             <Image src="/image1.jpeg" alt='image not available' layout="fill" objectFit="cover" />
@@ -69,7 +63,7 @@ export default function ImageCarousel() {
                   }}/>
             </p>
             <div className='w-1/3'>
-              <PulsatingButton> <Link href="/awareness/october-event" className="bg-pink-500 text-nowrap text-white size-full rounded-lg ">
+              <PulsatingButton> <Link href="/events/event-3" className="bg-pink-500 text-nowrap text-white size-full rounded-lg ">
                 <LanguageSwitch
                   en=" Know More..."
                   hi="और जाने..."
@@ -83,8 +77,8 @@ export default function ImageCarousel() {
           </div>
         </div>
       </div>
-      {/* september events */}
-      <div className='intersect:motion-preset-fade motion-delay-[300ms]'>
+      {/*  post 2 */}
+      <div>
         <div className="mt-8">
           <div className="flex flex-col md:flex-row gap-2">
             <div className="w-full md:w-1/2 relative h-[250px] md:h-[400px] rounded-2xl overflow-hidden">
@@ -129,7 +123,7 @@ export default function ImageCarousel() {
                   }}/>
               </p>
               <div className='w-1/3'>
-                <PulsatingButton> <Link href="/awareness/september-event" className="bg-pink-500 text-nowrap text-white size-full rounded-lg ">
+                <PulsatingButton> <Link href="/events/event-2" className="bg-pink-500 text-nowrap text-white size-full rounded-lg ">
                   <LanguageSwitch
                     en=" Know More..."
                     hi="और जाने..."
@@ -144,8 +138,8 @@ export default function ImageCarousel() {
           </div>
         </div>
       </div>
-      {/* august events */}
-      <div className="intersect:motion-preset-fade motion-delay-[500ms]">
+      {/* post 1 */}
+      <div >
         <div className="mt-8">
           <div className="flex flex-col md:flex-row gap-2">
             <div className="w-full md:w-1/2 relative h-[250px] md:h-[400px] rounded-2xl overflow-hidden">
@@ -185,7 +179,7 @@ export default function ImageCarousel() {
                   }}/>
               </p>
               <div className='w-1/3'>
-                <PulsatingButton> <Link href="/awareness/august-event" className="bg-pink-500 text-nowrap text-white size-full rounded-lg ">
+                <PulsatingButton> <Link href="/events/event-1" className="bg-pink-500 text-nowrap text-white size-full rounded-lg ">
                   <LanguageSwitch
                     en=" Know More..."
                     hi="और जाने..."

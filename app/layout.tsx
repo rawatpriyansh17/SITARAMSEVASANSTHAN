@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { LanguageProvider } from '@/components/LanguageSwitch'
+import { LanguageProvider } from '@/app/components/LanguageSwitch'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   description: "Sitaram Seva Sansthan-Seva Se Samadhan"
 };
 
+import Chatbot from "@/app/components/Chatbot";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,7 +30,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-    <LanguageProvider>
+        <div className="fixed bottom-6 right-6 z-50">
+          <Chatbot />
+        </div>
+        <LanguageProvider>
           {children}
         </LanguageProvider>
       </body>

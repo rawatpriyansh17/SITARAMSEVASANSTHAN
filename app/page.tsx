@@ -1,12 +1,12 @@
 import { Analytics } from "@vercel/analytics/react"
-import Header from '@/components/Header'
-import ImageCarousel from '@/components/ImageCarousel'
-import Services from '@/components/Services'
-import Footer from '@/components/Footer'
+import Header from '@/app/components/Header'
+import PostSection from '@/app/components/PostSection'
+import Services from '@/app/components/Services'
+import Footer from '@/app/components/Footer'
 import Link from 'next/link'
-import PulsatingButton from "@/components/PulsatingButton";
-import { LanguageSwitch, LanguageToggle } from '@/components/LanguageSwitch'
-import ObserverProvider from '@/components/ObserverProvider';
+import PulsatingButton from "@/app/components/PulsatingButton";
+import { LanguageSwitch, LanguageToggle } from '@/app/components/LanguageSwitch'
+import ObserverProvider from '@/app/components/ObserverProvider';
 export default function HomePage() {
 
 
@@ -27,15 +27,15 @@ export default function HomePage() {
                                   en="Click here for information on upcoming programs..."
                                   hi="संस्था द्वारा संचालित आगामी कार्यक्रम की जानकारी की लिए यहाँ क्लिक करें..."
                                   tailwindStyles={{
-                                    en: "font-mono text-white text-lg md:text-2xl p-3 font-extrabold bg-gradient-to-b from-pink-500 to-pink-700",
-                                    hi: "text-white text-2xl space-x-10 p-2 font-semibold bg-gradient-to-b from-pink-500 to-pink-700"
+                                    en: "font-mono text-white text-lg md:text-2xl p-3 font-extrabold bg-gradient-to-b from-pink-500 to-pink-700 rounded-2xl",
+                                    hi: "text-white text-2xl space-x-10 p-2 font-semibold bg-gradient-to-b from-pink-500 to-pink-700 rounded-2xl"
                                   }}
                                 />
                 </PulsatingButton>
               </div></Link>
             </div>
         </div>
-            <ImageCarousel />
+            <PostSection />
         </main>
         <Footer />
       </div>

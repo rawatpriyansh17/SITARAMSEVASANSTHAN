@@ -1,6 +1,6 @@
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import { LanguageSwitch } from '@/components/LanguageSwitch'
+import Header from '@/app/components/Header'
+import Footer from '@/app/components/Footer'
+import { LanguageSwitch } from '@/app/components/LanguageSwitch'
 import Image from 'next/image'
 export default function DonatePage() {
   return (

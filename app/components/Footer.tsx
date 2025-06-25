@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react'
-import { LanguageSwitch, LanguageToggle } from '@/components/LanguageSwitch'
+import { LanguageSwitch, LanguageToggle } from '@/app/components/LanguageSwitch'
 export default function Footer() {
   return (
     <footer id="bottom-of-page" className="motion-preset-rebound-up motion-delay-[1000ms] bg-gradient-to-b from-pink-600 to-pink-900 text-white mt-10 py-4 scroll-mt-24">

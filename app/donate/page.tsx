@@ -1,7 +1,7 @@
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import Header from '@/app/components/Header'
+import Footer from '@/app/components/Footer'
 import Image from 'next/image'
-import { LanguageSwitch, LanguageToggle } from '@/components/LanguageSwitch'
+import { LanguageSwitch, LanguageToggle } from '@/app/components/LanguageSwitch'
 export default function DonatePage() {
   return (
     <div className="min-h-screen overflow-hidden bg-gradient-to-b from-pink-100 via-purple-300 to-pink-500">

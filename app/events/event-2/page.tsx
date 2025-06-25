@@ -1,15 +1,15 @@
 
 'use client'
 
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import Header from '@/app/components/Header'
+import Footer from '@/app/components/Footer'
 import ReactPlayer from 'react-player'
-import { LanguageSwitch } from '@/components/LanguageSwitch'
+import { LanguageSwitch } from '@/app/components/LanguageSwitch'
 
 
 export default function SeptemberEventPage() {
   return (
-    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-pink-100  via-purple-400 to-pink-500">
+    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-pink-100  via-purple-300 to-pink-500">
       <Header />
       <main className="container mx-auto mt-8 px-4">
         <h1><LanguageSwitch
@@ -32,7 +32,7 @@ export default function SeptemberEventPage() {
                   }}
                 />
           </p>
-          <p className="">
+          <p >
          
             <LanguageSwitch
                   en="This initiative aims to improve the confidence and quality of life of women affected by breast cancer. We are grateful for the support of our community members and donors who made this program possible."

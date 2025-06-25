@@ -1,4 +1,4 @@
-import { LanguageSwitch, LanguageToggle } from '@/components/LanguageSwitch'
+import { LanguageSwitch, LanguageToggle } from '@/app/components/LanguageSwitch'
 
 
 export default function Services() {

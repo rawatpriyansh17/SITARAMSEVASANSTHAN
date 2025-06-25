@@ -65,7 +65,7 @@ export function LanguageSwitch({ en, hi, className, tailwindStyles }: LanguageSw
         </span>
         {/* Hindi text */}
         <span 
-          className={`block transition-all duration-300 ${
+          className={`block transition-all duration-400 ${
             language === 'hi' 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 absolute top-0 left-0 translate-y-5'

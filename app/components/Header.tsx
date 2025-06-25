@@ -7,7 +7,7 @@ import { Menu } from 'lucide-react'
 import { useState } from 'react'
 import Sidebar from './Sidebar'
 import SidebarTrigger from './SidebarTrigger'
-import { LanguageSwitch, LanguageToggle } from '@/components/LanguageSwitch'
+import { LanguageSwitch, LanguageToggle } from '@/app/components/LanguageSwitch'
 import React from "react";
 
 import { cn } from "@/lib/utils";
@@ -51,7 +51,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="motion-preset-rebound-down motion-delay-[400ms] w-full bg-gradient-to-b from-pink-700 to-pink-500 text-white p-3">
+      <header className="motion-preset-rebound-down motion-delay-[400ms] w-full bg-gradient-to-b from-pink-700 to-pink-500 text-white p-3 rounded-bl-3xl rounded-br-3xl">
         <div className=" mx-auto  w-full flex flex-wrap justify-between items-center">
           <div className="flex place-items-stretch  md:flex items-center w-full md:w-auto mb-4 md:mb-0">
             <div className="rounded-full h-[5rem] w-[5rem] md:h-[7.5rem] md:w-[7.5rem] md:mb-0 mb-1 mr-1 md:mr-5 overflow-auto motion-preset-rebound-right motion-delay-[200ms] shadow-xl  min-w-[5rem] min-h-[5rem]">
@@ -59,6 +59,7 @@ export default function Header() {
                 <Image
                   src="/logo.png"
                   alt="सीताराम सेवा संस्थान Logo"
+                  priority
                   layout="fill"
                   objectFit="cover"
                       className="object-contain"
