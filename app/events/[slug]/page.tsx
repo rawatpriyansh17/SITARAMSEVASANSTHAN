@@ -7,13 +7,12 @@ import { fetchEventBySlug } from '@/lib/cms-api';
 import { OptimizedImage } from '@/app/components/optimized-image';
 
 interface PageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>; // Changed to Promise
 }
 
 export default async function EventPage({ params }: PageProps) {
-  const eventData = await fetchEventBySlug(params.slug);
+  const { slug } = await params; // Added await
+  const eventData = await fetchEventBySlug(slug);
 
   if (!eventData) {
     notFound();
