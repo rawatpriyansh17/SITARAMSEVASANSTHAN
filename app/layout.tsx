@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from '@/app/components/LanguageSwitch'
 import { ImageKitWrapper } from "@/lib/imagekit";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 };
 
 import Chatbot from "@/app/components/Chatbot";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,14 +32,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="fixed bottom-6 right-6 z-50">
-          <Chatbot />
-        </div>
-        <LanguageProvider>
-          <ImageKitWrapper>
+        <ImageKitWrapper>
+          <LanguageProvider>
+            <div className="fixed bottom-6 right-6 z-50">
+              <Chatbot />
+            </div>
             {children}
-          </ImageKitWrapper>
-        </LanguageProvider>
+          </LanguageProvider>
+        </ImageKitWrapper>
       </body>
     </html>
   );

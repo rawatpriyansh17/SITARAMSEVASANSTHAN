@@ -1,24 +1,29 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import PulsatingButton from "@/app/components/PulsatingButton";
 import { LanguageSwitch } from '@/app/components/LanguageSwitch'
 import { VideoDialog } from './VideoDialog';
 import { fetchPosts, type Post } from '@/lib/cms-api';
-import { OptimizedImage } from './optimized-image'; // Import your component
+import { OptimizedImage } from './optimized-image';
 
 export default function PostSection() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadPosts() {
       try {
+        console.log('Attempting to fetch posts...'); // Debug log
         const fetchedPosts = await fetchPosts();
+        console.log('Fetched posts:', fetchedPosts); // Debug log
         setPosts(fetchedPosts);
+        setError(null);
       } catch (error) {
         console.error('Failed to load posts:', error);
+        setError('Failed to load posts');
       } finally {
         setLoading(false);
       }
@@ -54,11 +59,27 @@ export default function PostSection() {
     );
   }
 
+  if (error) {
+    return (
+      <div className="container mx-auto mt-4 p-4">
+        <div className="text-center py-5 px-2 bg-red-50 border-2 border-red-300 w-fit mx-auto rounded-lg shadow-lg">
+          <p className="text-red-700 font-mono font-extrabold">Error: {error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="mt-2 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (posts.length === 0) {
     return (
-      <div className="container mx-auto  mt-4 p-4">
+      <div className="container mx-auto mt-4 p-4">
         <div className="text-center py-5 px-2 bg-white border-2 border-pink-600 w-fit mx-auto rounded-lg shadow-lg">
-          <p className="text-pink-700 font-mono font-extrabold">No posts available at the moment,Come back again later!</p>
+          <p className="text-pink-700 font-mono font-extrabold">No posts available at the moment, Come back again later!</p>
         </div>
       </div>
     );
