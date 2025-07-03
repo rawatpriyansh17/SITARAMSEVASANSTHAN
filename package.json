@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@google/genai": "^0.13.0",
+    "@imagekit/next": "^2.1.2",
     "@vercel/analytics": "^1.4.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.471.1",
+    "motion": "^12.19.1",
     "next": "^15.3.2",
     "openai": "^5.7.0",
     "react": "19.0.0",

@@ -3,8 +3,8 @@ import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react
 import { LanguageSwitch, LanguageToggle } from '@/app/components/LanguageSwitch'
 export default function Footer() {
   return (
-    <footer id="bottom-of-page" className="motion-preset-rebound-up motion-delay-[1000ms] bg-gradient-to-b from-pink-600 to-pink-900 text-white mt-10 py-4 scroll-mt-24">
-      <div className="container mx-auto px-4">
+    <div id="bottom-of-page" className="border-t-2 border-pink-300 left-0 right-0 bottom-0 motion-preset-rebound-up motion-delay-[1000ms] bg-gradient-to-b from-pink-600 to-pink-900 text-white py-4">
+      <div className="container mx-auto px-4 ">
         <div className="flex flex-col md:flex-row justify-between items-start">
           <div className="mb-3 md:mb-0 w-full md:w-1/2">
             <h3 className="font-serif text-2xl md:text-4xl font-bold mb-4">Contact Us:-</h3>
@@ -46,6 +46,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   )
 }

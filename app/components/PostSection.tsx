@@ -1,199 +1,153 @@
-
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import PulsatingButton from "@/app/components/PulsatingButton";
 import { LanguageSwitch } from '@/app/components/LanguageSwitch'
-import ReactPlayer from 'react-player'
+import { VideoDialog } from './VideoDialog';
+import { fetchPosts, type Post } from '@/lib/cms-api';
+import { OptimizedImage } from './optimized-image'; // Import your component
+
 export default function PostSection() {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 768);
-    };
+    async function loadPosts() {
+      try {
+        const fetchedPosts = await fetchPosts();
+        setPosts(fetchedPosts);
+      } catch (error) {
+        console.error('Failed to load posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-    handleResize(); // Set initial value
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    loadPosts();
   }, []);
 
+  // Helper function to get the correct thumbnail
+  const getThumbnailUrl = (post: Post) => {
+    if (post.thumbnailUrl) {
+      // If it's a CMS thumbnail path, convert to NGOCODE equivalent
+      if (post.thumbnailUrl.startsWith('/event-highlights')) {
+        return post.thumbnailUrl; // Use the same path in NGOCODE
+      }
+      // If it's already an ImageKit URL, use it
+      if (post.thumbnailUrl.includes('ik.imagekit.io')) {
+        return post.thumbnailUrl;
+      }
+    }
+    // Default fallback
+    return '/event-highlights1.png';
+  };
+
+  if (loading) {
+    return (
+    <div className="container mx-auto mt-4 p-4 flex justify-center">
+      <div className="flex items-center bg-white border-2 border-pink-600 rounded-lg shadow-lg px-4 py-2 w-fit">
+        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-pink-600 mr-2"></div>
+        <p className="text-pink-700 font-mono font-extrabold">Loading posts...</p>
+      </div>
+    </div>
+    );
+  }
+
+  if (posts.length === 0) {
+    return (
+      <div className="container mx-auto  mt-4 p-4">
+        <div className="text-center py-5 px-2 bg-white border-2 border-pink-600 w-fit mx-auto rounded-lg shadow-lg">
+          <p className="text-pink-700 font-mono font-extrabold">No posts available at the moment,Come back again later!</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className=" w-full overflow-hidden rounded-lg">
-
-      <button className=" motion-scale-in-[0.5] motion-translate-x-in-[26%] motion-translate-y-in-[17%] motion-opacity-in-[0%] motion-rotate-in-[24deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate motion-delay-1500 text-center bg-gradient-to-b from-violet-500 via-purple-800 to-violet-600 p-2 rounded-lg mb-3 mt-8 md:mt-4 ">
+    <div className="container mx-auto p-4">
+      <button className="motion-scale-in-[0.5] motion-translate-x-in-[26%] motion-translate-y-in-[17%] motion-opacity-in-[0%] motion-rotate-in-[24deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate motion-delay-1500 text-center bg-gradient-to-b from-violet-500 via-purple-800 to-violet-600 p-2 rounded-lg mb-3 mt-8 md:mt-4">
         <LanguageSwitch
-          en=" Previous program ran by our NGO:-"
+          en="Previous programs run by our NGO:-"
           hi="हमारे NGO द्वारा संचालित पूर्व प्रोग्राम:-"
           tailwindStyles={{
-            en: "font-mono motion-scale-loop-95 motion-duration-[3s] motion-ease-spring-smooth text-lg md:text-2xl text-white mb-2  px-4 font-bold ",
-            hi: "font-mono motion-scale-loop-95 motion-duration-[3s] motion-ease-spring-smooth text-xl md:text-2xl text-white  mb-2  px-4 font-bold"
+            en: "font-mono text-white text-lg md:text-2xl font-extrabold",
+            hi: "text-white text-xl md:text-2xl font-bold"
           }}
         />
       </button>
 
-      {/*  post 3 */}
-      <div >
-        <div className="flex flex-col md:flex-row gap-2">
-          <div className="w-full md:w-1/2 h-[25rem] md:h-[45.313rem] relative rounded-2xl overflow-hidden">
-            <Image src="/image1.jpeg" alt='image not available' layout="fill" objectFit="cover" />
-          </div>
-          <div className="w-full px- md:w-[850px] bg-pink-100 p-6 flex flex-col justify-center rounded-2xl overflow-hidden">
-            <h2>  <LanguageSwitch
-                  en="Ovarian cancer patient women were given free medicines for chemotherapy."
-                  hi="ओवेरियन कैंसर पेशेंट महिलाओं को कीमो थैरेपी में दी जाने वाली दवाई निःशुल्क दी गई"
-                  tailwindStyles={{
-                    en: "font-mono text-xl md:text-4xl font-bold mb-4 text-pink-800",
-                    hi: "text-2xl md:text-4xl font-bold mb-4 text-pink-800"
-                  }}
-                /></h2>
-            <p>
-            <LanguageSwitch
-                  en="On 5 October 2024, 18 October 2024, 19 October 2024, 25 October 2024, medicines given in chemotherapy were given free of cost to ovarian cancer patient women, in which the medicines prescribed by Dr. Anoop Mantri were provided free of cost."
-                  hi="5 अक्टूबर 2024, 18 अक्टूबर 2024, 19 अक्टूबर 2024, 25 अक्टूबर 2024 को ओवेरियन कैंसर पेशेंट महिलाओं को कीमो थैरेपी में दी जाने वाली दवाई निःशुल्क दी गई, इसमें डॉक्टर अनूप मंत्री के द्वारा प्रिस्क्राइब दवाई निःशुल्क प्रदान की गई.."
-                  tailwindStyles={{
-                    en: "mb-3 font-mono font-bold text-xs md:text-base text-pink-700",
-                    hi: "mb-3 font-semibold text-sm md:text-base text-pink-700"
-                  }}/>
-            </p>
-            <div className='w-1/3'>
-              <PulsatingButton> <Link href="/events/event-3" className="bg-pink-500 text-nowrap text-white size-full rounded-lg ">
-                <LanguageSwitch
-                  en=" Know More..."
-                  hi="और जाने..."
-                  tailwindStyles={{
-                    en: "bg-gradient-to-b from-pink-500 to-pink-700 font-mono text-lg font-semibold py-3 px-[60px] transition-colors text-center",
-                    hi: "bg-gradient-to-b from-pink-500 to-pink-700 text-xl font-bold  py-3 px-[60px]  transition-colors text-center"
-                  }}
-                />
-              </Link></PulsatingButton>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/*  post 2 */}
-      <div>
-        <div className="mt-8">
+      {posts.map((post, index) => (
+        <div key={post.id} className={`mt-8 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
           <div className="flex flex-col md:flex-row gap-2">
-            <div className="w-full md:w-1/2 relative h-[250px] md:h-[400px] rounded-2xl overflow-hidden">
-              {/* <VideoPlayer src="/septvideo.mp4" /> */}
-              <ReactPlayer url='https://youtu.be/jRsZ14DnqM0'
-                controls
-                light={isSmallScreen ? "/bgsmall.png" : "/bg1.png"} // Custom thumbnail URL
-                config={{
-                  youtube: {
-                    playerVars: {
-                      modestbranding: 1, // Remove YouTube logo
-                      showinfo: 0,       // Hide video title and uploader info (deprecated but still works on some videos)
-                      rel: 0,            // Prevent showing related videos at the end
-                    },
-                  },
-                }}
-                width="100%"
-                height="100%" 
+            <div className="w-full md:w-1/2 relative">
+              {post.mediaType === 'video' ? (
+                <VideoDialog
+                  className="w-full"
+                  animationStyle="from-center"
+                  videoSrc={post.mediaUrl}
+                  thumbnailSrc={getThumbnailUrl(post)}
+                  thumbnailAlt={post.title_en}
                 />
-                
+              ) : (
+                <OptimizedImage
+                  src={post.mediaUrl}
+                  alt={post.title_en}
+                  width={800}
+                  height={600}
+                  className="w-full h-auto rounded-lg shadow-lg"
+                  transformation={[
+                    { width: 800, height: 600, crop: 'maintain_ratio' },
+                    { quality: 80 },
+                    { format: 'webp' }
+                  ]}
+                />
+              )}
             </div>
             
             <div className="w-full md:w-1/2 bg-pink-100 p-8 rounded-lg flex flex-col justify-center">
               <h3 className="text-2xl font-bold mb-4 text-pink-800">
-              <LanguageSwitch
-                  en="Again the program conducted by the NGO was organized on 21 September 2024"
-                  hi="पुनः संस्था द्वारा संचालित कार्यक्रम 21 सितंबर 2024 को आयोजित किया गया"
+                <LanguageSwitch
+                  en={post.title_en}
+                  hi={post.title_hi}
                   tailwindStyles={{
-                    en: "font-mono text-xl md:text-3xl font-bold  text-pink-800",
-                    hi: "text-2xl md:text-4xl font-bold  text-pink-800"
+                    en: "font-mono text-2xl font-bold text-pink-800",
+                    hi: "text-2xl font-bold text-pink-800"
                   }}
                 />
               </h3>
-              <p className="text-lg text-gray-700 mb-2">
-            
+              <p className="text-pink-700 mb-6">
                 <LanguageSwitch
-                  en="On 21 September 2024, again under the program run by the organization, original silicone breasts were distributed free of cost to breast cancer patient women."
-                  hi="21 सितंबर 2024 को पुनः संस्था द्वारा संचालित कार्यक्रम के अंतर्गत ब्रेस्ट कैंसर पेशेंट महिलाओं को ओरिजिनल सिलिकॉन ब्रेस्ट निःशुल्क डिस्ट्रीब्यूट किए गए।"
-                  tailwindStyles={{
-                    en: "mb-3 font-mono font-bold text-xs md:text-base text-pink-700",
-                    hi: "mb-3 font-semibold text-sm md:text-xl text-pink-700"
-                  }}/>
-              </p>
-              <div className='w-1/3'>
-                <PulsatingButton> <Link href="/events/event-2" className="bg-pink-500 text-nowrap text-white size-full rounded-lg ">
-                  <LanguageSwitch
-                    en=" Know More..."
-                    hi="और जाने..."
-                    tailwindStyles={{
-                      en: "bg-gradient-to-b from-pink-500 to-pink-700 font-mono text-lg font-semibold py-3 px-[60px] transition-colors text-center",
-                      hi: "bg-gradient-to-b from-pink-500 to-pink-700 text-xl font-bold  py-3 px-[60px]  transition-colors text-center"
-                    }}
-                  />
-                </Link></PulsatingButton>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* post 1 */}
-      <div >
-        <div className="mt-8">
-          <div className="flex flex-col md:flex-row gap-2">
-            <div className="w-full md:w-1/2 relative h-[250px] md:h-[400px] rounded-2xl overflow-hidden">
-              {/* <VideoPlayer src="/augvideo.mp4" /> */}
-              <ReactPlayer url='https://youtu.be/yPDXuMtR9h8'
-                controls
-                light={isSmallScreen ? "/bgsmall.png" : "/bg2.png"} // Custom thumbnail URL
-                config={{
-                  youtube: {
-                    playerVars: {
-                      modestbranding: 1, // Remove YouTube logo
-                      showinfo: 0,       // Hide video title and uploader info (deprecated but still works on some videos)
-                      rel: 0,            // Prevent showing related videos at the end
-                    },
-                  },
-                }}
-                width="100%"
-                height="100%" />
-            </div>
-            <div className="w-full md:w-1/2 bg-pink-100 p-8 rounded-lg flex flex-col justify-center">
-              <h3><LanguageSwitch
-                  en="15th August Original Silicone Breast Free Distribution"
-                  hi="15th अगस्त ओरिजिनल सिलिकॉन ब्रेस्ट निःशुल्क डिस्ट्रिब्यूशन"
-                  tailwindStyles={{
-                    en: "mb-4 font-mono text-xl md:text-4xl font-bold text-pink-800",
-                    hi: "mb-4 text-2xl md:text-4xl font-bold text-pink-800"
-                  }}
-                /></h3>
-              <p className="text-lg text-gray-700 mb-2">
-              
-                <LanguageSwitch
-                  en="On August 15, 2024, original silicone was distributed to breast cancer patient women under the program run by the organization."
-                  hi="  15 अगस्त 2024 को संस्था द्वारा संचालित कार्यक्रम के अंतर्गत ब्रेस्ट कैंसर पेशेंट महिलाओं को ओरिजिनल सिलिकॉन डिस्ट्रीब्यूट किए।"
+                  en={post.description_en}
+                  hi={post.description_hi}
                   tailwindStyles={{
                     en: "mb-3 font-mono font-bold text-xs md:text-base text-pink-700",
                     hi: "mb-3 font-semibold text-sm md:text-base text-pink-700"
-                  }}/>
+                  }}
+                />
               </p>
-              <div className='w-1/3'>
-                <PulsatingButton> <Link href="/events/event-1" className="bg-pink-500 text-nowrap text-white size-full rounded-lg ">
-                  <LanguageSwitch
-                    en=" Know More..."
-                    hi="और जाने..."
-                    tailwindStyles={{
-                      en: "bg-gradient-to-b from-pink-500 to-pink-700 font-mono text-lg font-semibold py-3 px-[60px]  transition-colors text-center",
-                      hi: "bg-gradient-to-b from-pink-500 to-pink-700 text-xl font-bold  py-3 px-[60px]  transition-colors text-center"
-                    }}
-                  />
-                </Link></PulsatingButton>
-              </div>
+              
+              {post.eventPageSlug && (
+                <div className='w-1/3'>
+                  <PulsatingButton>
+                    <Link href={`/events/${post.eventPageSlug}`} className="bg-pink-500 text-nowrap text-white size-full rounded-lg">
+                      <LanguageSwitch
+                        en="Know More..."
+                        hi="और जाने..."
+                        tailwindStyles={{
+                          en: "bg-gradient-to-b from-pink-500 to-pink-700 font-mono text-lg font-semibold py-3 px-[60px] transition-colors text-center",
+                          hi: "bg-gradient-to-b from-pink-500 to-pink-700 text-xl font-bold py-3 px-[60px] transition-colors text-center"
+                        }}
+                      />
+                    </Link>
+                  </PulsatingButton>
+                </div>
+              )}
             </div>
           </div>
         </div>
-      </div>
+      ))}
     </div>
-  )
+  );
 }
+

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from '@/app/components/LanguageSwitch'
-
+import { ImageKitWrapper } from "@/lib/imagekit";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -34,7 +34,9 @@ export default function RootLayout({
           <Chatbot />
         </div>
         <LanguageProvider>
-          {children}
+          <ImageKitWrapper>
+            {children}
+          </ImageKitWrapper>
         </LanguageProvider>
       </body>
     </html>
