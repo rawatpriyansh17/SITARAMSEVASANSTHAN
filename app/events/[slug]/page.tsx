@@ -3,15 +3,15 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { LanguageSwitch } from "@/app/components/LanguageSwitch";
 import { VideoDialog } from "@/app/components/VideoDialog";
-import { fetchEventBySlug } from '@/lib/cms-api';
+import { fetchEventBySlug, type Media } from '@/lib/cms-api'; // Import Media type
 import { OptimizedImage } from '@/app/components/optimized-image';
 
 interface PageProps {
-  params: Promise<{ slug: string }>; // Changed to Promise
+  params: Promise<{ slug: string }>;
 }
 
 export default async function EventPage({ params }: PageProps) {
-  const { slug } = await params; // Added await
+  const { slug } = await params;
   const eventData = await fetchEventBySlug(slug);
 
   if (!eventData) {
@@ -20,8 +20,8 @@ export default async function EventPage({ params }: PageProps) {
 
   const { event, photos, videos } = eventData;
 
-  // Helper function to get correct thumbnail
-  const getVideoThumbnail = (video: any) => {
+  // Helper function to get correct thumbnail with proper typing
+  const getVideoThumbnail = (video: Media): string => {
     if (video.thumbnailUrl) {
       // If it's a CMS thumbnail path, use NGOCODE equivalent
       if (video.thumbnailUrl.startsWith('/interview') || video.thumbnailUrl.startsWith('/distribution')) {
@@ -66,13 +66,13 @@ export default async function EventPage({ params }: PageProps) {
           </p>
         </div>
 
-        {/* Event Description 2 */}
+        {/* Event Description 2 - Fixed TypeScript issues */}
         {event.description2_en && (
           <div className="bg-white p-6 rounded-lg shadow-md mb-6">
             <p>
               <LanguageSwitch
                 en={event.description2_en}
-                hi={event.description2_hi}
+                hi={event.description2_hi || event.description2_en} // Fallback to English if Hindi not available
                 tailwindStyles={{
                   en: "font-serif md:text-xl text-sm font-semibold text-purple-700 mb-2",
                   hi: "font-serif md:text-xl text-base font-semibold text-purple-700 mb-2"

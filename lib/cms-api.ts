@@ -28,6 +28,8 @@ export interface Event {
   videoSubheading_en: string;
   videoSubheading_hi: string;
   isActive: boolean;
+  createdAt?: string; // Add these if they exist in your data
+  updatedAt?: string;
 }
 
 export interface Media {
