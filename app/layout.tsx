@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from '@/app/components/LanguageSwitch'
 import { ImageKitWrapper } from "@/lib/imagekit";
-
+import { Toaster } from "./components/sonner";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -37,6 +37,8 @@ export default function RootLayout({
             <div className="fixed bottom-6 right-6 z-50">
               <Chatbot />
             </div>
+            <Toaster 
+            position="top-right"/>
             {children}
           </LanguageProvider>
         </ImageKitWrapper>

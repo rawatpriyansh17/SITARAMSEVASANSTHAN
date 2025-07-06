@@ -1,10 +1,69 @@
 # Site Content Summary
 
-## app/about/page.tsx
+Generated on: 2025-07-06T09:26:49.448Z
+
+## CMS Data (Latest)
+
+### Posts (3 total)
+**Post 1:**
+- Title (EN): Ovarian cancer patient women were given free medicines for chemotherapy.
+- Title (HI): डिम्बग्रंथि के कैंसर रोगी महिलाओं को कीमोथेरेपी के लिए मुफ्त दवाएं दी गईं।
+- Description (EN): On 5 October 2024, 18 October 2024, 19 October 2024, 25 October 2024, medicines given in chemotherapy were given free of cost to ovarian cancer patient women, in which the medicines prescribed by Dr. Anoop Mantri were provided free of cost.
+- Description (HI): 5 अक्टूबर 2024, 18 अक्टूबर 2024, 19 अक्टूबर 2024, 25 अक्टूबर 2024 को, कीमोथेरेपी में दी गई दवाओं को डिम्बग्रंथि के कैंसर रोगी महिलाओं को लागत से मुक्त दिया गया था, जिसमें डॉ। अनूप मन्त्री द्वारा निर्धारित दवाओं को लागत से मुक्त प्रदान किया गया था।
+- Media Type: image
+- Event Slug: october-2024
+- Active: true
+
+**Post 2:**
+- Title (EN): Again the program conducted by the NGO was organized on 21 September 2024
+- Title (HI): फिर से एनजीओ द्वारा आयोजित कार्यक्रम 21 सितंबर 2024 को आयोजित किया गया था
+- Description (EN): On 21 September 2024, again under the program run by the organization, original silicone breasts were distributed free of cost to breast cancer patient women.
+- Description (HI): 21 सितंबर 2024 को, फिर से संगठन द्वारा संचालित कार्यक्रम के तहत, मूल सिलिकॉन स्तन स्तन कैंसर रोगी महिलाओं को लागत से मुक्त वितरित किए गए थे।
+- Media Type: video
+- Event Slug: september-2024
+- Active: true
+
+**Post 3:**
+- Title (EN): 15th August Original Silicone Breast Free Distribution
+- Title (HI): 15 अगस्त मूल सिलिकॉन स्तन मुक्त वितरण
+- Description (EN): On August 15, 2024, original silicone was distributed to breast cancer patient women under the program run by the organization.
+- Description (HI): 15 अगस्त, 2024 को, मूल सिलिकॉन को संगठन द्वारा संचालित कार्यक्रम के तहत स्तन कैंसर रोगी महिलाओं को वितरित किया गया था।
+- Media Type: video
+- Event Slug: august-2024
+- Active: true
+
+### Events (3 total)
+**Event 1:**
+- Slug: october-2024
+- Heading (EN): Programs conducted by the organization in October 2024 :-
+- Heading (HI): 
+- Description (EN): On 5,18,19,25 October 2024, again under the program run by the organization, chemotherapy medicine were distributed free of cost to breast cancer patients.
+- Description (HI): 
+- Active: true
+
+**Event 2:**
+- Slug: september-2024
+- Heading (EN): Programs conducted by the organization on 21 September 2024 :-
+- Heading (HI): 21 सितंबर 2024 को संगठन द्वारा आयोजित कार्यक्रम:-
+- Description (EN): On 21 September 2024, again under the program run by the organization, original silicone breasts were distributed free of cost to breast cancer patient women.
+- Description (HI): 21 सितंबर 2024 को, फिर से संगठन द्वारा संचालित कार्यक्रम के तहत, मूल सिलिकॉन स्तन स्तन कैंसर रोगी महिलाओं को लागत से मुक्त वितरित किए गए थे।
+- Active: true
+
+**Event 3:**
+- Slug: august-2024
+- Heading (EN): 15th August Original Silicone Breast Free Distribution:
+- Heading (HI): 15 अगस्त मूल सिलिकॉन स्तन मुक्त वितरण:
+- Description (EN): On 15 August 2024, original silicone breasts were distributed to breast cancer patients.
+- Description (HI): 15 अगस्त 2024 को, मूल सिलिकॉन स्तन स्तन कैंसर के रोगियों को वितरित किए गए थे।
+- Active: true
+
+## Static Site Structure
+
+### app/about/page.tsx
 ```
-'@//Header'
-'@//Footer'
-'@//LanguageSwitch'
+'@///Header'
+'@///Footer'
+'@///LanguageSwitch'
 '/'
 "       "
 "   "
@@ -19,284 +78,60 @@
 ""
 ""
 " "
+  
 ```
 
-## app/api/chatbot/route.ts
+### app/api/chatbot/route.ts
 ```
+// Initialize OpenAI   Gemini 
+//..///"
+// Read    
+// Create      
+// Send  
 "/"
-"@/"
+""
+""
 "GEMINI_API_KEY      ."
+"://..///"
+""
 "."
 ""
-// Limit   
-""
+"Error  .:"
+"Seva Se Samadhan"
 "No  ."
-".0-flash-001"
+".0-flash"
+""
+""
+`: ${JSON.({  })}\\`
+": [DONE]\\"
+"Streaming :"
+'Content-Type'
+'/'
+'Cache-Control'
+''
+'Connection'
+''
+"Chatbot API :"
 "Unknown "
 ```
 
-## app/awareness/august-event/page.tsx
+### app/components/Chatbot.tsx
 ```
-' '
-'@//Header'
-'@//Footer'
-'/'
-''
-''
-'@//LanguageSwitch'
-"       "
-"   "
-''
-"15th August Original Silicone Breast Free Distribution:"
-"15th अगस्त ओरिजिनल सिलिकॉन ब्रेस्ट निःशुल्क डिस्ट्रिब्यूशन:"
-"     "
-"     "
-"    "
-"    "
-"   "
-"     "
-"   "
-"/15augnews1."
-"Newspaper Clipping 1"
-"  "
-"   - "
-"   "
-"/15augnews3."
-"Newspaper Clipping 2"
-"  "
-"   - "
-"   "
-"/15augnews2."
-"Newspaper Clipping 2"
-"  "
-"   - "
-"   "
-"   "
-"     -[270px] -[550px] -[375px] "
-/* <VideoPlayer ="/." /> */
-'://./DD2IfpMzato'
-"/."
-// Custom  URL
-// Remove YouTube 
-// Hide      (      )
-// Prevent      
-"100%"
-"100%"
-"    -[270px] -[550px] -[375px]"
-/* <VideoPlayer ="/." /> */
-'://./?=9YJQQ1FQy4_sP0Lk'
-"/."
-// Custom  URL
-// Remove YouTube 
-// Hide      (      )
-// Prevent      
-"100%"
-"100%"
-```
-
-## app/awareness/december-event/page.tsx
-```
-// ///.
-```
-
-## app/awareness/november-event/page.tsx
-```
-// ///.
-```
-
-## app/awareness/october-event/page.tsx
-```
-'@//Header'
-'@//Footer'
-'/'
-'@//LanguageSwitch'
-"      "
-"   "
-"   "
-"/."
-"5 October 2024"
-"ओवेरियन कैंसर पेशेंट को कीमो थैरेपी में दी जाने वाली दवाई निःशुल्क दी गई"
-"/."
-"18 October 2024"
-"ओवेरियन कैंसर पेशेंट को कीमो थैरेपी में दी जाने वाली दवाई निःशुल्क दी गई"
-"/."
-"19 October 2024"
-"स्तन कैंसर पेशेंट को कीमो थैरेपी में दी जाने वाली दवाई निःशुल्क दी गई"
-"/."
-"25 October 2024"
-"ओवेरियन कैंसर पेशेंट() को कीमो थैरेपी में दी जाने वाली दवाई निःशुल्क दी गई"
-"   "
-"  "
-""
-"   "
-" "
-```
-
-## app/awareness/september-event/page.tsx
-```
-' '
-'@//Header'
-'@//Footer'
-''
-'@//LanguageSwitch'
-"      "
-"   "
-"Programs      21 September 2024 :-"
-"पुनः संस्था द्वारा संचालित कार्यक्रम 21 सितंबर 2024 :-"
-"       "
-"     "
-"    "
-"On 21 September 2024,        ,             ."
-" 21 सितंबर 2024 को पुनः संस्था द्वारा संचालित कार्यक्रम के अंतर्गत ब्रेस्ट कैंसर पेशेंट महिलाओं को ओरिजिनल सिलिकॉन ब्रेस्ट निःशुल्क डिस्ट्रीब्यूट किए गए।"
-"      "
-"     "
-""
-"This                . We                ."
-"   इस पहल का उद्देश्य ब्रेस्ट कैंसर से पीड़ित महिलाओं के आत्मविश्वास और जीवन की गुणवत्ता में सुधार लाना है। हम अपने समुदाय के सदस्यों और दानदाताओं के समर्थन के लिए आभारी हैं, जिन्होंने इस कार्यक्रम को संभव बनाया।"
-"      "
-"     "
-''
-"Video Coverage:-"
-" वीडियो कवरेज:-"
-"      "
-"     "
-"  "
-"     -[270px] -[450px] -[375px]"
-/* <VideoPlayer ="/." /> */
-'://./EszTiupSP64'
-"/."
-// Custom  URL
-// Remove YouTube 
-// Hide      (      )
-// Prevent      
-"100%"
-"100%"
-"     -[270px] -[450px] -[375px]"
-/* <VideoPlayer ="/." /> */
-'://./WXV-oHRYSK8'
-"/."
-// Custom  URL
-// Remove YouTube 
-// Hide      (      )
-// Prevent      
-"100%"
-"100%"
-"    -[270px] -[450px] -[375px]"
-/* <VideoPlayer ="/." /> */
-'://./'
-"/."
-// Custom  URL
-// Remove YouTube 
-// Hide      (      )
-// Prevent      
-"100%"
-"100%"
-```
-
-## app/donate/page.tsx
-```
-'@//Header'
-'@//Footer'
-'/'
-'@//LanguageSwitch'
-"     "
-"   "
-" "
-"Donate  Our Cause:-"
-"दान करें:-"
-"             "
-"              "
-"   "
-"      "
-"/."
-"Donation QR Code"
-" "
-"Scan  QR    UPI     "
-"दान देने के लिए अपने UPI ऐप से इस QR कोड को स्कैन करें"
-"        "
-"         "
-"  -[115px]   "
-' '
-"        "
-"        "
-"        "
-"        "
-"        "
-"        "
-```
-
-## app/latest-event/page.tsx
-```
-'@//Header'
-'@//Footer'
-'/'
-'@//LanguageSwitch'
-"  "
-" -[800ms] "
-"Upcoming Programs:"
-"आगामी कार्यक्रम:"
-"        "
-"       "
-"   "
-"         -[900ms]"
-/* Adjusted  */
-"/."
-"आगामी कार्यक्रम का फ्लायर"
-""
-"   -[900ms]"
-"(: 640px) 100vw, 600px"
-```
-
-## app/layout.tsx
-```
-""
-"//"
-"./."
-'@//LanguageSwitch'
-".//GeistVF."
-"--"
-"100 900"
-".//GeistMonoVF."
-"--"
-"100 900"
-"Sitaram Seva Sansthan"
-"Sitaram Seva Sansthan-Seva Se Samadhan"
-"@//Chatbot"
-""
-`${.} ${.} `
-"   "
-```
-
-## app/page.tsx
-```
-"@//"
-'@//Header'
-'@//ImageCarousel'
-'@//Services'
-'@//Footer'
-'/'
-"@//PulsatingButton"
-'@//LanguageSwitch'
-'@//ObserverProvider'
-"         "
-"   "
-" -[400ms] "
-"   "
-"/"
-"      "
-" -[3s]  "
-"Click      ..."
-"संस्था द्वारा संचालित आगामी कार्यक्रम की जानकारी की लिए यहाँ क्लिक करें..."
-"        "
-"       "
-```
-
-## components/Chatbot.tsx
-```
+/* Chat Toggle Button */
+//../2000/"  ="24"  ="24"  ="0 0 24 24"  ="#"  ="     ">< ="" ="M0 0h24v24H0z" =""/>< ="M18 3a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-4.724l-4.762 2.857a1 1 0 0 1 -1.508 -.743l-.006 -.114v-2h-1a4 4 0 0 1 -3.995 -3.8l-.005 -.2v-8a4 4 0 0 1 4 -4zm-4 9h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0 -2m2 -4h-8a1 1 0 1 0 0 2h8a1 1 0 0 0 0 -2" /></>
+/* Chat Interface */
+/* Header */
+/* Messages */
+//../2000/" ="24" ="24" ="0 0 24 24" ="" ="#" ="2" ="" ="" ="  ">< ="M12 6V2H8"/>< =" 18-4 4V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2Z"/>< ="M2 12h2"/>< ="M9 11v2"/>< ="M15 11v2"/>< ="M20 12h2"/></>
+//../2000/"  ="24"  ="24"  ="0 0 24 24"  ="#"  ="   ">< ="" ="M0 0h24v24H0z" =""/>< ="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" />< ="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z" /></>
+/* Streaming Message */
+/* Input Form */
 " "
 ""
 ""
 "@//"
+""
+""
 ""
 ""
 ""
@@ -307,46 +142,54 @@
 "POST"
 "Content-Type"
 "/"
+"Failed   "
 ""
-"Sorry, I '  ."
+'\'
+': '
+'[DONE]'
+""
+""
+"Error   :"
+"Error  :"
 ""
 "Sorry,    . Please  ."
+""
 "   "
-"        -[350px] -[400px]    -[200ms]"
-"        "
-"  "
-"   "
+"            "
+"Open "
+"://../2000/"
+"24"
+"24"
+"0 0 24 24"
+"#"
 "     "
-"   "
+""
+"M0 0h24v24H0z"
+""
+"M18 3a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-4.724l-4.762 2.857a1 1 0 0 1 -1.508 -.743l-.006 -.114v-2h-1a4 4 0 0 1 -3.995 -3.8l-.005 -.2v-8a4 4 0 0 1 4 -4zm-4 9h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0 -2m2 -4h-8a1 1 0 1 0 0 2h8a1 1 0 0 0 0 -2"
+"       -[300px] -[350px] -[400px]    -[200ms] -[500px]"
+"         "
 "  "
-""
-""
-""
-""
 "  "
-"   -[80%]   "
-""
-"   "
+"    "
 "  "
-""
-"  "
+"Close "
+"       -[300px]"
 "          "
-"           "
-"Type  ..."
-""
-"      "
-" "
-"Send"
 ```
 
-## components/Footer.tsx
+### app/components/Footer.tsx
 ```
+//..//?=&=1&=@." ="_blank" =" " ="   ">
+//../.?=61565118059016&=ZbWKwL" ="_blank" =" " >
+//../?=" ="_blank" =" " >
+//.." ="_blank" =" " >
 '/'
 ''
-'@//LanguageSwitch'
+'@///LanguageSwitch'
 ""
-" -[1000ms]       "
-"  "
+"      -[1000ms]     "
+"   "
 "    "
 "   /2"
 "    "
@@ -378,9 +221,10 @@
 "://.."
 "_blank"
 " "
+  
 ```
 
-## components/Header.tsx
+### app/components/Header.tsx
 ```
 ' '
 '//'
@@ -389,7 +233,7 @@
 ''
 './Sidebar'
 './SidebarTrigger'
-'@//LanguageSwitch'
+'@///LanguageSwitch'
 ""
 "@//"
 "#"
@@ -457,114 +301,15 @@
 "अभी दान करें!"
 "/"
 "/"
+  PulsatingButton
+  
 ```
 
-## components/ImageCarousel.tsx
+### app/components/LanguageSwitch.tsx
 ```
-' '
-''
-'/'
-'/'
-"@//PulsatingButton"
-'@//LanguageSwitch'
-''
-// Set  
-''
-''
-"   "
-" -[0.5] -[26%] -[17%] -[0%] -[24deg] -[5px] -[0.35s] -[0.53s]/ -[0.53s]/ -[0.63s]/            "
-" Previous     NGO:-"
-"हमारे NGO द्वारा संचालित पूर्व प्रोग्राम:-"
-"  -[3s]         "
-"  -[3s]         "
-/*   */
-/*   */
-/*   */
-/*   */
-/*   */
-' -[100ms]'
-"   "
-" /2 -[25rem] -[45.313rem]   "
-"/."
-'  '
-""
-""
-" - -[850px]       "
-"Ovarian         ."
-"ओवेरियन कैंसर पेशेंट महिलाओं को कीमो थैरेपी में दी जाने वाली दवाई निःशुल्क दी गई"
-"     "
-"    "
-"On 5 October 2024, 18 October 2024, 19 October 2024, 25 October 2024,              ,       Dr. Anoop Mantri     ."
-"5 अक्टूबर 2024, 18 अक्टूबर 2024, 19 अक्टूबर 2024, 25 अक्टूबर 2024 को ओवेरियन कैंसर पेशेंट महिलाओं को कीमो थैरेपी में दी जाने वाली दवाई निःशुल्क दी गई, इसमें डॉक्टर अनूप मंत्री के द्वारा प्रिस्क्राइब दवाई निःशुल्क प्रदान की गई.."
-"     "
-"    "
-'/3'
-"//"
-"     "
-" Know More..."
-"और जाने..."
-"       -[60px]  "
-"       -[60px]   "
-/*   */
-' -[300ms]'
-""
-"   "
-" /2  -[250px] -[400px]  "
-/* <VideoPlayer ="/." /> */
-'://./'
-"/."
-"/."
-// Custom  URL
-// Remove YouTube 
-// Hide      (      )
-// Prevent      
-"100%"
-"100%"
-" /2      "
-"   "
-"Again      NGO    21 September 2024"
-"पुनः संस्था द्वारा संचालित कार्यक्रम 21 सितंबर 2024 को आयोजित किया गया"
-"     "
-"    "
-"  "
-"On 21 September 2024,        ,             ."
-"21 सितंबर 2024 को पुनः संस्था द्वारा संचालित कार्यक्रम के अंतर्गत ब्रेस्ट कैंसर पेशेंट महिलाओं को ओरिजिनल सिलिकॉन ब्रेस्ट निःशुल्क डिस्ट्रीब्यूट किए गए।"
-"     "
-"    "
-'/3'
-"//"
-"     "
-" Know More..."
-"और जाने..."
-"       -[60px]  "
-"       -[60px]   "
-/*   */
-" -[500ms]"
-""
-"   "
-" /2  -[250px] -[400px]  "
-/* <VideoPlayer ="/." /> */
-'://./'
-"/."
-"/."
-// Custom  URL
-// Remove YouTube 
-// Hide      (      )
-// Prevent      
-"100%"
-"100%"
-" /2      "
-"15th August Original Silicone Breast Free Distribution"
-"15th अगस्त ओरिजिनल सिलिकॉन ब्रेस्ट निःशुल्क डिस्ट्रिब्यूशन"
-"     "
-"    "
-"  "
-"On August 15, 2024,                ."
-"  15 अग
-```
-
-## components/LanguageSwitch.tsx
-```
+/* Container         */
+/* English  */
+/* Hindi  */
 ' '
 ''
 ''
@@ -575,14 +320,11 @@
 ''
 '      LanguageProvider'
 `  ${ || ''}`
-/* Container         */
 ""
-/* English  */
 ''
 ' '
 '    -'
 ''
-/* Hindi  */
 ''
 ' '
 '    '
@@ -595,16 +337,196 @@
 ""
 ""
 ""
+  LanguageProvider
+  
+  LanguageSwitch
+  LanguageToggle
+ LanguageContextType {
+  : Language
+  : () => 
+}
+ StyleProps {
+  ?: 
+  ?: 
+}
+ LanguageSwitchProps {
+  : 
+  : 
+  ?: 
+  ?: StyleProps
+}
+ Language = '' | ''
+
+ LanguageContextType {
+  : Language
+  : () => 
+}
+
+ StyleProps {
+  ?: 
+  ?: 
+}
+
+ LanguageContext = <LanguageContextType | >()
+
+  LanguageProvider({  }: { : ReactNode }) {
+   [, ] = <Language>('')
+
+    = () => {
+    ( =>  === '' ? '' : '')
+  }
+
+   (
+    <LanguageContext.Provider ={{ ,  }}>
+      {}
+    </LanguageContext.Provider>
+  )
+}
+
+  () {
+    = (LanguageContext)
+   (!) {
+      Error('      LanguageProvider')
+  }
+   
+}
+
+ LanguageSwitchProps {
+  : 
+  : 
+  ?: 
+  ?: StyleProps
+}
+
+  LanguageSwitch({ , , ,  }: LanguageSwitchProps) {
+   {  } = ()
+  
+   (
+    < ={`  ${ || ''}`}>
+      {/* Container         */}
+      < ="" >
+        {/* English  */}
+        < 
+          ={`   ${
+             === '' 
+              ? ' ' 
+              : '    -'
+          } ${?. || ''}`}
+        >
+          {}
+        </>
+        {/* Hindi  */}
+        < 
+          ={`   ${
+             === '' 
+              ? ' ' 
+              : '    '
+          } ${?. || ''}`}
+        >
+          {}
+        </>
+      </>
+    </>
+  )
+}
+
+  LanguageToggle() {
+   { ,  } = ()
+   (
+    < ="">
+      
 ```
 
-## components/ObserverProvider.tsx
+### app/components/ObserverProvider.tsx
 ```
 " "
 ""
 ""
+  
 ```
 
-## components/PulsatingButton.tsx
+### app/components/PostSection.tsx
+```
+// Debug 
+// Debug 
+// Helper      
+// If '  CMS  ,   NGOCODE 
+// Use     NGOCODE
+// If '   ImageKit URL,  
+// Default 
+// Component   Post 
+/* Post  */
+/* Post  */
+' '
+''
+'/'
+"@///PulsatingButton"
+'@///LanguageSwitch'
+'./VideoDialog'
+'@//'
+'./'
+'/'
+''
+'Attempting   ...'
+'Fetched :'
+'Failed   :'
+'Failed   '
+'/'
+'..'
+'/.'
+"-100px"
+""
+` ${ % 2 === 0 ? '' : ''}`
+"    "
+" /2  "
+''
+""
+""
+"   "
+''
+''
+" /2          "
+"0 20px 25px -5px (0 0 0 / 0.1), 0 10px 10px -5px (0 0 0 / 0.04)"
+"  "
+"      "
+"       "
+"       "
+"     "
+"   "
+" "
+"👉 "
+"👉 "
+"     "
+"    "
+'/3'
+`//${.}`
+"Know More..."
+"और जाने..."
+"           "
+"          "
+"     "
+"         "
+"      "
+"  "
+"   "
+"         "
+"  "
+"      "
+"   "
+"         "
+"  "
+"   "
+"          "
+"0 10px 25px -5px (0 0 0 / 0.25)"
+"Previous Programs  NGO:-"
+"हमारे NGO द्वारा संचालित पूर्व प्रोग्राम:-"
+"    "
+"   "
+""
+  
+```
+
+### app/components/PulsatingButton.tsx
 ```
 " "
 ""
@@ -616,11 +538,12 @@
 "--"
 " "
 " /2 /2     -/2 -/2"
+  
 ```
 
-## components/Services.tsx
+### app/components/Services.tsx
 ```
-'@//LanguageSwitch'
+'@///LanguageSwitch'
 ""
 "  -[0.5] -[-25%] -[25%] -[0%] -[-10deg] -[5px] -[0.35s] -[0.53s]/ -[0.53s]/ -[0.63s]/   "
 "Our Services:-"
@@ -660,41 +583,477 @@
 "   "
 "             -[#070e41] -[#263381] -[#] -[#] -[(206_67_117)]  -[#]         [(206_67_125)] :[(76_100_255)] -[3px] -[3px] :[(38_51_129)] :[(76_100_255)]  -[6s] "
 " "
+  
 ```
 
-## components/Sidebar.tsx
+### app/components/Sidebar.tsx
 ```
 ' '
 '/'
 ''
 ''
-'@//LanguageSwitch'
-`            ${ ? '' : ''}   `
+'@///LanguageSwitch'
+`            ${ ? '' : '-'}   `
 " "
 ""
 "/"
-"      "
+"     "
 ` ${ ? ' -[200ms]' : ''}`
 "Home"
 "होम"
 "/"
-"      "
+"     "
 ` ${ ? ' -[250ms]' : ''}`
 "/"
-"      "
+"     "
 ` ${ ? ' -[300ms]' : ''}`
 "#"
-"      "
+"     "
 ` ${ ? ' -[350ms]' : ''}`
 "   "
 "          "
+  
+ SidebarProps {
+  : ;
+  : (: ) => ;
+}
 ```
 
-## components/SidebarTrigger.tsx
+### app/components/SidebarTrigger.tsx
 ```
 ' '
 ''
 "                 -[860ms"
 "Open "
+  
+ SidebarTriggerProps {
+  : (: ) => ;
+}
 ```
+
+### app/components/VideoDialog.tsx
+```
+/*  @// */
+// Function    '  YouTube URL
+// Convert YouTube URL   URL
+//..//${[1]}?=1&=1`;
+/* Responsive   */
+/* Responsive   */
+/* Responsive   */
+" "
+""
+"/"
+""
+"@//"
+""
+""
+""
+""
+""
+""
+""
+""
+""
+"100%"
+"100%"
+""
+""
+"-100%"
+"-100%"
+""
+"-100%"
+"-100%"
+""
+"100%"
+"100%"
+""
+"-100%"
+"100%"
+""
+"-100%"
+"100%"
+""
+"Video "
+"."
+"."
+`://..//${[1]}?=1&=1`
+""
+"  "
+""
+"       -[0.8]"
+"   -[0.9]       "
+"         /10 "
+`           /30      -[1.2]`
+"          "
+"(0 4px 3px (0 0 0 / 0.07)) (0 2px 2px (0 0 0 / 0.06))"
+"      /50 "
+""
+"     "
+" -   /50      /50 "
+""
+"  -[1]     "
+" "
+"; ; ; ; ; ; "
+""
+"  "
+""
+  VideoDialog
+ VideoProps {
+  ?: AnimationStyle;
+  : ;
+  : ;
+  ?: ;
+  ?: ;
+}
+ AnimationStyle =
+  | ""
+  | ""
+  | ""
+  | ""
+  | ""
+  | ""
+  | ""
+  | ""
+```
+
+### app/components/optimized-image.tsx
+```
+// Check  '  ImageKit URL
+// Fallback  Next. Image   
+' '
+'@/'
+'/'
+'..'
+""
+  OptimizedImage
+ OptimizedImageProps {
+  : ;
+  : ;
+  : ;
+  : ;
+  ?: ;
+  ?: Array<>;
+}
+```
+
+### app/donate/page.tsx
+```
+'@///Header'
+'@///Footer'
+'/'
+'@///LanguageSwitch'
+"     "
+"   "
+" "
+"Donate  Our Cause:-"
+"दान करें:-"
+"             "
+"              "
+"   "
+"      "
+"/."
+"Donation QR Code"
+" "
+"Scan  QR    UPI     "
+"दान देने के लिए अपने UPI ऐप से इस QR कोड को स्कैन करें"
+"        "
+"         "
+"  -[115px]   "
+' '
+"        "
+"        "
+"        "
+"        "
+"        "
+"        "
+  
+```
+
+### app/events/[slug]/page.tsx
+```
+// Import Media 
+// Helper        
+// If '  CMS  ,  NGOCODE 
+// If ' ImageKit URL,  
+// Default    
+/* Event Heading */
+/* Event Description 1 */
+/* Event Description 2 - Fixed TypeScript  */
+// Fallback  English  Hindi  
+/* Photo Coverage Section */
+/* Video Coverage Section */
+/* Interview Videos */
+/* Distribution Videos */
+'/'
+"@///Header"
+"@///Footer"
+"@///LanguageSwitch"
+"@///VideoDialog"
+'@//'
+'@///'
+'/'
+'/'
+'..'
+''
+'/.'
+'/.'
+"     "
+"   "
+"      "
+"     "
+"    "
+"     "
+"     "
+"    "
+"     "
+"     "
+""
+"     "
+"     "
+''
+' '
+' '
+'  '
+"   "
+'Event Photo'
+"   "
+''
+''
+"   "
+"  "
+"  "
+""
+" "
+" "
+""
+"     "
+"     "
+""
+"   "
+"Interviews:-"
+"इंटरव्यू:-"
+"  "
+"  "
+"   "
+"   "
+""
+""
+"Interview Video"
+""
+" "
+" "
+" "
+"  "
+" "
+" "
+""
+"   "
+"Distribution Coverage:-"
+"वितरण कवरेज:-"
+"  "
+"  "
+"   "
+"   "
+""
+""
+"Distribution Video"
+""
+" "
+" "
+" "
+"  "
+" "
+" "
+  
+ PageProps {
+  : Promise<{ :  }
+```
+
+### app/latest-event/page.tsx
+```
+/* Adjusted  */
+'@///Header'
+'@///Footer'
+'/'
+'@///LanguageSwitch'
+"  "
+" -[800ms] "
+"Upcoming Programs:"
+"आगामी कार्यक्रम:"
+"        "
+"       "
+"   "
+"         -[900ms]"
+"/."
+"आगामी कार्यक्रम का फ्लायर"
+""
+"   -[900ms]"
+"(: 640px) 100vw, 600px"
+  
+```
+
+### app/layout.tsx
+```
+""
+"//"
+"./."
+'@///LanguageSwitch'
+"@//"
+".//GeistVF."
+"--"
+"100 900"
+".//GeistMonoVF."
+"--"
+"100 900"
+"Sitaram Seva Sansthan"
+"Sitaram Seva Sansthan-Seva Se Samadhan"
+"@///Chatbot"
+""
+`${.} ${.} `
+"   "
+  
+  
+```
+
+### app/page.tsx
+```
+"@//"
+'@///Header'
+'@///PostSection'
+'@///Services'
+'@///Footer'
+'/'
+"@///PulsatingButton"
+'@///LanguageSwitch'
+'@///ObserverProvider'
+"         "
+"   "
+" -[400ms] "
+"   "
+"/"
+"      "
+" -[3s]  "
+"Click      ..."
+"संस्था द्वारा संचालित आगामी कार्यक्रम की जानकारी की लिए यहाँ क्लिक करें..."
+"         "
+"        "
+  
+```
+
+### lib/cms-api.ts
+```
+//';
+// Make    
+// Add       
+// Make    
+// Add    CORS 
+'://'
+''
+''
+''
+''
+''
+''
+`${CMS_BASE_URL}///`
+'GET'
+'Content-Type'
+'/'
+''
+''
+`HTTP ! : ${.}`
+'Error  :'
+'Failed   '
+`${CMS_BASE_URL}///`
+'GET'
+'Content-Type'
+'/'
+''
+''
+`HTTP ! : ${.}`
+'Error  :'
+'Failed   '
+`${CMS_BASE_URL}////${}`
+'GET'
+'Content-Type'
+'/'
+''
+''
+`HTTP ! : ${.}`
+'Error  :'
+ Post {
+  : ;
+  : ;
+  : ;
+  : ;
+  : ;
+  : '' | '';
+  : ;
+  ?: ; // Make    
+  ?: ;
+  : ;
+  : ;
+}
+ Event {
+  : ;
+  : ;
+  : ;
+  : ;
+  : ;
+  : ;
+  ?: ;
+  ?: ;
+  : ;
+  : ;
+  : ;
+  : ;
+  : ;
+  ?: ; // Add       
+  ?: ;
+}
+ Media {
+  : ;
+  : ;
+  : '' | '';
+  : ;
+  ?: ; // Make    
+  ?: ;
+  ?: ;
+  ?: ;
+  ?: ;
+  ?: '' | '';
+  : ;
+}
+```
+
+### lib/imagekit.tsx
+```
+' '
+'@/'
+'ImageKit URL   '
+  ImageKitWrapper
+```
+
+### lib/utils.ts
+```
+""
+""
+  
+```
+
+## API Information
+
+**CMS Base URL:** https://dashboard.sitaramsevasansthan.org
+
+**Available Endpoints:**
+- GET /api/public/posts - Fetch all posts
+- GET /api/public/events - Fetch all events
+- GET /api/public/events/[slug] - Fetch specific event with media
+
+**NGO Services:**
+- Free artificial original silicone breast distribution for breast cancer patients
+- Free chemotherapy medicine distribution for breast cancer patients
+- Free chemotherapy medicine distribution for ovarian cancer patients
+- Blood donation camp organization
+- Free distribution of essential materials to government school students
+- Free thermal mammography testing programs for breast cancer patients
 

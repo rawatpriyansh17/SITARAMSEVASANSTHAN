@@ -24,8 +24,8 @@ export default function HomePage() {
               <Link href="/latest-event" className=" text-xl md:text-2xl font-semibold transition-colors inline-block rounded-2xl">
               <div className="motion-translate-y-loop-25 motion-duration-[3s] motion-ease-spring-smooth ">
                 <PulsatingButton><LanguageSwitch
-                                  en="Click here for information on upcoming programs..."
-                                  hi="संस्था द्वारा संचालित आगामी कार्यक्रम की जानकारी की लिए यहाँ क्लिक करें..."
+                                  en="👉 Click here for information on upcoming programs..."
+                                  hi="👉 संस्था द्वारा संचालित आगामी कार्यक्रम की जानकारी की लिए यहाँ क्लिक करें..."
                                   tailwindStyles={{
                                     en: "font-mono text-white text-lg md:text-2xl p-3 font-extrabold bg-gradient-to-b from-pink-500 to-pink-700 rounded-2xl",
                                     hi: "text-white text-2xl space-x-10 p-2 font-semibold bg-gradient-to-b from-pink-500 to-pink-700 rounded-2xl"

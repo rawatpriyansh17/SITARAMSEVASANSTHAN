@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
+import RedirectSuccessToast from "@/app/components/RedirectSuccessToast";
 import { LanguageSwitch } from "@/app/components/LanguageSwitch";
 import { VideoDialog } from "@/app/components/VideoDialog";
-import { fetchEventBySlug, type Media } from '@/lib/cms-api'; // Import Media type
+import { fetchEventBySlug, type Media } from '@/lib/cms-api';
 import { OptimizedImage } from '@/app/components/optimized-image';
 
 interface PageProps {
@@ -37,61 +38,64 @@ export default async function EventPage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-pink-100 via-purple-300 to-pink-500">
+    <div className="min-h-screen overflow-hidden bg-gradient-to-b from-pink-100 via-fuchsia-400 to-pink-600">
       <Header />
+      <RedirectSuccessToast />
       <main className="container mx-auto mt-8 px-4">
         {/* Event Heading */}
         <h1>
           <LanguageSwitch
-            en={event.heading_en}
-            hi={event.heading_hi}
+            en={"🌟"+event.heading_en}
+            hi={"🌟"+event.heading_hi}
             tailwindStyles={{
-              en: "font-mono text-xl md:text-4xl font-extrabold text-pink-800 mb-8 text-center",
-              hi: "md:text-4xl text-2xl font-bold text-pink-800 mb-8 text-center"
+              en: "font-mono text-xl md:text-4xl font-extrabold text-pink-800 mb-4 text-center bg-white p-4 rounded-xl shadow-md border-r-8 border-2 border-b-8 border-pink-700 w-fit h-auto ",
+              hi: "md:text-4xl text-2xl font-bold text-pink-800 mb-4 text-center bg-white p-4 rounded-xl shadow-md border-r-8 border-2 border-b-8 border-pink-700 w-fit h-auto"
             }}
           />
         </h1>
-
+<div className="bg-pink-50 p-6 rounded-xl shadow-md mb-3 border-r-8 border-2 border-b-8 border-purple-700">
         {/* Event Description 1 */}
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
           <p>
+   
             <LanguageSwitch
-              en={event.description1_en}
-              hi={event.description1_hi}
+              en={"⭐"+event.description1_en}
+              hi={"⭐"+event.description1_hi}
               tailwindStyles={{
-                en: "font-serif md:text-xl text-sm font-semibold text-purple-700 mb-2",
-                hi: "font-serif md:text-xl text-base font-semibold text-purple-700 mb-2"
+                en: "font-mono md:text-2xl text-base font-semibold text-purple-700 ",
+                hi: "font-mono md:text-2xl text-base font-semibold text-purple-700 "
               }}
             />
           </p>
-        </div>
 
         {/* Event Description 2 - Fixed TypeScript issues */}
         {event.description2_en && (
-          <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-            <p>
+            <p className='mt-1'>
               <LanguageSwitch
-                en={event.description2_en}
-                hi={event.description2_hi || event.description2_en} // Fallback to English if Hindi not available
+                en={"💡"+event.description2_en}
+                hi={"💡"+event.description2_hi || event.description2_en} // Fallback to English if Hindi not available
                 tailwindStyles={{
-                  en: "font-serif md:text-xl text-sm font-semibold text-purple-700 mb-2",
-                  hi: "font-serif md:text-xl text-base font-semibold text-purple-700 mb-2"
+                  en: "bg-pink-100 rounded-xl font-mono md:text-xl text-xs font-semibold text-pink-700 ",
+                  hi: "bg-pink-100 rounded-xl font-mono md:text-xl text-sm font-semibold text-pink-700 "
                 }}
               />
             </p>
-          </div>
         )}
-
+</div>
         {/* Photo Coverage Section */}
         {photos.length > 0 && (
           <>
-            <h2 className="ml-2">
+            <h2 className="my-4 py-2 flex bg-white w-fit text-nowrap border-r-8 border-2 border-b-8 rounded-xl border-pink-600">
+                                       <span className="relative flex h-4 w-4 mx-3 my-2">
+                
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-4 w-4 bg-gradient-to-b from-pink-500 to-pink-600"></span>
+                </span>
               <LanguageSwitch
                 en={event.photoSubheading_en}
                 hi={event.photoSubheading_hi}
                 tailwindStyles={{
-                  en: "font-mono text-2xl md:text-4xl font-bold text-pink-800 mb-6",
-                  hi: "font-serif text-3xl md:text-4xl font-bold text-pink-800 mb-6"
+                  en: "font-mono text-2xl md:text-4xl font-bold text-pink-800 ",
+                  hi: "font-serif text-2xl pr-2 md:text-4xl font-bold text-pink-800 "
                 }}
               />
             </h2>
@@ -103,13 +107,13 @@ export default async function EventPage({ params }: PageProps) {
               'grid-cols-1 sm:grid-cols-2 md:grid-cols-4'
             }`}>
               {photos.map((photo) => (
-                <div key={photo.id} className="bg-white p-4 rounded-lg shadow-md">
+                <div key={photo.id} className="bg-white border-2 border-r-4 border-b-4 border-pink-800 p-2 rounded-lg shadow-md">
                   <OptimizedImage
                     src={photo.url}
                     alt={photo.heading_en || 'Event Photo'}
                     width={400}
                     height={300}
-                    className="w-full h-auto mb-4 rounded"
+                    className="w-full h-auto mb-4 rounded shadow-lg"
                     transformation={[
                       { width: 400, height: 300, crop: 'maintain_ratio' },
                       { quality: 85 },
@@ -117,25 +121,25 @@ export default async function EventPage({ params }: PageProps) {
                     ]}
                   />
                   {photo.heading_en && (
-                    <h3 className="text-lg font-semibold mb-2 text-pink-800">
+                    <h3 className="text-lg font-semibold mb-1 text-pink-800">
                       <LanguageSwitch
                         en={photo.heading_en}
                         hi={photo.heading_hi || photo.heading_en}
                         tailwindStyles={{
-                          en: "text-lg font-semibold text-pink-800",
-                          hi: "text-lg font-semibold text-pink-800"
+                          en: "font-mono text-lg font-bold text-pink-800",
+                          hi: "font-mono text-lg font-bold text-pink-800"
                         }}
                       />
                     </h3>
                   )}
                   {photo.description_en && (
-                    <p className="text-gray-700">
+                    <p >
                       <LanguageSwitch
                         en={photo.description_en}
                         hi={photo.description_hi || photo.description_en}
                         tailwindStyles={{
-                          en: "text-gray-700 text-sm",
-                          hi: "text-gray-700 text-sm"
+                          en: "font-mono font-extrabold text-pink-700 text-sm md:text-base",
+                          hi: "font-mono font-extrabold text-pink-700 text-sm md:text-base"
                         }}
                       />
                     </p>
@@ -149,13 +153,18 @@ export default async function EventPage({ params }: PageProps) {
         {/* Video Coverage Section */}
         {(videos.interviews.length > 0 || videos.distributions.length > 0) && (
           <>
-            <h2 className="ml-2">
+            <h2 className="my-4 p-2 flex bg-white w-fit text-nowrap border-r-8 border-2 border-b-8 rounded-xl border-red-600">
+              <span className="relative flex h-4 w-4 mx-3 my-2">
+                
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-4 w-4 bg-gradient-to-b from-pink-500 to-pink-600"></span>
+                </span>
               <LanguageSwitch
                 en={event.videoSubheading_en}
                 hi={event.videoSubheading_hi}
                 tailwindStyles={{
-                  en: "font-mono text-2xl md:text-4xl font-bold text-pink-800 mb-6",
-                  hi: "font-serif text-3xl md:text-4xl font-bold text-pink-800 mb-6"
+                  en: "font-mono text-2xl md:text-4xl font-bold text-pink-800 ",
+                  hi: "font-serif text-3xl md:text-4xl font-bold text-pink-800 "
                 }}
               />
             </h2>
@@ -163,13 +172,13 @@ export default async function EventPage({ params }: PageProps) {
             {/* Interview Videos */}
             {videos.interviews.length > 0 && (
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-pink-700 mb-4">
+                <h3 className=" bg-gradient-to-b from-rose-700 via-rose-500 to-rose-700 w-fit px-3 py-2 rounded-xl font-mono mb-4">
                   <LanguageSwitch
-                    en="Interviews:-"
-                    hi="इंटरव्यू:-"
+                    en="# Interview(s):-"
+                    hi="# इंटरव्यू:-"
                     tailwindStyles={{
-                      en: "text-xl font-bold text-pink-700",
-                      hi: "text-xl font-bold text-pink-700"
+                      en: "md:text-xl text-base font-bold text-white",
+                      hi: "text-xl font-bold text-white"
                     }}
                   />
                 </h3>
@@ -218,13 +227,13 @@ export default async function EventPage({ params }: PageProps) {
             {/* Distribution Videos */}
             {videos.distributions.length > 0 && (
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-pink-700 mb-4">
+                <h3 className="bg-gradient-to-b from-purple-700 via-purple-500 to-purple-700 w-fit px-3 py-2 rounded-xl font-mono mb-4">
                   <LanguageSwitch
-                    en="Distribution Coverage:-"
-                    hi="वितरण कवरेज:-"
+                    en="# Distribution(s):-"
+                    hi="# वितरण:-"
                     tailwindStyles={{
-                      en: "text-xl font-bold text-pink-700",
-                      hi: "text-xl font-bold text-pink-700"
+                      en: "text-xl font-bold text-white",
+                      hi: "text-xl font-bold text-white"
                     }}
                   />
                 </h3>

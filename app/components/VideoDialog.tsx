@@ -4,7 +4,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Play, XIcon } from "lucide-react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 type AnimationStyle =
@@ -100,11 +99,12 @@ export function VideoDialog({
         className="group relative cursor-pointer"
         onClick={() => setIsVideoOpen(true)}
       >
-        <Image
+        <img
           src={thumbnailSrc}
           alt={thumbnailAlt}
-          width={1920}
-          height={1080}
+          width={800}
+          height={450}
+          loading="lazy"
           className="w-full rounded-md border shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]"
         />
         <div className="absolute inset-0 flex scale-[0.9] items-center justify-center rounded-2xl transition-all duration-200 ease-out group-hover:scale-100">
@@ -153,6 +153,7 @@ export function VideoDialog({
                     className="size-full rounded-2xl"
                     allowFullScreen
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    loading="lazy"
                   />
                 ) : (
                   <video
@@ -162,6 +163,7 @@ export function VideoDialog({
                     autoPlay
                     muted
                     playsInline
+                    preload="none"
                   />
                 )}
               </div>
