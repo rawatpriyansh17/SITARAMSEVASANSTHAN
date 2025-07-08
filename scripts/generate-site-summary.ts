@@ -94,9 +94,41 @@ function walk(dir: string): string[] {
   return results;
 }
 
+async function fetchWithRetry(url: string, maxRetries: number = 5, delay: number = 1000): Promise<any> {
+  const { default: fetch } = await import('node-fetch');
+  
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      console.log(`Attempt ${attempt}/${maxRetries} for ${url}`);
+      const response = await fetch(url);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log(`✅ Success on attempt ${attempt}`);
+        return data;
+      } else {
+        console.log(`❌ HTTP ${response.status} on attempt ${attempt}`);
+        if (attempt === maxRetries) {
+          throw new Error(`HTTP ${response.status} after ${maxRetries} attempts`);
+        }
+      }
+    } catch (error) {
+      console.log(`❌ Network error on attempt ${attempt}:`, (error as Error).message);
+      if (attempt === maxRetries) {
+        throw error;
+      }
+    }
+    
+    // Wait before retrying (exponential backoff)
+    const waitTime = delay * Math.pow(2, attempt - 1);
+    console.log(`⏳ Waiting ${waitTime}ms before retry...`);
+    await new Promise(resolve => setTimeout(resolve, waitTime));
+  }
+}
+
 async function fetchCMSData(): Promise<CMSData> {
   const cmsUrl = process.env.NEXT_PUBLIC_CMS_URL || 'http://localhost:3001';
-  console.log('Using CMS URL:', cmsUrl); // Debug log
+  console.log('Using CMS URL:', cmsUrl);
   
   let cmsData: CMSData = {
     posts: [],
@@ -105,43 +137,32 @@ async function fetchCMSData(): Promise<CMSData> {
   };
 
   try {
-    console.log('Fetching CMS data...');
+    console.log('Fetching CMS data with retry logic...');
     
-    // Import fetch for Node.js environment
-    const { default: fetch } = await import('node-fetch');
-    
-    // Fetch posts
+    // Fetch posts with retry
     try {
       const postsUrl = `${cmsUrl}/api/public/posts`;
-      console.log('Fetching posts from:', postsUrl); // Debug log
-      const postsResponse = await fetch(postsUrl);
-      if (postsResponse.ok) {
-        cmsData.posts = await postsResponse.json() as Post[];
-        console.log(`Fetched ${cmsData.posts.length} posts`);
-      } else {
-        console.log(`Posts fetch failed with status: ${postsResponse.status}`);
-      }
+      console.log('📝 Fetching posts from:', postsUrl);
+      const postsData = await fetchWithRetry(postsUrl, 5, 1000);
+      cmsData.posts = postsData as Post[];
+      console.log(`✅ Successfully fetched ${cmsData.posts.length} posts`);
     } catch (error) {
-      console.log('Could not fetch posts:', (error as Error).message);
+      console.log('❌ Could not fetch posts after retries:', (error as Error).message);
     }
 
-    // Fetch events
+    // Fetch events with retry
     try {
       const eventsUrl = `${cmsUrl}/api/public/events`;
-      console.log('Fetching events from:', eventsUrl); // Debug log
-      const eventsResponse = await fetch(eventsUrl);
-      if (eventsResponse.ok) {
-        cmsData.events = await eventsResponse.json() as Event[];
-        console.log(`Fetched ${cmsData.events.length} events`);
-      } else {
-        console.log(`Events fetch failed with status: ${eventsResponse.status}`);
-      }
+      console.log('📅 Fetching events from:', eventsUrl);
+      const eventsData = await fetchWithRetry(eventsUrl, 5, 1000);
+      cmsData.events = eventsData as Event[];
+      console.log(`✅ Successfully fetched ${cmsData.events.length} events`);
     } catch (error) {
-      console.log('Could not fetch events:', (error as Error).message);
+      console.log('❌ Could not fetch events after retries:', (error as Error).message);
     }
 
   } catch (error) {
-    console.log('CMS connection error:', (error as Error).message);
+    console.log('❌ CMS connection error:', (error as Error).message);
     cmsData.error = (error as Error).message;
   }
 

@@ -17,7 +17,16 @@ export default function PostSection() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 5;
+  const [postsPerPage, setPostsPerPage] = useState(8); // default to desktop
+
+  useEffect(() => {
+    const updatePostsPerPage = () => {
+      setPostsPerPage(window.innerWidth >= 1024 ? 8 : 5);
+    };
+    updatePostsPerPage();
+    window.addEventListener('resize', updatePostsPerPage);
+    return () => window.removeEventListener('resize', updatePostsPerPage);
+  }, []);
 
   useEffect(() => {
     async function loadPosts() {
@@ -63,7 +72,14 @@ export default function PostSection() {
   // Pagination handlers
   const goToPage = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to the section with id
+    const element = document.getElementById('posts-section-title');
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   };
 
   const goToPrevious = () => {
@@ -87,24 +103,23 @@ export default function PostSection() {
     return (
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 30 }}
-        animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 30 }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ 
           duration: 0.3, 
-          delay: 0.1,
+          delay: index * 0.1,
           ease: "easeOut"
         }}
         key={post.id} 
-        className={`mt-8 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}
+        className='h-fit'
       >
-        <div className="flex flex-col md:flex-row gap-2 relative">
+        <div className="grid grid-cols-1 gap-1">
    
           {/* Post content */}
-          <div className="w-full md:w-1/2 relative rounded-lg">
-
+          <div className="relative ">
               {post.mediaType === 'video' ? (
                 <VideoDialog
-                  className="w-full"
+                  className="w-full "
                   animationStyle="from-center"
                   videoSrc={post.mediaUrl}
                   thumbnailSrc={getThumbnailUrl(post)}
@@ -116,9 +131,9 @@ export default function PostSection() {
                   alt={post.title_en}
                   width={800}
                   height={600}
-                  className="w-full h-auto rounded-lg shadow-lg"
+                  className="w-full h-auto rounded-lg shadow-lg border-2 border-r-4 border-purple-700"
                   transformation={[
-                    { width: 800, height: 600, crop: 'maintain_ratio' },
+                    { width: 800, crop: 'at_max' },
                     { quality: 80 },
                     { format: 'webp' }
                   ]}
@@ -127,7 +142,7 @@ export default function PostSection() {
           </div>
 
           <motion.div 
-            className="w-full md:w-1/2 bg-pink-50 border-r-8 border-2 border-b-8 border-pink-700 p-6 rounded-xl flex flex-col justify-center"
+            className="bg-pink-50 border-r-8 border-2 border-b-8 border-pink-700 p-6 rounded-xl flex flex-col justify-center"
             whileHover={{ 
               scale: 1.02,
               boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04)"
@@ -150,14 +165,14 @@ export default function PostSection() {
                 en={post.title_en}
                 hi={post.title_hi}
                 tailwindStyles={{
-                  en: "font-mono text-base md:text-2xl font-bold text-pink-900 ",
-                  hi: "text-base md:text-2xl font-bold text-pink-900"
+                  en: "font-mono text-base md:text-lg font-bold text-pink-900 ",
+                  hi: "text-base md:text-xl font-bold text-pink-900"
                 }}
               />
             </motion.h3>
             
             <motion.p 
-              className="text-pink-700 mb-6"
+              className="text-pink-700 "
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -166,8 +181,8 @@ export default function PostSection() {
                 en={"👉 " + post.description_en}
                 hi={"👉 " + post.description_hi}
                 tailwindStyles={{
-                  en: "mb-3 font-mono font-bold text-xs md:text-base text-pink-600",
-                  hi: "mb-3 font-semibold text-sm md:text-lg text-pink-700"
+                  en: "mb-3 font-mono font-bold text-xs md:text-sm text-pink-600",
+                  hi: "mb-3 font-semibold text-sm text-pink-700"
                 }}
               />
             </motion.p>
@@ -181,7 +196,6 @@ export default function PostSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <PulsatingButton>
                   <button
                     onClick={(e) => {
                       e.preventDefault();
@@ -213,12 +227,11 @@ export default function PostSection() {
                       en="Know More..."
                       hi="और जाने..."
                       tailwindStyles={{
-                        en: "bg-gradient-to-b text-nowrap from-pink-500 to-pink-700 font-mono text-base font-semibold py-3 px-6 transition-colors text-center rounded-xl w-full",
-                        hi: "bg-gradient-to-b text-nowrap from-pink-500 to-pink-700 text-lg font-bold py-3 px-6 transition-colors text-center rounded-xl w-full"
+                        en: "text-white bg-gradient-to-b text-nowrap from-pink-500 to-pink-700 font-mono text-base font-semibold py-2 px-4 transition-colors text-center rounded-xl w-full shadow-xl shadow-pink-500/50",
+                        hi: "text-white bg-gradient-to-b text-nowrap from-pink-500 to-pink-700 text-lg font-bold py-2 px-4 transition-colors text-center rounded-xl w-full shadow-xl shadow-pink-500/50"
                       }}
                     />
                   </button>
-                </PulsatingButton>
               </motion.div>
             )}
           </motion.div>
@@ -233,19 +246,19 @@ export default function PostSection() {
 
     return (
       <motion.div 
-        className="flex justify-center items-center mt-12 mb-8 gap-2"
+        className="flex justify-center items-center my-3 gap-2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        transition={{ duration: 0.2, delay: 0.1 }}
       >
         {/* Previous Button */}
         <motion.button
           onClick={goToPrevious}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded-xl font-mono font-bold border-2 transition-all ${
+          className={`px-4 py-2 rounded-xl font-mono font-bold border-2 transition-all text-xs text-nowrap ${
             currentPage === 1 
-              ? 'bg-gray-300 text-gray-500 border-gray-400 cursor-not-allowed' 
-              : 'bg-gradient-to-b from-pink-500 to-pink-700 text-white border-pink-700 hover:scale-105'
+              ? 'bg-gradient-to-b from-gray-300 to-gray-400 text-gray-700 border-gray-400 cursor-not-allowed' 
+              : 'bg-gradient-to-b from-violet-700 to-purple-900 text-white border-pink-700 hover:scale-105'
           }`}
           whileHover={currentPage !== 1 ? { scale: 1.05 } : {}}
           whileTap={currentPage !== 1 ? { scale: 0.95 } : {}}
@@ -259,12 +272,12 @@ export default function PostSection() {
             <motion.button
               key={page}
               onClick={() => goToPage(page)}
-              className={`w-10 h-10 rounded-xl font-mono font-bold border-2 transition-all ${
+              className={`w-10 h-10 rounded-xl font-mono font-bold border-2 transition-all text-xs ${
                 currentPage === page
-                  ? 'bg-gradient-to-b from-violet-500 to-purple-700 text-white border-purple-700'
-                  : 'bg-white text-pink-700 border-pink-700 hover:bg-pink-50'
+                  ? 'bg-gradient-to-b from-blue-500 to-purple-700 text-white border-purple-700'
+                  : 'bg-white text-pink-700 border-pink-700 hover:bg-pink-50 border-2'
               }`}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
             >
               {page}
@@ -276,10 +289,10 @@ export default function PostSection() {
         <motion.button
           onClick={goToNext}
           disabled={currentPage === totalPages}
-          className={`px-4 py-2 rounded-xl font-mono font-bold border-2 transition-all ${
+          className={`px-4 py-2 rounded-xl font-mono font-bold border-2 transition-all text-nowrap text-xs ${
             currentPage === totalPages 
               ? 'bg-gray-300 text-gray-500 border-gray-400 cursor-not-allowed' 
-              : 'bg-gradient-to-b from-pink-500 to-pink-700 text-white border-pink-700 hover:scale-105'
+              : 'bg-gradient-to-b from-violet-700 to-purple-900 text-white border-pink-700 hover:scale-105'
           }`}
           whileHover={currentPage !== totalPages ? { scale: 1.05 } : {}}
           whileTap={currentPage !== totalPages ? { scale: 0.95 } : {}}
@@ -296,7 +309,7 @@ export default function PostSection() {
         className="container mx-auto mt-4 p-4 flex justify-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.1 }}
       >
         <div className="flex items-center bg-white border-2 border-r-8 border-b-8 border-pink-700 rounded-lg shadow-lg px-4 py-2 w-fit">
           <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-pink-600 mr-2"></div>
@@ -347,7 +360,8 @@ export default function PostSection() {
   return (
     <div className="container mx-auto p-4 relative">
       <motion.button 
-        className="text-center bg-gradient-to-b from-violet-500 via-purple-800 to-violet-600 p-2 px-4 rounded-lg mb-1 mt-8 md:mt-4"
+        id="posts-section-title"
+        className="text-center bg-gradient-to-b from-violet-500 via-purple-800 to-violet-600 p-2 px-4 rounded-lg mb-3 mt-6 md:mt-4"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
@@ -363,26 +377,23 @@ export default function PostSection() {
         />
       </motion.button>
 
-
-
       {/* Post container */}
-      <div className="relative">
+      <div className={
+        currentPosts.length <= 4 
+          ? "grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5" 
+          : "masonry-container"
+      }>
         {currentPosts.map((post, index) => (
-          <PostItem key={post.id} post={post} index={index} />
+          <div key={post.id} className={
+            currentPosts.length <= 4 
+              ? "h-fit" 
+              : "masonry-item"
+          }>
+            <PostItem post={post} index={index} />
+          </div>
         ))}
       </div>
-            {/* Page Info */}
-      <motion.div 
-        className="text-center mt-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-      >
-        <span className="bg-gradient-to-b from-violet-500 via-purple-800 to-violet-600 rounded-lg px-3 py-2 text-xs font-mono font-bold  text-white">
-          Page {currentPage} of {totalPages} ({posts.length} total posts)
-        </span>
-      </motion.div>
-
+      
       {/* Pagination Controls */}
       <PaginationControls />
     </div>

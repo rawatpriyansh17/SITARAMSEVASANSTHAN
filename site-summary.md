@@ -1,11 +1,29 @@
 # Site Content Summary
 
-Generated on: 2025-07-06T09:26:49.448Z
+Generated on: 2025-07-08T18:13:25.441Z
 
 ## CMS Data (Latest)
 
-### Posts (3 total)
+### Posts (5 total)
 **Post 1:**
+- Title (EN): Chemotherapy Medicine Distribution 
+- Title (HI): रसायन चिकित्सा चिकित्सा वितरण
+- Description (EN): On 10 November 2024,Chemotherapy medicine was provided to a breast cancer patient.
+- Description (HI): 10 नवंबर 2024 को, एक स्तन कैंसर के रोगी को कीमोथेरेपी दवा प्रदान की गई थी।
+- Media Type: image
+- Event Slug: None
+- Active: true
+
+**Post 2:**
+- Title (EN): 9 November 2024 Chemo Medicine Distribution 
+- Title (HI): 9 नवंबर 2024 कीमो मेडिसिन वितरण
+- Description (EN): Chemo Therapy Medicine was provided to a breast cancer patient on 9/11/24 
+- Description (HI): 9/11/24 को स्तन कैंसर के रोगी को कीमोथेरेपी दवा प्रदान की गई थी |
+- Media Type: image
+- Event Slug: None
+- Active: true
+
+**Post 3:**
 - Title (EN): Ovarian cancer patient women were given free medicines for chemotherapy.
 - Title (HI): डिम्बग्रंथि के कैंसर रोगी महिलाओं को कीमोथेरेपी के लिए मुफ्त दवाएं दी गईं।
 - Description (EN): On 5 October 2024, 18 October 2024, 19 October 2024, 25 October 2024, medicines given in chemotherapy were given free of cost to ovarian cancer patient women, in which the medicines prescribed by Dr. Anoop Mantri were provided free of cost.
@@ -14,7 +32,7 @@ Generated on: 2025-07-06T09:26:49.448Z
 - Event Slug: october-2024
 - Active: true
 
-**Post 2:**
+**Post 4:**
 - Title (EN): Again the program conducted by the NGO was organized on 21 September 2024
 - Title (HI): फिर से एनजीओ द्वारा आयोजित कार्यक्रम 21 सितंबर 2024 को आयोजित किया गया था
 - Description (EN): On 21 September 2024, again under the program run by the organization, original silicone breasts were distributed free of cost to breast cancer patient women.
@@ -23,7 +41,7 @@ Generated on: 2025-07-06T09:26:49.448Z
 - Event Slug: september-2024
 - Active: true
 
-**Post 3:**
+**Post 5:**
 - Title (EN): 15th August Original Silicone Breast Free Distribution
 - Title (HI): 15 अगस्त मूल सिलिकॉन स्तन मुक्त वितरण
 - Description (EN): On August 15, 2024, original silicone was distributed to breast cancer patient women under the program run by the organization.
@@ -447,16 +465,28 @@ Generated on: 2025-07-06T09:26:49.448Z
 
 ### app/components/PostSection.tsx
 ```
+//   
 // Debug 
 // Debug 
+// Pagination 
 // Helper      
 // If '  CMS  ,   NGOCODE 
 // Use     NGOCODE
 // If '   ImageKit URL,  
 // Default 
+// Pagination 
+// Scroll     
 // Component   Post 
 /* Post  */
+// Show  
+// Navigate   
+// Store    
+// Pagination Component
+/* Previous Button */
+/* Page Numbers */
+/* Next Button */
 /* Post  */
+/* Pagination Controls */
 ' '
 ''
 '/'
@@ -467,6 +497,10 @@ Generated on: 2025-07-06T09:26:49.448Z
 './'
 '/'
 ''
+''
+'/'
+''
+''
 'Attempting   ...'
 'Fetched :'
 'Failed   :'
@@ -474,18 +508,21 @@ Generated on: 2025-07-06T09:26:49.448Z
 '/'
 '..'
 '/.'
+''
+''
+''
 "-100px"
 ""
-` ${ % 2 === 0 ? '' : ''}`
-"    "
-" /2  "
+''
+"  "
+" "
 ''
 ""
 ""
-"   "
+"       "
 ''
 ''
-" /2          "
+"         "
 "0 20px 25px -5px (0 0 0 / 0.1), 0 10px 10px -5px (0 0 0 / 0.04)"
 "  "
 "      "
@@ -497,15 +534,34 @@ Generated on: 2025-07-06T09:26:49.448Z
 "👉 "
 "👉 "
 "     "
-"    "
+"   "
 '/3'
+"Redirecting ..."
+'( , #FF0C86, #A70347)'
+''
+'2px  #'
+''
+'12px'
+'16px'
+''
+''
+''
 `//${.}`
+""
 "Know More..."
 "और जाने..."
+"            "
 "           "
-"          "
+"    "
+'     '
+'     '
+" "
+'    '
+'    '
+'   '
+'     '
 "     "
-"         "
+"           "
 "      "
 "  "
 "   "
@@ -516,12 +572,16 @@ Generated on: 2025-07-06T09:26:49.448Z
 "         "
 "  "
 "   "
+""
 "          "
 "0 10px 25px -5px (0 0 0 / 0.25)"
 "Previous Programs  NGO:-"
 "हमारे NGO द्वारा संचालित पूर्व प्रोग्राम:-"
 "    "
 "   "
+"     "
+""
+""
 ""
   
 ```
@@ -538,6 +598,29 @@ Generated on: 2025-07-06T09:26:49.448Z
 "--"
 " "
 " /2 /2     -/2 -/2"
+  
+```
+
+### app/components/RedirectSuccessToast.tsx
+```
+// Check    
+// Clear  
+// Show  
+// This  '  
+' '
+''
+''
+''
+''
+''
+"Redirect Successful!"
+'( , #00E135, #00865B)'
+''
+'2px  #059669'
+''
+'12px'
+'16px'
+''
   
 ```
 
@@ -736,6 +819,47 @@ Generated on: 2025-07-06T09:26:49.448Z
 }
 ```
 
+### app/components/sonner.tsx
+```
+" "
+""
+""
+""
+""
+" "
+"  -[.]: -[.]: -[.]: -[.]:"
+"-[.]:"
+"-[.]: -[.]:"
+"-[.]: -[.]:"
+ ToasterProps = React.ComponentProps< Sonner>
+
+ Toaster = ({ ... }: ToasterProps) => {
+   {  = "" } = ()
+
+   (
+    <Sonner
+      ={  ToasterProps[""]}
+      =" "
+      ={{
+        : {
+          :
+            "  -[.]: -[.]: -[.]: -[.]:",
+          : "-[.]:",
+          :
+            "-[.]: -[.]:",
+          :
+            "-[.]: -[.]:",
+        },
+      }}
+      {...}
+    />
+  )
+}
+
+ { Toaster }
+
+```
+
 ### app/donate/page.tsx
 ```
 '@///Header'
@@ -771,7 +895,6 @@ Generated on: 2025-07-06T09:26:49.448Z
 
 ### app/events/[slug]/page.tsx
 ```
-// Import Media 
 // Helper        
 // If '  CMS  ,  NGOCODE 
 // If ' ImageKit URL,  
@@ -787,6 +910,7 @@ Generated on: 2025-07-06T09:26:49.448Z
 '/'
 "@///Header"
 "@///Footer"
+"@///RedirectSuccessToast"
 "@///LanguageSwitch"
 "@///VideoDialog"
 '@//'
@@ -799,40 +923,51 @@ Generated on: 2025-07-06T09:26:49.448Z
 '/.'
 "     "
 "   "
+"🌟"
+"🌟"
+"                 "
+"               "
+"        "
+"⭐"
+"⭐"
+"     "
+"     "
+''
+"💡"
+"💡"
+"       "
+"       "
+"          "
+"     "
+"       "
+"       "
+"     "
 "      "
-"     "
-"    "
-"     "
-"     "
-"    "
-"     "
-"     "
-""
-"     "
-"     "
 ''
 ' '
 ' '
 '  '
-"   "
+"        "
 'Event Photo'
-"   "
+"    "
 ''
 ''
 "   "
-"  "
-"  "
-""
-" "
-" "
-""
-"     "
-"     "
-""
 "   "
-"Interviews:-"
-"इंटरव्यू:-"
-"  "
+"   "
+"    "
+"    "
+"          "
+"     "
+"       "
+"       "
+"     "
+"     "
+""
+"          "
+"# Interview():-"
+"# इंटरव्यू:-"
+"   "
 "  "
 "   "
 "   "
@@ -847,9 +982,9 @@ Generated on: 2025-07-06T09:26:49.448Z
 " "
 " "
 ""
-"   "
-"Distribution Coverage:-"
-"वितरण कवरेज:-"
+"         "
+"# Distribution():-"
+"# वितरण:-"
 "  "
 "  "
 "   "
@@ -899,6 +1034,7 @@ Generated on: 2025-07-06T09:26:49.448Z
 "./."
 '@///LanguageSwitch'
 "@//"
+".//"
 ".//GeistVF."
 "--"
 "100 900"
@@ -911,6 +1047,7 @@ Generated on: 2025-07-06T09:26:49.448Z
 ""
 `${.} ${.} `
 "   "
+""
   
   
 ```
@@ -933,8 +1070,8 @@ Generated on: 2025-07-06T09:26:49.448Z
 "/"
 "      "
 " -[3s]  "
-"Click      ..."
-"संस्था द्वारा संचालित आगामी कार्यक्रम की जानकारी की लिए यहाँ क्लिक करें..."
+"👉 Click      ..."
+"👉 संस्था द्वारा संचालित आगामी कार्यक्रम की जानकारी की लिए यहाँ क्लिक करें..."
 "         "
 "        "
   

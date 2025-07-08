@@ -107,7 +107,7 @@ export default async function EventPage({ params }: PageProps) {
               'grid-cols-1 sm:grid-cols-2 md:grid-cols-4'
             }`}>
               {photos.map((photo) => (
-                <div key={photo.id} className="bg-white border-2 border-r-4 border-b-4 border-pink-800 p-2 rounded-lg shadow-md">
+                <div key={photo.id} className="bg-white border-2 border-r-4 border-b-4 border-pink-800 p-2 rounded-lg shadow-md h-fit">
                   <OptimizedImage
                     src={photo.url}
                     alt={photo.heading_en || 'Event Photo'}
@@ -115,7 +115,7 @@ export default async function EventPage({ params }: PageProps) {
                     height={300}
                     className="w-full h-auto mb-4 rounded shadow-lg"
                     transformation={[
-                      { width: 400, height: 300, crop: 'maintain_ratio' },
+                      { width: 400, height: 300, crop: 'at_max' },
                       { quality: 85 },
                       { format: 'webp' }
                     ]}

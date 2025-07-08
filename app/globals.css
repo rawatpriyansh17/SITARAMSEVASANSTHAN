@@ -208,6 +208,26 @@ html, body {
     --chart-5: 340 75% 55%;
   }
 }
+.masonry-container {
+  column-count: 1;
+  column-gap: 1.25rem;
+  column-fill: balance;
+}
+
+@media (min-width: 1024px) {
+  .masonry-container {
+    column-count: 4;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 1rem;
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
 
 @layer base {
   * {
