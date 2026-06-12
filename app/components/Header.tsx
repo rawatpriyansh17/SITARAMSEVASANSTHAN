@@ -135,7 +135,7 @@ export default function Header() {
                 }}
               />
             </Link></PulsatingButton>
-          <LanguageToggle />
+          {/* <LanguageToggle /> */}
 
           <button className="md:hidden pr-[7px]" onClick={() => setIsSidebarOpen(true)}>
             <Menu size={24} />
@@ -156,7 +156,7 @@ export default function Header() {
               />
             </Link></PulsatingButton>
         </div>
-        <LanguageToggle  />
+        {/* <LanguageToggle  /> */}
         </div>
       </div>
     </header >

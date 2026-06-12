@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 };
 
 import Chatbot from "@/app/components/Chatbot";
+import { ProgressBar } from "./components/progress-bar";
 
 export default function RootLayout({
   children,
@@ -34,12 +35,14 @@ export default function RootLayout({
       >
         <ImageKitWrapper>
           <LanguageProvider>
+            <ProgressBar className="fixed top-0 left-0 h-1 z-60 bg-linear-to-r from-pink-500 via-purple-500 to-red-600" >
             <div className="fixed bottom-6 right-6 z-50">
               <Chatbot />
             </div>
             <Toaster 
             position="top-right"/>
             {children}
+            </ProgressBar>
           </LanguageProvider>
         </ImageKitWrapper>
       </body>
