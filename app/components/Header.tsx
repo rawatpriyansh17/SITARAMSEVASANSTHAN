@@ -1,167 +1,155 @@
-
 'use client'
 
-import Image from 'next/legacy/image'
-import Link from 'next/link'
-import { Menu } from 'lucide-react'
-import { useState } from 'react'
-import Sidebar from './Sidebar'
-import SidebarTrigger from './SidebarTrigger'
-import { LanguageSwitch, LanguageToggle } from '@/app/components/LanguageSwitch'
-import React from "react";
+import Image from 'next/image'
+import { CalendarDays, Home, Info, Mail } from 'lucide-react'
+import { domAnimation, LazyMotion, m } from 'motion/react'
+import { ProgressBarLink } from '@/app/components/progress-bar'
+import {
+  delayed,
+  gentleLoop,
+  reboundDown,
+  reboundRight,
+} from '@/app/components/motion-presets'
+import CardNav, { type CardNavItem } from '@/app/components/CardNav'
 
-import { cn } from "@/lib/utils";
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/latest-event', label: 'Upcoming-Events' },
+  { href: '/about', label: 'About' },
+  { href: '#bottom-of-page', label: 'Contact' },
+]
 
-interface PulsatingButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  pulseColor?: string;
-  duration?: string;
-}
+const mobileNavItems: CardNavItem[] = [
+  {
+    label: 'Navigate',
+    bgColor: '#be185d',
+    textColor: '#ffffff',
+    links: [
+      { href: '/', label: 'Home', ariaLabel: 'Go to home page', icon: Home },
+      { href: '/about', label: 'About', ariaLabel: 'Learn about Sitaram Seva Sansthan', icon: Info },
+    ],
+  },
+  {
+    label: 'Programs',
+    bgColor: '#db2777',
+    textColor: '#ffffff',
+    links: [
+      { href: '/latest-event', label: 'Upcoming-Events', ariaLabel: 'View upcoming events', icon: CalendarDays },
+    ],
+  },
+  {
+    label: 'Connect',
+    bgColor: '#9d174d',
+    textColor: '#ffffff',
+    links: [
+      { href: '#bottom-of-page', label: 'Contact', ariaLabel: 'Scroll to contact details', icon: Mail },
+    ],
+  },
+]
 
-export function PulsatingButton({
-  className,
-  children,
-  pulseColor = "#ffffff",
-  duration = "1.5s",
-  ...props
-}: PulsatingButtonProps) {
+function DonateLink({ className = '' }: { className?: string }) {
   return (
-    <button
-      className={cn(
-        "relative text-center cursor-pointer flex justify-center items-center rounded-full",
-        className,
-      )}
-      style={
-        {
-          "--pulse-color": pulseColor,
-          "--duration": duration,
-        } as React.CSSProperties
-      }
-      {...props}
+    <m.div
+      className="relative inline-flex rounded-full bg-white text-pink-600"
+      whileHover={{ scale: 1.04 }}
+      whileTap={{ scale: 0.96 }}
     >
-      <div className="relative z-10">{children}</div>
-      <div className="absolute top-1/2 left-1/2 size-full rounded-full bg-inherit animate-pulse -translate-x-1/2 -translate-y-1/2" />
-    </button>
-  );
+      <ProgressBarLink
+        href="/donate"
+        className={`relative z-10 text-center px-6 md:px-9 py-3 rounded-full text-xl md:text-3xl text-nowrap font-serif font-semibold transition-colors ${className}`}
+      >
+        <m.span animate={gentleLoop}>Donate Now!</m.span>
+      </ProgressBarLink>
+      <span className="absolute left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-inherit animate-pulse" />
+    </m.div>
+  )
 }
-
 
 export default function Header() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-
   return (
-    <>
-      <header className="motion-preset-rebound-down motion-delay-[400ms] w-full bg-gradient-to-b from-pink-700 to-pink-500 text-white p-3 rounded-bl-3xl rounded-br-3xl">
-        <div className=" mx-auto  w-full flex flex-wrap justify-between items-center">
-          <div className="flex place-items-stretch  md:flex items-center w-full md:w-auto mb-4 md:mb-0">
-            <div className="rounded-full h-[5rem] w-[5rem] md:h-[7.5rem] md:w-[7.5rem] md:mb-0 mb-1 mr-1 md:mr-5 overflow-auto motion-preset-rebound-right motion-delay-[200ms] shadow-xl  min-w-[5rem] min-h-[5rem]">
-              <Link href="/">
-                <Image
-                  src="/logo.png"
-                  alt="सीताराम सेवा संस्थान Logo"
-                  priority
-                  layout="fill"
-                  objectFit="cover"
-                      className="object-contain"
-                />
-              </Link>
+    <LazyMotion features={domAnimation}>
+      <m.header
+        className="w-full bg-gradient-to-b from-pink-700 to-pink-500 text-white p-3 rounded-bl-3xl rounded-br-3xl"
+        variants={reboundDown}
+        {...delayed(0.4)}
+      >
+        <div className="mx-auto flex w-full flex-wrap items-center justify-between gap-y-3">
+        <div className="flex w-full items-center md:w-auto md:mb-0">
+          <m.div
+            className="relative mr-2 grid size-20 shrink-0 place-items-center overflow-hidden rounded-full bg-white p-3 shadow-xl md:mr-5 md:size-32 md:p-5"
+            variants={reboundRight}
+            {...delayed(0.2)}
+          >
+            <ProgressBarLink href="/" className="relative block size-full overflow-hidden rounded-full">
+              <Image
+                src="/logo.png"
+                alt="Sitaram Seva Sansthan Logo"
+                priority
+                fill
+                sizes="(max-width: 768px) 5rem, 8rem"
+                className="scale-[1.18] object-cover"
+              />
+            </ProgressBarLink>
+          </m.div>
+          <h1>
+            <div className="flex gap-2">
+              <m.span
+                className="font-serif font-extrabold text-nowrap text-[23px] md:text-5xl mt-1 md:mt-0 inline"
+                variants={reboundDown}
+                {...delayed(0.8)}
+              >
+                Sitaram Seva Sansthan
+              </m.span>
+              <m.span
+                className="hidden md:block font-serif text-md md:text-xl font-medium mt-4 italic"
+                variants={reboundRight}
+                {...delayed(0.85)}
+              >
+                Seva se Samadhan...
+              </m.span>
             </div>
-            <h1 >
-              <span><LanguageSwitch
-                en="Sitaram Seva Sansthan"
-                hi="सीताराम सेवा संस्थान"
-                tailwindStyles={{
-                  en: "font-serif font-extrabold text-nowrap text-[23px] md:text-5xl mt-1 md:mt-0 inline motion-preset-rebound-down motion-delay-[800ms]",
-                  hi: "text-3xl md:text-6xl text-nowrap font-bold"
-                }}
-              /></span>
-              <span className='md:motion-preset-rebound-right md:motion-delay-[850ms]' ><LanguageSwitch
-                en="Seva se Samadhan..."
-                hi="सेवा से समाधान..."
-                tailwindStyles={{
-                  en: "hidden md:block font-serif text-lg md:text-xl font-medium mt-1 md:mt-0 ml-1 md:ml-2 italic",
-                  hi: "hidden md:inline text-sm md:text-2xl font-medium ml-2 italic inline mr-1 md:mr-0"
-                }}
-              /></span>
+            <m.div
+              className="text-xs md:text-xl font-bold"
+              variants={reboundDown}
+              {...delayed(0.85)}
+            >
+              Reg.No:03/27/01/2596/24
+            </m.div>
+          </h1>
+        </div>
 
-              <div className=" text-xs md:text-xl font-bold  motion-preset-rebound-down motion-delay-[850ms]">Reg.No:03/27/01/2596/24</div>
-
-            </h1>
+        <div className="flex items-center">
+          <div className="hidden md:flex items-center space-x-3">
+            <ul className="flex space-x-5 font-mono">
+              {navItems.map((item, index) => (
+                <li key={item.href}>
+                  <ProgressBarLink href={item.href}>
+                    <m.span
+                      className="text-white text-base font-serif font-extrabold hover:underline"
+                      variants={reboundDown}
+                      {...delayed(0.9 + index * 0.05)}
+                    >
+                          {item.label}
+                      
+                    </m.span>
+                  </ProgressBarLink>
+                </li>
+              ))}
+            </ul>
+            <DonateLink />
           </div>
-          <div className="flex items-center ">
-            <div className="hidden md:flex items-center space-x-3">
-              <ul className="flex space-x-5 font-mono ">
-                <li><Link href="/" ><LanguageSwitch
-                  en="Home"
-                  hi="होम"
-                  tailwindStyles={{
-                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[900ms]",
-                    hi: "text-white text-3xl space-x-8 font-semibold hover:underline"
-                  }}
-                /></Link></li>
-                <li><a href="#services-section" ><LanguageSwitch
-                  en="Services"
-                  hi="सेवाएं"
-                  tailwindStyles={{
-                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[950ms]",
-                    hi: "text-white text-3xl space-x-8 font-semibold hover:underline"
-                  }}
-                /></a></li>
-                   <li><Link href="/about" ><LanguageSwitch
-                  en="About"
-                  hi="और-जाने"
-                  tailwindStyles={{
-                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[1000ms]",
-                    hi: "text-white text-3xl font-semibold hover:underline"
-                  }}
-                /></Link></li>
-                <li><a href="#bottom-of-page" ><LanguageSwitch
-                  en="Contact"
-                  hi="संपर्क"
-                  tailwindStyles={{
-                    en: "text-white text-2xl font-bold hover:underline motion-preset-rebound-down motion-delay-[1050ms]",
-                    hi: "text-white text-3xl space-x-8 font-semibold hover:underline"
-                  }}
-                /></a></li>
-              </ul>
-              <PulsatingButton > 
-            <Link href="/donate" className="bg-white text-pink-600 text-center px-6 md:px-9 py-3 rounded-full text-2xl md:text-3xl text-nowrap font-serif font-semibold  transition-colors ">
-             <LanguageSwitch
-                en="Donate Now!"
-                hi="अभी दान करें!"
-                tailwindStyles={{
-                  en: "motion-translate-y-loop-25/mirror",
-                  hi: "motion-translate-y-loop-25/mirror"
-                }}
-              />
-            </Link></PulsatingButton>
-          {/* <LanguageToggle /> */}
+        </div>
 
-          <button className="md:hidden pr-[7px]" onClick={() => setIsSidebarOpen(true)}>
-            <Menu size={24} />
-          </button>
-            </div>
-
+        <div className="flex w-full flex-wrap items-center justify-between  md:hidden">
+          <DonateLink className="text-2xl md:text-3xl" />
+          <CardNav
+            items={mobileNavItems}
+            baseColor="#ffffff"
+            menuColor="#ffffff"
+          />
         </div>
-        <div className='flex justify-around w-full pr-2 pb-0 md:hidden'>
-        <div className='md:hidden w-full'> <PulsatingButton > 
-            <Link href="/donate" className="bg-white text-pink-600 text-center px-6 md:px-9 py-3 rounded-full text-2xl md:text-3xl text-nowrap font-serif font-semibold  transition-colors ">
-             <LanguageSwitch
-                en="Donate Now!"
-                hi="अभी दान करें!"
-                tailwindStyles={{
-                  en: "motion-translate-y-loop-25/mirror",
-                  hi: "motion-translate-y-loop-25/mirror"
-                }}
-              />
-            </Link></PulsatingButton>
         </div>
-        {/* <LanguageToggle  /> */}
-        </div>
-      </div>
-    </header >
-      <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
-      <SidebarTrigger setIsOpen={setIsSidebarOpen} />
-    </>
+      </m.header>
+    </LazyMotion>
   )
 }

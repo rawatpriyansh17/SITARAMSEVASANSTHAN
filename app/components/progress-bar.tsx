@@ -2,10 +2,12 @@
 
 import {
   AnimatePresence,
-  motion,
+  domAnimation,
+  LazyMotion,
+  m,
   useMotionTemplate,
   useSpring,
-} from "framer-motion";
+} from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -14,7 +16,7 @@ import {
   ReactNode,
   createContext,
   startTransition,
-  useContext,
+  use,
   useEffect,
   useRef,
   useState,
@@ -25,7 +27,7 @@ const ProgressBarContext = createContext<ReturnType<typeof useProgress> | null>(
 );
 
 export function useProgressBar() {
-  const progress = useContext(ProgressBarContext);
+  const progress = use(ProgressBarContext);
 
   if (progress === null) {
     throw new Error("Need to be inside provider");
@@ -40,15 +42,17 @@ export function ProgressBar({ className, children }: { className: string, childr
 
   return (
     <ProgressBarContext.Provider value={progress}>
-      <AnimatePresence onExitComplete={progress.reset}>
-        {(progress.state === "in-progress" || progress.state === "completing") && (
-          <motion.div
-            style={{ width }}
-            exit={{ opacity: 0 }}
-            className={className}
-          />
-        )}
-      </AnimatePresence>
+      <LazyMotion features={domAnimation}>
+        <AnimatePresence onExitComplete={progress.reset}>
+          {(progress.state === "in-progress" || progress.state === "completing") && (
+            <m.div
+              style={{ width }}
+              exit={{ opacity: 0 }}
+              className={className}
+            />
+          )}
+        </AnimatePresence>
+      </LazyMotion>
 
       {children}
     </ProgressBarContext.Provider>
@@ -73,11 +77,26 @@ export function ProgressBarLink({
     if (isModifiedClick) return;
 
     const hrefValue = href.toString();
-    const isExternal = /^https?:\/\//.test(hrefValue);
+    const targetUrl = new URL(hrefValue, window.location.href);
+    const isExternal = targetUrl.origin !== window.location.origin;
     if (isExternal) return;
 
-    const isHashOnly = hrefValue.startsWith("#");
-    if (isHashOnly) return;
+    const isSamePageHash =
+      targetUrl.hash.length > 0 &&
+      targetUrl.pathname === window.location.pathname &&
+      targetUrl.search === window.location.search;
+
+    if (isSamePageHash) {
+      e.preventDefault();
+
+      const targetId = decodeURIComponent(targetUrl.hash.slice(1));
+      const targetElement = document.getElementById(targetId);
+
+      window.history.pushState(null, "", targetUrl.hash);
+      targetElement?.scrollIntoView({ behavior: "smooth", block: "start" });
+      progress.done();
+      return;
+    }
 
     const currentUrl = `${window.location.pathname}${window.location.search}`;
 
@@ -90,9 +109,10 @@ export function ProgressBarLink({
     progress.start();
 
     startTransition(() => {
-      router.push(hrefValue, { scroll: true });
-      // Force top-of-page on route transitions handled by router.push.
-      if (typeof window !== "undefined") {
+      const hasHashTarget = targetUrl.hash.length > 0;
+
+      router.push(hrefValue, { scroll: !hasHashTarget });
+      if (!hasHashTarget && typeof window !== "undefined") {
         requestAnimationFrame(() => {
           window.scrollTo({ top: 0, left: 0, behavior: "auto" });
         });
@@ -148,17 +168,21 @@ function useProgress() {
   );
 
   useEffect(() => {
+    const unsubscribe = value.on("change", (latest) => {
+      if (latest === 100) {
+        setState("complete");
+      }
+    });
+
+    return () => unsubscribe();
+  }, [value]);
+
+  useEffect(() => {
     if (state === "initial") {
       value.jump(0);
     } else if (state === "completing") {
       value.set(100);
     }
-
-    return value.on("change", (latest) => {
-      if (latest === 100) {
-        setState("complete");
-      }
-    });
   }, [value, state]);
 
   function reset() {

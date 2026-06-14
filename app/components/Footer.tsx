@@ -1,51 +1,56 @@
 import Link from 'next/link'
-import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react'
-import { LanguageSwitch, LanguageToggle } from '@/app/components/LanguageSwitch'
+import * as motion from 'motion/react-client'
+import { MapPin, Phone, Mail } from 'lucide-react'
+import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import { delayed, reboundUp } from '@/app/components/motion-presets'
+
 export default function Footer() {
   return (
-    <div id="bottom-of-page" className="border-t-2 border-pink-300 left-0 right-0 bottom-0 motion-preset-rebound-up motion-delay-[1000ms] bg-gradient-to-b from-pink-600 to-pink-900 text-white py-4">
-      <div className="container mx-auto px-4 ">
-        <div className="flex flex-col md:flex-row justify-between items-start">
-          <div className="mb-3 md:mb-0 w-full md:w-1/2">
-            <h3 className="font-serif text-2xl md:text-4xl font-bold mb-4">Contact Us:-</h3>
-            <div className="flex items-start mb-2">
-              <MapPin className="mr-2 mt-1 flex-shrink-0 font-semibold " size={18} />
-              <p className="text-xl"><LanguageSwitch
-                                                        en="110, Shreyansnath Apartment 3/2 Near Shalby Hospital, Dr R.S.Bhandari Marg,Indore,Madhya Pradesh,India"
-                                                        hi="110, श्रेयांसनाथ अपार्टमेंट 3/2  शेल्बी हॉस्पिटल के पास, डॉ आर एस भंडारी मार्ग, इंदौर एमपी "
-                                                        tailwindStyles={{
-                                                          en: "font-mono font-bold  text-sm md:text-xl",
-                                                          hi: "font-mono  text-xl "
-                                                        }}
-                                                      /></p>
-            </div>
-            <div className="flex items-center mb-2">
-              <Phone className="mr-2 flex-shrink-0 font-semibold" size={18} />
-              <p className="text-lg md:text-xl">+91 9111311301</p>
-            </div>
-            <div className="flex items-center">
-              <Mail className="mr-2 flex-shrink-0" size={18} />
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sansthansitaramseva@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:underline font-semibold sm text-md:text-xl">
-                sansthansitaramseva@gmail.com
-              </a>
+    <motion.footer
+      id="bottom-of-page"
+      className="mt-auto border-t border-pink-300/70 bg-gradient-to-b from-pink-700 to-pink-950 py-8 text-white md:py-10"
+      variants={reboundUp}
+      {...delayed(1)}
+    >
+      <div className="container mx-auto px-4">
+        <div className="grid gap-8 md:grid-cols-[minmax(0,1.4fr)_minmax(16rem,0.6fr)] md:items-start">
+          <div>
+            <h3 className="mb-4 font-serif text-3xl font-bold md:text-4xl">Contact Us:-</h3>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <MapPin className="mt-1 size-5 flex-shrink-0" />
+                
+                  <p className="font-mono text-sm font-semibold leading-relaxed md:text-base">110, Shreyansnath Apartment 3/2 Near Shalby Hospital, Dr R.S.Bhandari Marg, Indore, Madhya Pradesh, India</p>
+          
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone className="size-5 flex-shrink-0" />
+                <p className="text-lg font-semibold">+91 9111311301</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail className="size-5 flex-shrink-0" />
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sansthansitaramseva@gmail.com" target="_blank" rel="noopener noreferrer" className="break-all text-sm font-semibold hover:underline md:text-base">
+                  sansthansitaramseva@gmail.com
+                </a>
+              </div>
             </div>
           </div>
-          <div className="flex flex-col items-start md:items-end mb-1 w-full md:w-1/2 mt-6 md:mt-3">
-            <h3 className="text-2xl md:text-4xl font-bold mb-4 font-serif">Follow us here!</h3>
-            <div className="flex space-x-11 ">
-              <Link href="https://www.facebook.com/profile.php?id=61565118059016&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" >
-                <Facebook size={36} />
+          <div className="flex flex-col items-start md:items-end">
+            <h3 className="mb-4 font-serif text-3xl font-bold md:text-4xl">Follow us here!</h3>
+            <div className="flex gap-6">
+              <Link href="https://www.facebook.com/profile.php?id=61565118059016&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="rounded-full p-2 transition-colors hover:bg-white/10" aria-label="Facebook">
+                <FaFacebook size={36} />
               </Link>
-              <Link href="https://www.instagram.com/sitaramsevasansthan?igsh=dDhpdXFuMXJwYzB6" target="_blank" rel="noopener noreferrer" >
-                <Instagram size={36} />
+              <Link href="https://www.instagram.com/sitaramsevasansthan?igsh=dDhpdXFuMXJwYzB6" target="_blank" rel="noopener noreferrer" className="rounded-full p-2 transition-colors hover:bg-white/10" aria-label="Instagram">
+                <FaInstagram size={36} />
               </Link>
-              <Link href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" >
-                <Linkedin size={36} />
+              <Link href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="rounded-full p-2 transition-colors hover:bg-white/10" aria-label="LinkedIn">
+                <FaLinkedin size={36} />
               </Link>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.footer>
   )
 }

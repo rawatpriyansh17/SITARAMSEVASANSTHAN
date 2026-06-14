@@ -9,7 +9,8 @@ interface OptimizedImageProps {
   width: number;
   height: number;
   className?: string;
-  transformation?: Array<any>;
+  sizes?: string;
+  transformation?: Array<Record<string, string | number | boolean>>;
 }
 
 export function OptimizedImage({ 
@@ -18,6 +19,7 @@ export function OptimizedImage({
   width, 
   height, 
   className,
+  sizes,
   transformation 
 }: OptimizedImageProps) {
   // Check if it's an ImageKit URL
@@ -32,6 +34,7 @@ export function OptimizedImage({
         width={width}
         height={height}
         className={className}
+        sizes={sizes}
         transformation={transformation}
         loading="lazy"
       />
@@ -46,6 +49,8 @@ export function OptimizedImage({
       width={width}
       height={height}
       className={className}
+      sizes={sizes}
+      loading="lazy"
     />
   );
 }

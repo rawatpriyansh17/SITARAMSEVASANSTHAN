@@ -19,6 +19,7 @@ export default function PulsatingButton({
 }: PulsatingButtonProps) {
   return (
     <button
+      type="button"
       className={cn(
         "relative text-center cursor-pointer inline-flex justify-center items-center rounded-lg text-white dark:text-black bg-pink-500 dark:bg-pink-600",
         className,

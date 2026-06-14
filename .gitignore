@@ -12,7 +12,7 @@
 
 # testing
 /coverage
-
+/ignore_files
 # next.js
 /.next/
 /out/

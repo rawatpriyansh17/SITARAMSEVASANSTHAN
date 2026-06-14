@@ -1,14 +1,13 @@
-const CMS_BASE_URL = process.env.NEXT_PUBLIC_CMS_URL || 'http://localhost:3001';
+const CMS_BASE_URL = process.env.CMS_URL || process.env.NEXT_PUBLIC_CMS_URL || 'http://localhost:3001';
+const CMS_REVALIDATE_SECONDS = 60;
 
 export interface Post {
   id: number;
   title_en: string;
-  title_hi: string;
   description_en: string;
-  description_hi: string;
   mediaType: 'image' | 'video';
   mediaUrl: string;
-  thumbnailUrl?: string; // Make sure this is included
+  thumbnailUrl?: string;
   eventPageSlug?: string;
   isActive: boolean;
   order: number;
@@ -18,17 +17,12 @@ export interface Event {
   id: number;
   slug: string;
   heading_en: string;
-  heading_hi: string;
   description1_en: string;
-  description1_hi: string;
   description2_en?: string;
-  description2_hi?: string;
   photoSubheading_en: string;
-  photoSubheading_hi: string;
   videoSubheading_en: string;
-  videoSubheading_hi: string;
   isActive: boolean;
-  createdAt?: string; // Add these if they exist in your data
+  createdAt?: string;
   updatedAt?: string;
 }
 
@@ -37,13 +31,20 @@ export interface Media {
   eventId: number;
   type: 'photo' | 'video';
   url: string;
-  thumbnailUrl?: string; // Make sure this is included
+  thumbnailUrl?: string;
   heading_en?: string;
-  heading_hi?: string;
   description_en?: string;
-  description_hi?: string;
   videoType?: 'interview' | 'distribution';
   order: number;
+}
+
+export interface LatestEvent {
+  id: number;
+  imageUrl: string;
+  imageAlt: string;
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export async function fetchPosts(): Promise<Post[]> {
@@ -53,9 +54,7 @@ export async function fetchPosts(): Promise<Post[]> {
       headers: {
         'Content-Type': 'application/json',
       },
-      // Add these for better CORS handling
-      mode: 'cors',
-      credentials: 'omit',
+      next: { revalidate: CMS_REVALIDATE_SECONDS },
     });
 
     if (!response.ok) {
@@ -77,8 +76,7 @@ export async function fetchEvents(): Promise<Event[]> {
       headers: {
         'Content-Type': 'application/json',
       },
-      mode: 'cors',
-      credentials: 'omit',
+      next: { revalidate: CMS_REVALIDATE_SECONDS },
     });
 
     if (!response.ok) {
@@ -107,8 +105,7 @@ export async function fetchEventBySlug(slug: string): Promise<{
       headers: {
         'Content-Type': 'application/json',
       },
-      mode: 'cors',
-      credentials: 'omit',
+      next: { revalidate: CMS_REVALIDATE_SECONDS },
     });
 
     if (!response.ok) {
@@ -122,6 +119,28 @@ export async function fetchEventBySlug(slug: string): Promise<{
     return data;
   } catch (error) {
     console.error('Error fetching event:', error);
+    return null;
+  }
+}
+
+export async function fetchLatestEvent(): Promise<LatestEvent | null> {
+  try {
+    const response = await fetch(`${CMS_BASE_URL}/api/public/latest-event`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      next: { revalidate: CMS_REVALIDATE_SECONDS },
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const latestEvent = await response.json();
+    return latestEvent;
+  } catch (error) {
+    console.error('Error fetching latest event:', error);
     return null;
   }
 }
