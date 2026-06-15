@@ -150,7 +150,7 @@ export default function Services() {
 function ServiceCard({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
-      className="rounded-md border-2 border-[#a31b93] bg-gradient-to-r from-[#f6f7ff] to-[#fff7fb] px-5 py-3 text-center font-serif text-sm md:text-lg font-extrabold leading-snug text-gray-800 shadow-[5px_5px_rgb(206_67_125)] transition-transform duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[0px_0px_rgb(38_51_129)] "
+      className="rounded-md border-2 border-[#a31b93] bg-gradient-to-r from-[#f6f7ff] to-[#fff7fb] px-5 py-3 text-center font-serif text-sm md:text-lg text-shadow-md font-extrabold leading-snug text-gray-800 shadow-[5px_5px_rgb(206_67_125)] transition-transform duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[0px_0px_rgb(38_51_129)] "
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >

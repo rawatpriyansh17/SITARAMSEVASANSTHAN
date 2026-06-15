@@ -69,7 +69,7 @@ export default function Header() {
   return (
     <LazyMotion features={domAnimation}>
       <m.header
-        className="w-full bg-gradient-to-b from-pink-700 to-pink-500 text-white p-3 rounded-bl-3xl rounded-br-3xl"
+        className="w-full bg-gradient-to-b from-pink-700 to-pink-500 text-white p-3 rounded-bl-3xl rounded-br-3xl md:rounded-br-none"
         variants={reboundDown}
         {...delayed(0.4)}
       >
@@ -120,7 +120,7 @@ export default function Header() {
 
         <div className="flex items-center">
           <div className="hidden md:flex items-center space-x-3">
-            <ul className="flex space-x-5 font-mono">
+            <ul className="flex space-x-5 font-mono font-bold">
               {navItems.map((item, index) => (
                 <li key={item.href}>
                   <ProgressBarLink href={item.href}>

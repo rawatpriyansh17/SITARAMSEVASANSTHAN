@@ -55,7 +55,7 @@ export default function CardNav({
         aria-expanded={isOpen}
         onClick={toggleMenu}
         onKeyDown={handleMenuKeyDown}
-        className={`flex size-12 flex-none flex-col items-center justify-center gap-[6px] rounded-full bg-pink-600 ring-2 ring-white/40 text-white shadow-lg shadow-pink-950/20 transition-colors hover:bg-pink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 ${className}`}
+        className={`flex size-10 flex-none flex-col items-center justify-center gap-[6px] rounded-full bg-pink-600 ring-2 ring-white/40 text-white shadow-lg shadow-pink-950/20 transition-colors hover:bg-pink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 ${className}`}
         style={{ color: menuColor }}
       >
         <span

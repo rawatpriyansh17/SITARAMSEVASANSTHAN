@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <motion.footer
       id="bottom-of-page"
-      className="mt-auto border-t border-pink-300/70 bg-gradient-to-b from-pink-700 to-pink-950 py-8 text-white md:py-10"
+      className="mt-auto border-t border-pink-300/70 bg-gradient-to-b from-pink-800 via-pink-900 to-pink-950 py-8 text-white md:py-10"
       variants={reboundUp}
       {...delayed(1)}
     >

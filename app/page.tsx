@@ -9,8 +9,8 @@ export default function HomePage() {
   return (
     <>
       <Analytics />
-      <Header />
       <div className=" w-full max-w-full overflow-hidden bg-linear-to-b from-pink-50  via-purple-400  to-pink-700">
+      <Header />
         <main className="container mx-auto p-4">
           <Services />
           <Suspense fallback={<PostSectionSkeleton />}>
