@@ -69,13 +69,6 @@ html {
   }
 }
 
-*{
-    -ms-overflow-style: none;
-}
-::-webkit-scrollbar {
-    display: none;
-}
-
 body {
   font-family:Arial, Helvetica, sans-serif;
 }
@@ -338,25 +331,26 @@ html, body {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: deeppink ;
+  scrollbar-color: #db2777 #f4d0e4;
 }
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
 }
 
 *::-webkit-scrollbar-track {
-  background: deeppink;
-  border-radius: 6px;
+  background: linear-gradient(180deg, #F598E6, #FF68BE);
+  border-radius: 999px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: deeppink;
-  border-radius: 6px;
-  border: 2px solid deeppink;
+  background: linear-gradient(180deg, #ec4899, #db2777 48%, #be185d);
+  border: 3px solid #fdf2f8;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.35);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: deeppink;
+  background: linear-gradient(180deg, #f472b6, #e11d48);
 }

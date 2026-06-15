@@ -10,8 +10,8 @@ import { Skeleton } from '@/app/components/ui/skeleton'
 import { Separator } from './ui/separator'
 import { ComponentIcon } from 'lucide-react'
 
-const DESKTOP_POSTS_PER_PAGE = 12
-const MOBILE_POSTS_PER_PAGE = 5
+const DESKTOP_POSTS_PER_PAGE = 16
+const MOBILE_POSTS_PER_PAGE = 8
 
 function subscribeToViewport(callback: () => void) {
   window.addEventListener('resize', callback, { passive: true })
@@ -48,6 +48,10 @@ function getThumbnailUrl(post: Post) {
   return '/event-highlights1.png'
 }
 
+function getPostImageUrl(post: Post) {
+  return post.mediaUrl?.trim() || '/placeholder.jpg'
+}
+
 function PostItem({ post, index }: { post: Post; index: number }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -76,7 +80,7 @@ function PostItem({ post, index }: { post: Post; index: number }) {
             />
           ) : (
             <OptimizedImage
-              src={post.mediaUrl}
+              src={getPostImageUrl(post)}
               alt={post.title_en}
               width={800}
               height={600}
@@ -100,7 +104,7 @@ function PostItem({ post, index }: { post: Post; index: number }) {
           transition={{ duration: 0.2 }}
         >
           <motion.h3
-            className="flex font-bold mb-4"
+            className="flex font-bold "
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -115,14 +119,16 @@ function PostItem({ post, index }: { post: Post; index: number }) {
           </motion.h3>
 
           <motion.p
-            className="text-pink-700"
+            className="text-pink-700 mt-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <span className="mb-3 font-mono font-bold text-xs md:text-sm text-pink-600">
-              {"👉 " + post.description_en}
-            </span>
+            {post.description_en &&(
+              <span className="mb-3 font-mono font-bold text-xs md:text-sm text-pink-600">
+                👉 { post.description_en}
+              </span>
+            )}
           </motion.p>
 
           {post.eventPageSlug && (

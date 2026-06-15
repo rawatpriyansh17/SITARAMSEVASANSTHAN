@@ -4,7 +4,7 @@ import { Image as IKImage } from '@imagekit/next';
 import Image from 'next/image';
 
 interface OptimizedImageProps {
-  src: string;
+  src?: string | null;
   alt: string;
   width: number;
   height: number;
@@ -22,14 +22,15 @@ export function OptimizedImage({
   sizes,
   transformation 
 }: OptimizedImageProps) {
+  const safeSrc = src?.trim() || '/placeholder.jpg'; // Fallback to a placeholder image if src is missing or empty
   // Check if it's an ImageKit URL
-  const isImageKitUrl = src.includes('ik.imagekit.io');
+  const isImageKitUrl = safeSrc.includes('ik.imagekit.io');
   
   if (isImageKitUrl) {
     return (
       <IKImage
       urlEndpoint={process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT}
-        src={src}
+        src={safeSrc}
         alt={alt}
         width={width}
         height={height}
@@ -44,7 +45,7 @@ export function OptimizedImage({
   // Fallback to Next.js Image for local images
   return (
     <Image
-      src={src}
+      src={safeSrc}
       alt={alt}
       width={width}
       height={height}

@@ -98,10 +98,10 @@ export default async function EventPage({ params }: PageProps) {
                   hi: "font-serif text-2xl pr-2 md:text-4xl font-bold text-pink-800 "
                 }}
               /> */}
-              <span className="font-mono text-xl md:text-3xl font-bold text-pink-800 ">{event.photoSubheading_en}</span>
+              <span className="font-mono text-xl md:text-3xl font-bold text-pink-800 text-shadow-lg ">{event.photoSubheading_en}</span>
             </h2>
             
-            <div className="mb-8 columns-1 gap-3 lg:columns-2 xl:columns-3">
+            <div className="mb-8 columns-1 gap-3 lg:columns-3">
               {photos.map((photo) => (
                 <div key={photo.id} className="mb-4 inline-block w-full break-inside-avoid rounded-lg border-2 border-r-4 border-b-4 border-pink-800 bg-white p-2 shadow-md">
                   <OptimizedImage
@@ -122,7 +122,7 @@ export default async function EventPage({ params }: PageProps) {
                     //     }}
                     //   /> */}
             
-                    <h3 className="text-lg font-mono font-bold mb-1 text-pink-800">
+                    <h3 className="text-lg font-mono font-bold mb-1 text-pink-800 text-shadow-lg">
                       {photo.heading_en}
                     </h3>
                   )}
@@ -136,7 +136,7 @@ export default async function EventPage({ params }: PageProps) {
                     //     }}
                     //   /> */}
          
-                    <p className="font-mono font-extrabold text-pink-700 text-sm md:text-base">{photo.description_en}</p>
+                    <p className="font-mono font-extrabold text-pink-700 text-sm md:text-base text-shadow-lg">{photo.description_en}</p>
                   )}
                 </div>
               ))}
@@ -161,7 +161,7 @@ export default async function EventPage({ params }: PageProps) {
                   hi: "font-serif text-3xl md:text-4xl font-bold text-pink-800 "
                 }}
               /> */}
-              <span className="font-mono text-2xl md:text-4xl font-bold text-pink-800 ">{event.videoSubheading_en}</span>
+              <span className="font-mono text-2xl md:text-4xl font-bold text-pink-800 text-shadow-lg ">{event.videoSubheading_en}</span>
             </h2>
 
             {/* Interview Videos */}
@@ -189,7 +189,7 @@ export default async function EventPage({ params }: PageProps) {
                         thumbnailAlt={video.heading_en || "Interview Video"}
                       />
                       {video.heading_en && (
-                        <div className="p-3">
+                        <div className="p-2">
                             {/* <LanguageSwitch
                               en={video.heading_en}
                               hi={video.heading_hi || video.heading_en}
@@ -198,10 +198,10 @@ export default async function EventPage({ params }: PageProps) {
                                 hi: "font-semibold text-pink-800"
                               }}
                             /> */}
-                            <h4 className="font-semibold text-pink-800">{video.heading_en}</h4>
+                            <h4 className="font-bold font-mono text-pink-800 text-shadow-lg">🌟 {video.heading_en}</h4>
                           
                           {video.description_en && (
-                            <p className="text-sm text-gray-600 mt-1">
+                            <p className="text-sm text-gray-600 mt-1 font-mono font-semibold">
                               {/* <LanguageSwitch
                                 en={video.description_en}
                                 hi={video.description_hi || video.description_en}
@@ -210,7 +210,7 @@ export default async function EventPage({ params }: PageProps) {
                                   hi: "text-sm text-gray-600"
                                 }}
                               /> */}
-                              {video.description_en}
+                               {video.description_en}
                             </p>
                           )}
                         </div>
