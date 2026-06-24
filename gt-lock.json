@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "branchId": "",
+  "entries": [
+    {
+      "fileId": "879f3a5f954ee8b75bf1e91f4ea9916b41c933e5beba7eb6362647a637c9c66d",
+      "versionId": "0aabfad8a7d49565b7b8080bb80d31d212a6af84d3ef501587f11af2240866f1",
+      "translations": {
+        "hi": {
+          "updatedAt": "2026-06-24T12:26:15.479Z",
+          "fileName": "/Users/priyanshrawat17/Desktop/PROJECTS/NGO/NGOCODE/public/_gt/hi.json",
+          "postProcessHash": "6a82b1e48f6e99aae4667a74668d4eaa37a86942a282cee01b2ba1763a875736"
+        }
+      },
+      "fileName": "__INTERNAL_GT_TEMPLATE_NAME__",
+      "staged": false
+    }
+  ]
+}

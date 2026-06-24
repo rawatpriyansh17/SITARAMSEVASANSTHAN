@@ -5,7 +5,18 @@ import PostSection, { PostSectionSkeleton } from '@/app/components/PostSection'
 import Services from '@/app/components/Services'
 import Footer from '@/app/components/Footer'
 
-export default function HomePage() {
+function getPostsPage(value: string | undefined) {
+  const page = Number.parseInt(value ?? '', 10)
+  return Number.isSafeInteger(page) && page > 0 ? page : 1
+}
+
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ postsPage?: string }>
+}) {
+  const { postsPage } = await searchParams
+
   return (
     <>
       <Analytics />
@@ -14,7 +25,7 @@ export default function HomePage() {
         <main className="container mx-auto p-4">
           <Services />
           <Suspense fallback={<PostSectionSkeleton />}>
-            <PostSection />
+            <PostSection page={getPostsPage(postsPage)} />
           </Suspense>
         </main>
       </div>

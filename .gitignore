@@ -16,7 +16,6 @@
 # next.js
 /.next/
 /out/
-public/_gt/
 /app/playground/loaders/page.tsx
 # production
 /build

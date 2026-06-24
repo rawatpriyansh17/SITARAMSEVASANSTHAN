@@ -10,13 +10,13 @@ async function translatePostText(value: string, context: string) {
   return tx(value, { $context: context })
 }
 
-export default async function PostSection() {
-  const posts = await fetchPosts().catch((error) => {
+export default async function PostSection({ page }: { page: number }) {
+  const postsPage = await fetchPosts(page).catch((error) => {
     console.error('Failed to load posts:', error)
     return null
   })
 
-  if (!posts) {
+  if (!postsPage) {
     return (
       <div className="container mx-auto mt-4 p-4">
         <div className="text-center py-5 px-2 bg-red-50 border-2 border-red-300 w-fit mx-auto rounded-lg shadow-lg">
@@ -27,12 +27,12 @@ export default async function PostSection() {
   }
 
   const translatedPosts = await Promise.all(
-    posts.map(async (post) => ({
+    postsPage.posts.map(async (post) => ({
       ...post,
       title_en: await translatePostText(post.title_en, 'CMS post title'),
       description_en: await translatePostText(post.description_en, 'CMS post description'),
     }))
   )
 
-  return <PostList posts={translatedPosts} />
+  return <PostList posts={translatedPosts} pagination={postsPage.pagination} />
 }

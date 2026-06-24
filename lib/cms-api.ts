@@ -1,5 +1,6 @@
 const CMS_BASE_URL = process.env.CMS_URL || process.env.NEXT_PUBLIC_CMS_URL || 'http://localhost:3001';
 const CMS_REVALIDATE_SECONDS = 60;
+export const POSTS_PER_PAGE = 16;
 
 export interface Post {
   id: number;
@@ -11,6 +12,38 @@ export interface Post {
   eventPageSlug?: string;
   isActive: boolean;
   order: number;
+}
+
+export interface PostsPagination {
+  page: number;
+  pageSize: number;
+  total: number;
+  totalPages: number;
+}
+
+export interface PostsPage {
+  posts: Post[];
+  pagination: PostsPagination;
+}
+
+function normalizePostsPage(
+  data: PostsPage | Post[],
+  requestedPage: number,
+  pageSize: number
+): PostsPage {
+  if (!Array.isArray(data)) {
+    return data;
+  }
+
+  const total = data.length;
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const page = Math.min(Math.max(requestedPage, 1), totalPages);
+  const start = (page - 1) * pageSize;
+
+  return {
+    posts: data.slice(start, start + pageSize),
+    pagination: { page, pageSize, total, totalPages },
+  };
 }
 
 export interface Event {
@@ -47,9 +80,16 @@ export interface LatestEvent {
   updatedAt?: string;
 }
 
-export async function fetchPosts(): Promise<Post[]> {
+export async function fetchPosts(
+  page = 1,
+  pageSize = POSTS_PER_PAGE
+): Promise<PostsPage> {
   try {
-    const response = await fetch(`${CMS_BASE_URL}/api/public/posts`, {
+    const url = new URL('/api/public/posts', CMS_BASE_URL);
+    url.searchParams.set('page', String(page));
+    url.searchParams.set('pageSize', String(pageSize));
+
+    const response = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -61,8 +101,11 @@ export async function fetchPosts(): Promise<Post[]> {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const posts = await response.json();
-    return posts;
+    return normalizePostsPage(
+      (await response.json()) as PostsPage | Post[],
+      page,
+      pageSize
+    );
   } catch (error) {
     console.error('Error fetching posts:', error);
     throw new Error('Failed to fetch posts');

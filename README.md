@@ -38,6 +38,17 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Static translations
+
+The checked-in `public/_gt/hi.json` catalog is deployed with the app, so production
+builds do not spend General Translation quota. After changing static text wrapped in
+`<T>...</T>`, run the following command intentionally, review the generated catalog,
+and commit it with the source change:
+
+```
+npm run translate
+```
+
 ## Project Structure
 
 - `app/`: Contains the main page component

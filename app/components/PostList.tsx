@@ -1,39 +1,17 @@
 'use client'
 
-import { useRef, useState, useSyncExternalStore } from 'react'
+import { startTransition, useRef } from 'react'
 import { motion, useInView } from 'motion/react'
-import { ProgressBarLink } from '@/app/components/progress-bar'
+import { ProgressBarLink, useProgressBar } from '@/app/components/progress-bar'
+import { useRouter } from 'next/navigation'
 import { VideoDialog } from './VideoDialog'
-import { type Post } from '@/lib/cms-api'
+import { type Post, type PostsPagination } from '@/lib/cms-api'
+import { Pagination } from './pagination'
 import { OptimizedImage } from './optimized-image'
 import { Skeleton } from '@/app/components/ui/skeleton'
 import { Separator } from './ui/separator'
 import { ComponentIcon } from 'lucide-react'
 import { T, useGT } from 'gt-next/client'
-
-const DESKTOP_POSTS_PER_PAGE = 16
-const MOBILE_POSTS_PER_PAGE = 8
-
-function subscribeToViewport(callback: () => void) {
-  window.addEventListener('resize', callback, { passive: true })
-  return () => window.removeEventListener('resize', callback)
-}
-
-function getPostsPerPageSnapshot() {
-  return window.innerWidth >= 1024 ? DESKTOP_POSTS_PER_PAGE : MOBILE_POSTS_PER_PAGE
-}
-
-function getServerPostsPerPageSnapshot() {
-  return DESKTOP_POSTS_PER_PAGE
-}
-
-function usePostsPerPage() {
-  return useSyncExternalStore(
-    subscribeToViewport,
-    getPostsPerPageSnapshot,
-    getServerPostsPerPageSnapshot
-  )
-}
 
 function getThumbnailUrl(post: Post) {
   if (post.thumbnailUrl) {
@@ -156,80 +134,8 @@ function PostItem({ post, index }: { post: Post; index: number }) {
   )
 }
 
-interface PaginationControlsProps {
-  totalPages: number
-  currentPage: number
-  goToPrevious: () => void
-  goToNext: () => void
-  goToPage: (page: number) => void
-}
-
-function PaginationControls({
-  totalPages,
-  currentPage,
-  goToPrevious,
-  goToNext,
-  goToPage,
-}: PaginationControlsProps) {
-  if (totalPages <= 1) return null
-
-  return (
-    <motion.div
-      className="flex justify-center items-center my-3 gap-2"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2, delay: 0.1 }}
-    >
-      <motion.button
-        type="button"
-        onClick={goToPrevious}
-        disabled={currentPage === 1}
-        className={`px-4 py-2 rounded-xl font-mono font-bold border-2 transition-all text-xs text-nowrap ${
-          currentPage === 1
-            ? 'bg-gradient-to-b from-gray-300 to-gray-400 text-gray-700 border-gray-400 cursor-not-allowed'
-            : 'bg-gradient-to-b from-violet-700 to-purple-900 text-white border-pink-700 hover:scale-105'
-        }`}
-        whileHover={currentPage !== 1 ? { scale: 1.05 } : {}}
-        whileTap={currentPage !== 1 ? { scale: 0.95 } : {}}
-      >
-        ← Previous
-      </motion.button>
-
-      <div className="flex gap-1">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <motion.button
-            type="button"
-            key={page}
-            onClick={() => goToPage(page)}
-            className={`w-10 h-10 rounded-xl font-mono font-bold border-2 transition-all text-xs ${
-              currentPage === page
-                ? 'bg-gradient-to-b from-blue-500 to-purple-700 text-white border-purple-700'
-                : 'bg-white text-pink-700 border-pink-700 hover:bg-pink-50 border-2'
-            }`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            {page}
-          </motion.button>
-        ))}
-      </div>
-
-      <motion.button
-        type="button"
-        onClick={goToNext}
-        disabled={currentPage === totalPages}
-        className={`px-4 py-2 rounded-xl font-mono font-bold border-2 transition-all text-nowrap text-xs ${
-          currentPage === totalPages
-            ? 'bg-gray-300 text-gray-500 border-gray-400 cursor-not-allowed'
-            : 'bg-gradient-to-b from-violet-700 to-purple-900 text-white border-pink-700 hover:scale-105'
-        }`}
-        whileHover={currentPage !== totalPages ? { scale: 1.05 } : {}}
-        whileTap={currentPage !== totalPages ? { scale: 0.95 } : {}}
-      >
-        Next →
-      </motion.button>
-    </motion.div>
-  )
+function getPostsPageHref(page: number) {
+  return `/?postsPage=${page}#posts-section-title`
 }
 
 export function PostSectionSkeleton() {
@@ -244,7 +150,8 @@ export function PostSectionSkeleton() {
         {Array.from({ length: 4 }).map((_, index) => (
           <div
             key={index}
-            className="grid overflow-hidden rounded-xl border-2 border-r-4 border-b-4 border-pink-500 bg-white/90 shadow-[0_12px_28px_rgba(190,24,93,0.16)]"
+            className="grid animate-[pulse_2.6s_ease-in-out_infinite] overflow-hidden rounded-xl border-2 border-r-4 border-b-4 border-pink-500 bg-white/90 shadow-[0_12px_28px_rgba(190,24,93,0.16)] motion-reduce:animate-none"
+            style={{ animationDelay: `${index * 140}ms` }}
           >
             <Skeleton className="aspect-[4/3] w-full rounded-none bg-linear-to-br from-pink-400 via-fuchsia-300 to-violet-400" />
             <div className="border-t-2 border-pink-100 bg-pink-50/90 p-5">
@@ -263,32 +170,24 @@ export function PostSectionSkeleton() {
   )
 }
 
-export default function PostList({ posts }: { posts: Post[] }) {
-  const [currentPage, setCurrentPage] = useState(1)
-  const postsPerPage = usePostsPerPage()
-  const totalPages = Math.max(1, Math.ceil(posts.length / postsPerPage))
-  const safeCurrentPage = Math.min(currentPage, totalPages)
-  const startIndex = (safeCurrentPage - 1) * postsPerPage
-  const currentPosts = posts.slice(startIndex, startIndex + postsPerPage)
+export default function PostList({
+  posts,
+  pagination,
+}: {
+  posts: Post[]
+  pagination: PostsPagination
+}) {
+  const router = useRouter()
+  const progress = useProgressBar()
 
   const goToPage = (page: number) => {
-    setCurrentPage(page)
-    document.getElementById('posts-section-title')?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+    if (page === pagination.page) return
+
+    progress.start()
+    startTransition(() => {
+      router.push(getPostsPageHref(page), { scroll: false })
+      progress.done()
     })
-  }
-
-  const goToPrevious = () => {
-    if (safeCurrentPage > 1) {
-      goToPage(safeCurrentPage - 1)
-    }
-  }
-
-  const goToNext = () => {
-    if (safeCurrentPage < totalPages) {
-      goToPage(safeCurrentPage + 1)
-    }
   }
 
   if (posts.length === 0) {
@@ -334,24 +233,26 @@ export default function PostList({ posts }: { posts: Post[] }) {
     </div>
 
       <div className={
-        currentPosts.length <= 4
+        posts.length <= 4
           ? "grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5"
           : "masonry-container"
       }>
-        {currentPosts.map((post, index) => (
-          <div key={post.id} className={currentPosts.length <= 4 ? "h-fit" : "masonry-item"}>
+        {posts.map((post, index) => (
+          <div key={post.id} className={posts.length <= 4 ? "h-fit" : "masonry-item"}>
             <PostItem post={post} index={index} />
           </div>
         ))}
       </div>
 
-      <PaginationControls
-        totalPages={totalPages}
-        currentPage={safeCurrentPage}
-        goToPrevious={goToPrevious}
-        goToNext={goToNext}
-        goToPage={goToPage}
-      />
+      {pagination.totalPages > 1 && (
+        <div className="mt-5">
+          <Pagination
+            totalPages={pagination.totalPages}
+            value={pagination.page}
+            onChange={goToPage}
+          />
+        </div>
+      )}
     </div>
   )
 }
