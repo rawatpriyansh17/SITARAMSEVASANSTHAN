@@ -1,156 +1,277 @@
+"use client"
+
 import Image from 'next/image'
+import { Book, HeartHandshake, Pill, Stethoscope } from 'lucide-react'
+import { createRef, useMemo, useRef, type ReactNode } from 'react'
 import * as motion from 'motion/react-client'
 import {
   delayed,
+  reboundDown,
   reboundRight,
 } from '@/app/components/motion-presets'
 import { Highlighter } from '@/app/components/ui/highlighter'
-const services = [
+import { T, useGT } from 'gt-next/client'
+import { AnimatedBeam } from '@/app/components/animated-beam'
+import Carousel, { type CarouselItem } from '@/app/components/Carousel'
+import { cn } from '@/lib/utils'
+
+type ServiceItem = {
+  id: number
+  title: ReactNode
+  description: ReactNode
+  position: string
+  curvature: number
+  startAnchor: "top" | "right" | "bottom" | "left"
+  endAnchor: "top" | "right" | "bottom" | "left"
+  icon: ReactNode
+  reverse?: boolean
+  variant: typeof reboundRight
+}
+
+const services: ServiceItem[] = [
   {
-    text: '⭐ Free distribution of artificial silicone breasts to women suffering from breast cancer.',
-    position: 'left-0 top-6 w-[27rem] max-w-[42%]',
-    line: { x1: 455, y1: 236, x2: 226, y2: 118 },
+    id: 1,
+    title: <T>Breast Cancer Aid</T>,
+    description: <T>Free distribution of artificial silicone breasts to women suffering from breast cancer.</T>,
+    position: 'left-0 top-6 w-[28rem] max-w-[43%]',
+    curvature: 0,
+    startAnchor: 'left',
+    endAnchor: 'right',
+    icon: <HeartHandshake className="size-5" aria-hidden="true" />,
+    reverse: true,
     variant: reboundRight,
   },
   {
-    text: '⭐ Free distribution of medicines given in chemotherapy to women breast cancer patients.',
-    position: 'right-0 top-6 w-[27rem] max-w-[42%]',
-    line: { x1: 545, y1: 236, x2: 774, y2: 118 },
+    id: 2,
+    title: <T>Medicine Aid</T>,
+    description: <T>Free distribution of medicines given in chemotherapy to breast cancer patients.</T>,
+    position: 'right-0 top-6 w-[28rem] max-w-[43%]',
+    curvature: 0,
+    startAnchor: 'right',
+    endAnchor: 'left',
+    icon: <Pill className="size-5" aria-hidden="true" />,
     variant: reboundRight,
   },
   {
-    text: '⭐ Free distribution of medicines given in chemotherapy to women suffering from ovarian cancer.',
-    position: 'left-0 top-[15rem] w-[27rem] max-w-[42%]',
-    line: { x1: 460, y1: 280, x2: 226, y2: 280 },
+    id: 3,
+    title: <T>Ovarian Care</T>,
+    description: <T>Free distribution of medicines given in chemotherapy to women suffering from ovarian cancer.</T>,
+    position: 'left-0 top-[16rem] w-[28rem] max-w-[43%]',
+    curvature: 0,
+    startAnchor: 'left',
+    endAnchor: 'right',
+    icon:<HeartHandshake className="size-5" aria-hidden="true" />,
+    reverse: true,
     variant: reboundRight,
   },
   {
-    text: '⭐ Free Pap smear test programs organized to support early detection of cervical cancer.',
-    position: 'left-1/2 top-[1.5rem] w-[20rem] -translate-x-1/2',
-    line: { x1: 500, y1: 200, x2: 500, y2: 150 },
+    id: 4,
+    title: <T>Pap Smear Test Camps</T>,
+    description: <T>Free Pap smear test programs organized to support early detection of cervical cancer.</T>,
+    position: 'left-1/2 top-0 w-[24rem] -translate-x-1/2',
+    curvature: 0,
+    startAnchor: 'top',
+    endAnchor: 'bottom',
+    icon: <Stethoscope className="size-5" aria-hidden="true" />,
+    reverse: true,
     variant: reboundRight,
   },
   {
-    text: '⭐ Oral cancer camps organized for screening, awareness, and timely guidance.',
-    position: 'left-1/2 bottom-[1.5rem] w-[20rem] -translate-x-1/2',
-    line: { x1: 500, y1: 360, x2: 500, y2: 410 },
+    id: 5,
+    title: <T>Oral Cancer Camps</T>,
+    description: <T>Oral cancer camps organized for screening, awareness, and timely guidance.</T>,
+    position: 'left-1/2 bottom-0 w-[24rem] -translate-x-1/2',
+    curvature: 0,
+    startAnchor: 'bottom',
+    endAnchor: 'top',
+    icon: <Stethoscope className="size-5" aria-hidden="true" />,
     variant: reboundRight,
   },
   {
-    text: '⭐ Organizing  blood donation & health check-up camps.',
-    position: 'right-0 top-[15rem] w-[27rem] max-w-[42%]',
-    line: { x1: 540, y1: 280, x2: 774, y2: 280 },
+    id: 6,
+    title: <T>Health Camps</T>,
+    description: <T>Organizing blood donation & health check-up camps to promote health awareness and well-being.</T>,
+    position: 'right-0 top-[16rem] w-[28rem] max-w-[43%]',
+    curvature: 0,
+    startAnchor: 'right',
+    endAnchor: 'left',
+    icon: <Stethoscope className="size-5" aria-hidden="true" />,
     variant: reboundRight,
   },
   {
-    text: '⭐ Free distribution of essential supplies to the students studying in government schools.',
-    position: 'left-0 bottom-6 w-[27rem] max-w-[42%]',
-    line: { x1: 455, y1: 324, x2: 226, y2: 442 },
+    id: 7,
+    title: <T>Student Supplies</T>,
+    description: <T>Free distribution of essential supplies to the students studying in government schools.</T>,
+    position: 'left-0 bottom-6 w-[28rem] max-w-[43%]',
+    curvature: 0,
+    startAnchor: 'left',
+    endAnchor: 'right',
+    icon: <Book  className="size-5" aria-hidden="true" />,
+    reverse: true,
     variant: reboundRight,
   },
   {
-    text: '⭐ Programs organized for free thermal mammography test for breast cancer patients.',
-    position: 'right-0 bottom-6 w-[27rem] max-w-[42%]',
-    line: { x1: 545, y1: 324, x2: 774, y2: 442 },
+    id: 8,
+    title: <T>Mammography Tests</T>,
+    description: <T>Programs organized for free thermal mammography test for breast cancer patients.</T>,
+    position: 'right-0 bottom-6 w-[28rem] max-w-[43%]',
+    curvature: 0,
+    startAnchor: 'right',
+    endAnchor: 'left',
+    icon: <Stethoscope className="size-5" aria-hidden="true" />,
     variant: reboundRight,
   },
 ]
 
 export default function Services() {
+  const gt = useGT()
+  const containerRef = useRef<HTMLDivElement>(null)
+  const centerRef = useRef<HTMLDivElement>(null)
+  const serviceRefs = useMemo(
+    () => services.map(() => createRef<HTMLDivElement>()),
+    []
+  )
+  const mobileCarouselItems: CarouselItem[] = services.map((service) => ({
+    id: service.id,
+    title: service.title,
+    description: service.description,
+    icon: service.icon,
+  }))
+
   return (
-    <section  className="py-2">
+    <section className="py-2">
       <h2 className="text-center">
-        <motion.span variants={reboundRight} className=" font-serif text-3xl md:text-6xl font-bold text-pink-700">
-               <Highlighter
-                    action="underline"
-                    animationDuration={950}
-                    isView
-                    color="deeppink"
-                    iterations={2}
-                    strokeWidth={2.5}
-                  >What We Do ?</Highlighter>
-          
+          <Highlighter
+            action="underline"
+            animationDuration={950}
+            isView
+            color="deeppink"
+            iterations={2}
+            strokeWidth={2.5}
+          >
+        <motion.span
+          variants={reboundDown}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.7 }}
+          className="inline-block font-serif text-3xl font-bold text-pink-700 md:text-6xl"
+        >
+            <T>What We Do ?</T>
         </motion.span>
+          </Highlighter>
       </h2>
 
-      <div className="relative mx-auto mt-6 hidden min-h-[560px] max-w-full lg:block">
-        <svg
-          className="pointer-events-none absolute inset-0 h-full w-full  "
-          viewBox="0 0 1000 560"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          {services.map((service) => (
-            <motion.line
-              key={service.text}
-              x1={service.line.x1}
-              y1={service.line.y1}
-              x2={service.line.x2}
-              y2={service.line.y2}
-              stroke="rgba(255 0 153 / 0.71)"
-              strokeWidth="4"
-              strokeDasharray="10 10"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 0.55, delay: 0.45, ease: 'easeOut' }}
-            />
-          ))}
-        </svg>
-
+      <div
+        ref={containerRef}
+        className="relative mx-auto mt-6 hidden min-h-[620px] w-full max-w-[96rem] overflow-hidden lg:block"
+      >
         <motion.div
-          className="absolute left-1/2 top-1/2 z-10 grid size-40 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-4 border-pink-400  hover:border-pink-600 bg-white p-2 shadow-2xl shadow-pink-700/60"
+          ref={centerRef}
+          className="absolute left-1/2 top-1/2 z-30 grid size-48 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-4 border-pink-400 bg-white p-3 shadow-2xl shadow-pink-700/60 hover:border-pink-600 xl:size-56"
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ type: 'spring', duration: 0.45, bounce: 0.18 }}
         >
           <Image
             src="/bow.jpg"
-            alt="Breast cancer awareness bow"
-            width={200}
-            height={200}
-            sizes="8rem"
+            alt={gt("Breast cancer awareness bow")}
+            width={400}
+            height={400}
+            sizes="14rem"
             className="size-full rounded-full object-cover"
           />
         </motion.div>
 
         {services.map((service, index) => (
           <motion.div
-            key={service.text}
+            key={service.id}
+            ref={serviceRefs[index]}
             className={`absolute z-20 ${service.position}`}
             variants={service.variant}
-            {...delayed(0.55 + index * 0.06)}
+            {...delayed(0.45 + index * 0.05)}
           >
-            <ServiceCard>{service.text}</ServiceCard>
+            <ServiceCard>
+              <ServiceCopy title={service.title} description={service.description} />
+            </ServiceCard>
           </motion.div>
+        ))}
+
+        {services.map((service, index) => (
+          <AnimatedBeam
+            key={`beam-${service.id}`}
+            containerRef={containerRef}
+            fromRef={centerRef}
+            toRef={serviceRefs[index]}
+            curvature={service.curvature}
+            reverse={service.reverse}
+            pathColor="#FF1D8A"
+            pathWidth={3}
+            pathOpacity={0.85}
+            gradientStartColor="#ec4899"
+            gradientStopColor="#0C00F9"
+            duration={2.8}
+            delay={index * 0.12}
+            startAnchor={service.startAnchor}
+            endAnchor={service.endAnchor}
+          />
         ))}
       </div>
 
       <div className="mt-6 lg:hidden">
-        <div className="relative mx-auto max-w-xl pl-6">
-          <div className="absolute left-2 top-0 h-full w-px bg-pink-700/30" aria-hidden="true" />
-          <div className="space-y-4">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.text}
-                className="relative"
-                variants={reboundRight}
-                {...delayed(0.25 + index * 0.05)}
-              >
-                <span className="absolute -left-[1.35rem] top-5 size-3 rounded-full border-2 border-white bg-pink-700 shadow text-shadow-lg" />
-                <ServiceCard>{service.text}</ServiceCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+        <motion.div
+          className="mx-auto flex w-full justify-center"
+          variants={reboundRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ delay: 0.25 }}
+        >
+          <Carousel
+            items={mobileCarouselItems}
+            baseWidth={320}
+            autoplay
+            autoplayDelay={3200}
+            pauseOnHover
+            loop
+            round={false}
+            className="max-w-[21.5rem] sm:max-w-[23rem]"
+          />
+        </motion.div>
       </div>
     </section>
   )
 }
 
-function ServiceCard({ children }: { children: React.ReactNode }) {
+function ServiceCopy({ title, description }: { title: ReactNode; description: ReactNode }) {
+  return (
+    <div className="space-y-2">
+      <div className="font-serif text-xl font-black leading-tight text-pink-800 md:text-lg text-shadow-md text-shadow-pink-200">
+      
+                <Highlighter
+            action="underline"
+            animationDuration={950}
+            isView
+            color="deeppink"
+            iterations={1}
+            strokeWidth={1.5}
+          >
+         {title}
+      </Highlighter>
+      </div>
+      <div className="font-serif text-sm font-semibold leading-snug text-gray-800 md:text-base  ">
+        {description}
+      </div>
+    </div>
+  )
+}
+
+function ServiceCard({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <motion.div
-      className="rounded-md border-2 border-[#a31b93] bg-gradient-to-r from-[#f6f7ff] to-[#fff7fb] px-5 py-3 text-center font-serif text-sm md:text-lg text-shadow-md font-extrabold leading-snug text-gray-800 shadow-[5px_5px_rgb(206_67_125)] transition-transform duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[0px_0px_rgb(38_51_129)] "
+      className={cn(
+        "relative z-10 rounded-md border-2 border-l-4 border-b-6 border-rose-500 bg-white px-5 py-3 text-center font-serif text-sm font-extrabold leading-snug text-gray-800  transition-transform duration-150 md:text-lg",
+        className
+      )}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >

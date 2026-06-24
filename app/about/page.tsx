@@ -3,6 +3,7 @@ import Footer from '@/app/components/Footer'
 import Image from 'next/image'
 import * as motion from 'motion/react-client'
 import { delayed, reboundRight, softReveal } from '@/app/components/motion-presets'
+import { T } from 'gt-next'
 
 export default function AboutPage() {
   return (
@@ -42,15 +43,15 @@ export default function AboutPage() {
             {...delayed(0.32)}
           >
             <h1 className="text-pretty font-serif text-4xl font-extrabold leading-tight text-pink-900 md:text-5xl">
-              🎗️ Seva se Samadhan
+              <T>🎗️ Seva se Samadhan</T>
             </h1>
             <p className="mt-4 font-mono text-base font-semibold leading-7 text-pink-800 md:text-lg">
-              “Seva se Samadhan” means finding solutions through service. For Sitaram Seva Sansthan, it is a simple promise: listen closely, respond with dignity, and stand beside people when support matters most.
+              <T>“Seva se Samadhan” means finding solutions through service. For Sitaram Seva Sansthan, it is a simple promise: listen closely, respond with dignity, and stand beside people when support matters most.</T>
             </p>
             <div className="mt-6 rounded-xl border border-r-4 border-b-4 border-pink-700 bg-pink-50 p-5">
-              <h2 className="font-serif text-2xl font-bold text-pink-900">✊ Our Mission</h2>
+              <h2 className="font-serif text-2xl font-bold text-pink-900"><T>✊ Our Mission</T></h2>
               <p className="mt-2 font-mono text-sm font-semibold leading-7 text-pink-800 md:text-base">
-                To support women battling cancer, organize health and donation initiatives, and provide timely help to families and students through practical, community-led service.
+                <T>To support women battling cancer, organize health and donation initiatives, and provide timely help to families and students through practical, community-led service.</T>
               </p>
             </div>
           </motion.div>

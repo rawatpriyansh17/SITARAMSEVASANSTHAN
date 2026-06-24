@@ -354,3 +354,21 @@ html, body {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #f472b6, #e11d48);
 }
+
+@keyframes language-switcher-bar {
+  0% {
+    transform: translateX(-115%);
+  }
+
+  55% {
+    transform: translateX(70%);
+  }
+
+  100% {
+    transform: translateX(230%);
+  }
+}
+
+.language-switcher-bar {
+  animation: language-switcher-bar 950ms ease-in-out infinite;
+}

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "@/app/globals.css";
-import { LanguageProvider } from '@/app/components/LanguageSwitch'
 import { ImageKitWrapper } from "@/lib/imagekit";
+import { GTProvider } from "gt-next";
+import { getLocale, getLocaleDirection } from "gt-next/server";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -21,22 +22,30 @@ export const metadata: Metadata = {
 
 
 import { ProgressBar } from "./components/progress-bar";
+import { Toaster } from "./components/ui/sonner";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const direction = getLocaleDirection(locale);
+
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang={locale} dir={direction} data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="antialiased">
-        <ImageKitWrapper>
-          <LanguageProvider>
-            <ProgressBar className="fixed top-0 left-0 h-1 z-60 bg-white" >
-            {children}
+        <GTProvider>
+          <ImageKitWrapper>
+            <Toaster
+              position="top-right"
+              closeButton
+            />
+            <ProgressBar className="fixed top-0 left-0 h-1 z-60 bg-white">
+              {children}
             </ProgressBar>
-          </LanguageProvider>
-        </ImageKitWrapper>
+          </ImageKitWrapper>
+        </GTProvider>
       </body>
     </html>
   );

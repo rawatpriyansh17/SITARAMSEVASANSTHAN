@@ -2,6 +2,7 @@
 
 import { type LucideIcon, ArrowUpRight } from 'lucide-react'
 import { type KeyboardEvent, useState } from 'react'
+import { T, useGT } from 'gt-next/client'
 
 type CardNavLink = {
   label: string
@@ -31,6 +32,7 @@ export default function CardNav({
   menuColor = '#ffffff',
 }: CardNavProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const gt = useGT()
 
   function toggleMenu() {
     setIsOpen((open) => !open)
@@ -51,7 +53,7 @@ export default function CardNav({
     <>
       <button
         type="button"
-        aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        aria-label={isOpen ? gt('Close menu') : gt('Open menu')}
         aria-expanded={isOpen}
         onClick={toggleMenu}
         onKeyDown={handleMenuKeyDown}
@@ -71,7 +73,7 @@ export default function CardNav({
       </button>
 
       <div
-        className={`grid w-full basis-full overflow-hidden transition-[grid-template-rows,opacity,padding-top] duration-200 ${
+        className={`col-span-full grid w-full basis-full overflow-hidden transition-[grid-template-rows,opacity,padding-top] duration-200 ${
           isOpen
             ? 'grid-rows-[1fr] pt-3 opacity-100'
             : 'pointer-events-none grid-rows-[0fr] pt-0 opacity-0'
@@ -91,7 +93,7 @@ export default function CardNav({
                 style={{ backgroundColor: item.bgColor, color: item.textColor }}
               >
                 <div className="mb-1 text-xs font-semibold uppercase tracking-wide opacity-80">
-                  {item.label}
+                  <CardNavLabel label={item.label} />
                 </div>
                 <div className="grid gap-1">
                   {item.links.map((link) => {
@@ -101,12 +103,14 @@ export default function CardNav({
                       <a
                         key={`${link.href}-${link.label}`}
                         href={link.href}
-                        aria-label={link.ariaLabel}
+                        aria-label={getCardNavAriaLabel(link.ariaLabel, gt)}
                         onClick={closeMenu}
                         className="inline-flex items-center gap-2 rounded-lg py-1 text-base font-bold transition-opacity hover:opacity-80"
                       >
                         <Icon className="size-4 shrink-0" aria-hidden="true" />
-                        <span className="min-w-0 flex-1">{link.label}</span>
+                        <span className="min-w-0 flex-1">
+                          <CardNavLabel label={link.label} />
+                        </span>
                         <ArrowUpRight className="size-4 shrink-0" aria-hidden="true" />
                       </a>
                     )
@@ -119,4 +123,40 @@ export default function CardNav({
       </div>
     </>
   )
+}
+
+function CardNavLabel({ label }: { label: string }) {
+  switch (label) {
+    case 'Navigate':
+      return <T>Navigate</T>
+    case 'Programs':
+      return <T>Programs</T>
+    case 'Connect':
+      return <T>Connect</T>
+    case 'Home':
+      return <T>Home</T>
+    case 'About':
+      return <T>About</T>
+    case 'Upcoming-Events':
+      return <T>Upcoming-Events</T>
+    case 'Contact':
+      return <T>Contact</T>
+    default:
+      return label
+  }
+}
+
+function getCardNavAriaLabel(label: string, gt: ReturnType<typeof useGT>) {
+  switch (label) {
+    case 'Go to home page':
+      return gt('Go to home page')
+    case 'Learn about Sitaram Seva Sansthan':
+      return gt('Learn about Sitaram Seva Sansthan')
+    case 'View upcoming events':
+      return gt('View upcoming events')
+    case 'Scroll to contact details':
+      return gt('Scroll to contact details')
+    default:
+      return label
+  }
 }

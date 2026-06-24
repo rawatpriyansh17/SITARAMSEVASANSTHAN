@@ -6,10 +6,15 @@ import { CalendarX } from 'lucide-react'
 import { fetchLatestEvent } from '@/lib/cms-api'
 import { delayed, reboundLeft, reboundRight } from '@/app/components/motion-presets'
 import { Highlight2 } from '@/app/components/ui/highlight2'
+import { T } from 'gt-next'
+import { tx } from 'gt-next/server'
 
 export default async function LatestEventPage() {
   const latestEvent = await fetchLatestEvent()
   const shouldShowFlyer = Boolean(latestEvent?.isActive && latestEvent.imageUrl)
+  const flyerAlt = latestEvent?.imageAlt
+    ? await tx(latestEvent.imageAlt, { $context: 'Upcoming program flyer alt text' })
+    : 'Upcoming program flyer'
 
   return (
     <div className="flex min-h-screen flex-col gap-2 overflow-x-hidden bg-pink-50">
@@ -29,14 +34,14 @@ export default async function LatestEventPage() {
               >
                 <span className="inline-block max-w-full font-mono text-2xl font-extrabold leading-tight sm:text-3xl md:text-5xl">
                   <Highlight2 className="px-2 py-1 text-white">
-                    📌 Upcoming Programs:
+                    <T>📌 Upcoming Programs:</T>
                   </Highlight2>
                 </span>
               </motion.h1>
               <motion.div variants={reboundRight} {...delayed(0.9)}>
                 <Image
                   src={latestEvent!.imageUrl}
-                  alt={latestEvent!.imageAlt || 'Upcoming program flyer'}
+                  alt={flyerAlt}
                   width={1200}
                   height={800}
                   className="h-auto w-full rounded-xl"
@@ -57,14 +62,14 @@ export default async function LatestEventPage() {
               <div className="mx-auto max-w-2xl pb-2">
                 <h2 className="font-serif text-base md:text-5xl  font-bold leading-[1.15] text-pink-900 sm:text-4xl">
                   <Highlight2 className="text-white px-2 py-1">
-                    No Upcoming Program
+                    <T>No Upcoming Program</T>
                     <br />
-                    Right Now
+                    <T>Right Now</T>
                   </Highlight2>
                 </h2>
               </div>
               <p className="mx-auto mt-2 max-w-xl rounded-xl bg-pink-50 p-2 font-mono  font-semibold leading-relaxed text-pink-700 shadow-sm border border-t-3 border-l-3 border-pink-200 text-xs sm:text-base md:p-2">
-                🙏 Please check back soon, or use the contact section below for any immediate queries.
+                <T>🙏 Please check back soon, or use the contact section below for any immediate queries.</T>
               </p>
             </motion.div>
           )}

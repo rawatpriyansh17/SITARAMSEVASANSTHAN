@@ -9,6 +9,7 @@ import { OptimizedImage } from './optimized-image'
 import { Skeleton } from '@/app/components/ui/skeleton'
 import { Separator } from './ui/separator'
 import { ComponentIcon } from 'lucide-react'
+import { T, useGT } from 'gt-next/client'
 
 const DESKTOP_POSTS_PER_PAGE = 16
 const MOBILE_POSTS_PER_PAGE = 8
@@ -55,6 +56,7 @@ function getPostImageUrl(post: Post) {
 function PostItem({ post, index }: { post: Post; index: number }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const gt = useGT()
 
   return (
     <motion.div
@@ -76,12 +78,12 @@ function PostItem({ post, index }: { post: Post; index: number }) {
               animationStyle="from-center"
               videoSrc={post.mediaUrl}
               thumbnailSrc={getThumbnailUrl(post)}
-              thumbnailAlt={post.title_en}
+              thumbnailAlt={post.title_en || gt('Program media')}
             />
           ) : (
             <OptimizedImage
               src={getPostImageUrl(post)}
-              alt={post.title_en}
+              alt={post.title_en || gt('Program media')}
               width={800}
               height={600}
               sizes="(max-width: 1024px) 100vw, 25vw"
@@ -144,7 +146,7 @@ function PostItem({ post, index }: { post: Post; index: number }) {
                 href={`/events/${post.eventPageSlug}`}
                 className="block text-white bg-gradient-to-b text-nowrap from-pink-500 to-pink-700 font-mono text-xs md:text-base font-semibold py-2 px-4 transition-colors text-center rounded-xl w-full shadow-xl shadow-pink-500/50"
               >
-                Know More...
+                <T>Know More...</T>
               </ProgressBarLink>
             </motion.div>
           )}
@@ -289,7 +291,7 @@ export default function PostList({ posts }: { posts: Post[] }) {
       >
         <div className="text-center py-5 px-2 bg-white border-2 border-pink-600 w-fit mx-auto rounded-lg shadow-lg">
           <p className="text-pink-700 font-mono font-extrabold">
-            No posts available at the moment, Come back again later!
+            <T>No posts available at the moment, come back again later!</T>
           </p>
         </div>
       </motion.div>
@@ -304,16 +306,16 @@ export default function PostList({ posts }: { posts: Post[] }) {
       <motion.button
         type="button"
         id="posts-section-title"
-        className="flex text-center bg-gradient-to-b from-violet-500 via-purple-800 to-violet-600 p-2 px-4 rounded-lg mb-3 mt-4 md:mt-2 font-mono text-white text-xs md:text-base font-black"
+        className="flex text-center bg-gradient-to-b from-violet-500 via-purple-800 to-violet-600 p-2 px-4 rounded-lg mb-3 mt-3 md:mt-2 font-mono text-white text-xs md:text-base font-black"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgb(0 0 0 / 0.25)" }}
       >
 
-         🌟 Recent Activities  
+         <T>🌟 Recent Activities</T>
          <span className="hidden md:block ml-2">
-          & Updates
+          <T>& Updates</T>
           </span>
 
         </motion.button>
