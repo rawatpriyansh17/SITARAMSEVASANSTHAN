@@ -8,7 +8,6 @@ import { VideoDialog } from './VideoDialog'
 import { type Post, type PostsPagination } from '@/lib/cms-api'
 import { Pagination } from './pagination'
 import { OptimizedImage } from './optimized-image'
-import { Skeleton } from '@/app/components/ui/skeleton'
 import { Separator } from './ui/separator'
 import { ComponentIcon } from 'lucide-react'
 import { T, useGT } from 'gt-next/client'
@@ -136,38 +135,6 @@ function PostItem({ post, index }: { post: Post; index: number }) {
 
 function getPostsPageHref(page: number) {
   return `/?postsPage=${page}#posts-section-title`
-}
-
-export function PostSectionSkeleton() {
-  return (
-    <section className="relative container mx-auto px-4 py-5" aria-label="Loading previous programs">
-      <div className="mb-5 mt-2 flex items-center gap-3">
-        <div className="h-px flex-1 bg-linear-to-l from-pink-600 via-fuchsia-500 to-transparent" />
-        <Skeleton className="h-10 w-48 rounded-xl bg-linear-to-r from-violet-700 via-pink-600 to-violet-700 shadow-lg shadow-pink-700/20 sm:w-64" />
-        <div className="h-px flex-1 bg-linear-to-r from-pink-600 via-fuchsia-500 to-transparent" />
-      </div>
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-        {Array.from({ length: 4 }).map((_, index) => (
-          <div
-            key={index}
-            className="grid animate-[pulse_2.6s_ease-in-out_infinite] overflow-hidden rounded-xl border-2 border-r-4 border-b-4 border-pink-500 bg-white/90 shadow-[0_12px_28px_rgba(190,24,93,0.16)] motion-reduce:animate-none"
-            style={{ animationDelay: `${index * 140}ms` }}
-          >
-            <Skeleton className="aspect-[4/3] w-full rounded-none bg-linear-to-br from-pink-400 via-fuchsia-300 to-violet-400" />
-            <div className="border-t-2 border-pink-100 bg-pink-50/90 p-5">
-              <div className="mb-4 flex items-center gap-2">
-                <Skeleton className="size-4 shrink-0 rounded-full bg-pink-500" />
-                <Skeleton className="h-5 w-4/5 rounded-md bg-linear-to-r from-pink-400 via-fuchsia-300 to-pink-400" />
-              </div>
-              <Skeleton className="mb-2 h-3.5 w-full rounded-md bg-pink-200" />
-              <Skeleton className="mb-5 h-3.5 w-2/3 rounded-md bg-pink-200" />
-              <Skeleton className="h-9 w-28 rounded-xl bg-linear-to-r from-pink-600 to-fuchsia-700 shadow-md shadow-pink-700/20" />
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  )
 }
 
 export default function PostList({

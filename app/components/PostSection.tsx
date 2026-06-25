@@ -1,14 +1,10 @@
 import { fetchPosts } from '@/lib/cms-api'
-import PostList, { PostSectionSkeleton } from './PostList'
+import { translateCmsText } from '@/lib/translation-helper'
+import PostList from './PostList'
+import { PostSectionSkeleton } from './ui/post-section-skeleton'
 import { T } from 'gt-next'
-import { tx } from 'gt-next/server'
 
 export { PostSectionSkeleton }
-
-async function translatePostText(value: string, context: string) {
-  if (!value?.trim()) return value
-  return tx(value, { $context: context })
-}
 
 export default async function PostSection({ page }: { page: number }) {
   const postsPage = await fetchPosts(page).catch((error) => {
@@ -29,8 +25,8 @@ export default async function PostSection({ page }: { page: number }) {
   const translatedPosts = await Promise.all(
     postsPage.posts.map(async (post) => ({
       ...post,
-      title_en: await translatePostText(post.title_en, 'CMS post title'),
-      description_en: await translatePostText(post.description_en, 'CMS post description'),
+      title_en: await translateCmsText(post.title_en, 'CMS post title'),
+      description_en: await translateCmsText(post.description_en, 'CMS post description'),
     }))
   )
 

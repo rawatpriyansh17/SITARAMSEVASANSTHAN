@@ -252,3 +252,51 @@ html, body {
 .language-switcher-bar {
   animation: language-switcher-bar 950ms ease-in-out infinite;
 }
+
+@keyframes post-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes post-skeleton-shimmer {
+  0% {
+    transform: translateX(-140%) skewX(-12deg);
+  }
+
+  100% {
+    transform: translateX(140%) skewX(-12deg);
+  }
+}
+
+.post-skeleton-card {
+  animation: post-skeleton-pulse 1.45s ease-in-out infinite;
+}
+
+.post-skeleton-shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 42%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 0.46),
+    transparent
+  );
+  animation: post-skeleton-shimmer 1.35s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-skeleton-card,
+  .post-skeleton-shimmer::before {
+    animation: none;
+  }
+}

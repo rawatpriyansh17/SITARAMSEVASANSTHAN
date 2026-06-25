@@ -4,16 +4,16 @@ import Image from 'next/image'
 import * as motion from 'motion/react-client'
 import { CalendarX } from 'lucide-react'
 import { fetchLatestEvent } from '@/lib/cms-api'
+import { translateCmsText } from '@/lib/translation-helper'
 import { delayed, reboundLeft, reboundRight } from '@/app/components/motion-presets'
 import { Highlight2 } from '@/app/components/ui/highlight2'
 import { T } from 'gt-next'
-import { tx } from 'gt-next/server'
 
 export default async function LatestEventPage() {
   const latestEvent = await fetchLatestEvent()
   const shouldShowFlyer = Boolean(latestEvent?.isActive && latestEvent.imageUrl)
   const flyerAlt = latestEvent?.imageAlt
-    ? await tx(latestEvent.imageAlt, { $context: 'Upcoming program flyer alt text' })
+    ? await translateCmsText(latestEvent.imageAlt, 'Upcoming program flyer alt text')
     : 'Upcoming program flyer'
 
   return (

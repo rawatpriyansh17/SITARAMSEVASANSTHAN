@@ -4,8 +4,8 @@ import Footer from "@/app/components/Footer";
 import { VideoDialog } from "@/app/components/VideoDialog";
 import { fetchEventBySlug, type Media } from '@/lib/cms-api';
 import { OptimizedImage } from '@/app/components/optimized-image';
+import { translateCmsText } from '@/lib/translation-helper';
 import { T } from 'gt-next';
-import { tx } from 'gt-next/server';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -26,8 +26,7 @@ function getVideoThumbnail(video: Media): string {
 }
 
 async function translateText(value: string | undefined, context: string) {
-  if (!value?.trim()) return value;
-  return tx(value, { $context: context });
+  return translateCmsText(value, context);
 }
 
 async function translateMedia(media: Media[], context: string) {
