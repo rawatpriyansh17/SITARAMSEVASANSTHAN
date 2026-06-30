@@ -6,6 +6,27 @@ import { T } from 'gt-next'
 
 export { PostSectionSkeleton }
 
+async function translatePost(post: Awaited<ReturnType<typeof fetchPosts>>['posts'][number]) {
+  try {
+    const [title, description] = await Promise.all([
+      translateCmsText(post.title_en, 'CMS post title'),
+      translateCmsText(post.description_en, 'CMS post description'),
+    ])
+
+    return {
+      ...post,
+      title_en: title,
+      description_en: description,
+    }
+  } catch (error) {
+    console.error('Failed to translate post, rendering English fallback:', {
+      id: post.id,
+      message: error instanceof Error ? error.message : String(error),
+    })
+    return post
+  }
+}
+
 export default async function PostSection({ page }: { page: number }) {
   const postsPage = await fetchPosts(page).catch((error) => {
     console.error('Failed to load posts:', error)
@@ -22,13 +43,7 @@ export default async function PostSection({ page }: { page: number }) {
     )
   }
 
-  const translatedPosts = await Promise.all(
-    postsPage.posts.map(async (post) => ({
-      ...post,
-      title_en: await translateCmsText(post.title_en, 'CMS post title'),
-      description_en: await translateCmsText(post.description_en, 'CMS post description'),
-    }))
-  )
+  const translatedPosts = await Promise.all(postsPage.posts.map(translatePost))
 
   return <PostList posts={translatedPosts} pagination={postsPage.pagination} />
 }

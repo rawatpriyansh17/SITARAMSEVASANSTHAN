@@ -1,17 +1,34 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useTransition } from 'react'
 
 export default function Error({
   error,
+  unstable_retry,
   reset,
 }: {
   error: Error & { digest?: string }
-  reset: () => void
+  unstable_retry?: () => void
+  reset?: () => void
 }) {
+  const [isPending, startTransition] = useTransition()
+
   useEffect(() => {
     console.error('Page render failed:', error)
   }, [error])
+
+  function retryPage() {
+    startTransition(() => {
+      const retry = unstable_retry ?? reset
+
+      if (retry) {
+        retry()
+        return
+      }
+
+      window.location.reload()
+    })
+  }
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-pink-50 px-4 py-10">
@@ -27,11 +44,17 @@ export default function Error({
         </p>
         <button
           type="button"
-          onClick={reset}
-          className="mt-6 rounded-xl bg-linear-to-b from-pink-500 to-pink-700 px-5 py-3 font-mono text-sm font-extrabold text-white shadow-lg shadow-pink-500/30 transition-transform hover:scale-[1.03] active:scale-95"
+          onClick={retryPage}
+          disabled={isPending}
+          className="mt-6 rounded-xl bg-linear-to-b from-pink-500 to-pink-700 px-5 py-3 font-mono text-sm font-extrabold text-white shadow-lg shadow-pink-500/30 transition-transform hover:scale-[1.03] active:scale-95 disabled:cursor-wait disabled:opacity-80"
         >
-          Refresh Page
+          {isPending ? 'Retrying...' : 'Refresh Page'}
         </button>
+        {isPending && (
+          <div className="mx-auto mt-4 h-1.5 w-full max-w-xs overflow-hidden rounded-full bg-pink-100">
+            <div className="h-full w-1/2 animate-[language-switcher-bar_950ms_ease-in-out_infinite] rounded-full bg-linear-to-r from-pink-500 via-fuchsia-500 to-purple-600" />
+          </div>
+        )}
       </section>
     </main>
   )

@@ -7,6 +7,8 @@ import { OptimizedImage } from '@/app/components/optimized-image';
 import { translateCmsText } from '@/lib/translation-helper';
 import { T } from 'gt-next';
 
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -29,14 +31,30 @@ async function translateText(value: string | undefined, context: string) {
   return translateCmsText(value, context);
 }
 
-async function translateMedia(media: Media[], context: string) {
-  return Promise.all(
-    media.map(async (item) => ({
+async function translateMediaItem(item: Media, context: string) {
+  try {
+    const [heading, description] = await Promise.all([
+      translateText(item.heading_en, `${context} heading`),
+      translateText(item.description_en, `${context} description`),
+    ]);
+
+    return {
       ...item,
-      heading_en: await translateText(item.heading_en, `${context} heading`),
-      description_en: await translateText(item.description_en, `${context} description`),
-    }))
-  );
+      heading_en: heading,
+      description_en: description,
+    };
+  } catch (error) {
+    console.error('Failed to translate event media, rendering English fallback:', {
+      id: item.id,
+      context,
+      message: error instanceof Error ? error.message : String(error),
+    });
+    return item;
+  }
+}
+
+async function translateMedia(media: Media[], context: string) {
+  return Promise.all(media.map((item) => translateMediaItem(item, context)));
 }
 
 export default async function EventPage({ params }: PageProps) {
@@ -48,21 +66,36 @@ export default async function EventPage({ params }: PageProps) {
   }
 
   const { event, photos, videos } = eventData;
+  const eventText = await Promise.all([
+    translateText(event.heading_en, 'Event page heading'),
+    translateText(event.description1_en, 'Event page primary description'),
+    translateText(event.description2_en, 'Event page secondary description'),
+    translateText(event.photoSubheading_en, 'Event photo coverage subheading'),
+    translateText(event.videoSubheading_en, 'Event video coverage subheading'),
+  ]).catch((error) => {
+    console.error('Failed to translate event page text, rendering English fallback:', {
+      slug,
+      message: error instanceof Error ? error.message : String(error),
+    });
+
+    return [
+      event.heading_en,
+      event.description1_en,
+      event.description2_en,
+      event.photoSubheading_en,
+      event.videoSubheading_en,
+    ] as const;
+  });
+
   const [
     eventHeading,
     description1,
     description2,
     photoSubheading,
     videoSubheading,
-    translatedPhotos,
-    translatedInterviews,
-    translatedDistributions,
-  ] = await Promise.all([
-    translateText(event.heading_en, 'Event page heading'),
-    translateText(event.description1_en, 'Event page primary description'),
-    translateText(event.description2_en, 'Event page secondary description'),
-    translateText(event.photoSubheading_en, 'Event photo coverage subheading'),
-    translateText(event.videoSubheading_en, 'Event video coverage subheading'),
+  ] = eventText;
+
+  const [translatedPhotos, translatedInterviews, translatedDistributions] = await Promise.all([
     translateMedia(photos, 'Event photo'),
     translateMedia(videos.interviews, 'Interview video'),
     translateMedia(videos.distributions, 'Distribution video'),

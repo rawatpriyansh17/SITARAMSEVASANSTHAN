@@ -9,6 +9,8 @@ import { delayed, reboundLeft, reboundRight } from '@/app/components/motion-pres
 import { Highlight2 } from '@/app/components/ui/highlight2'
 import { T } from 'gt-next'
 
+export const dynamic = 'force-dynamic'
+
 export default async function LatestEventPage() {
   const latestEvent = await fetchLatestEvent()
   const shouldShowFlyer = Boolean(latestEvent?.isActive && latestEvent.imageUrl)
@@ -62,9 +64,7 @@ export default async function LatestEventPage() {
               <div className="mx-auto max-w-2xl pb-2">
                 <h2 className="font-serif text-base md:text-5xl  font-bold leading-[1.15] text-pink-900 sm:text-4xl">
                   <Highlight2 className="text-white px-2 py-1">
-                    <T>No Upcoming Program</T>
-                    <br />
-                    <T>Right Now</T>
+                    <T>No Upcoming Programs</T>
                   </Highlight2>
                 </h2>
               </div>
