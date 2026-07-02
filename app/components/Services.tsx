@@ -10,7 +10,7 @@ import {
   reboundRight,
 } from '@/app/components/motion-presets'
 import { Highlighter } from '@/app/components/ui/highlighter'
-import { T, useGT } from 'gt-next/client'
+import { T } from 'gt-next/client'
 import { AnimatedBeam } from '@/app/components/animated-beam'
 import Carousel, { type CarouselItem } from '@/app/components/Carousel'
 import { cn } from '@/lib/utils'
@@ -124,7 +124,6 @@ const services: ServiceItem[] = [
 ]
 
 export default function Services() {
-  const gt = useGT()
   const containerRef = useRef<HTMLDivElement>(null)
   const centerRef = useRef<HTMLDivElement>(null)
   const serviceRefs = useMemo(
@@ -174,7 +173,7 @@ export default function Services() {
         >
           <Image
             src="/bow.jpg"
-            alt={gt("Breast cancer awareness bow")}
+            alt="Breast cancer awareness bow"
             width={400}
             height={400}
             sizes="14rem"

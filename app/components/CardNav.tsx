@@ -2,7 +2,7 @@
 
 import { type LucideIcon, ArrowUpRight } from 'lucide-react'
 import { type KeyboardEvent, useState } from 'react'
-import { T, useGT } from 'gt-next/client'
+import { T } from 'gt-next/client'
 
 type CardNavLink = {
   label: string
@@ -32,7 +32,6 @@ export default function CardNav({
   menuColor = '#ffffff',
 }: CardNavProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const gt = useGT()
 
   function toggleMenu() {
     setIsOpen((open) => !open)
@@ -53,7 +52,7 @@ export default function CardNav({
     <>
       <button
         type="button"
-        aria-label={isOpen ? gt('Close menu') : gt('Open menu')}
+        aria-label={isOpen ? 'Close menu' : 'Open menu'}
         aria-expanded={isOpen}
         onClick={toggleMenu}
         onKeyDown={handleMenuKeyDown}
@@ -103,7 +102,7 @@ export default function CardNav({
                       <a
                         key={`${link.href}-${link.label}`}
                         href={link.href}
-                        aria-label={getCardNavAriaLabel(link.ariaLabel, gt)}
+                        aria-label={link.ariaLabel}
                         onClick={closeMenu}
                         className="inline-flex items-center gap-2 rounded-lg py-1 text-base font-bold transition-opacity hover:opacity-80"
                       >
@@ -141,21 +140,6 @@ function CardNavLabel({ label }: { label: string }) {
       return <T>Upcoming-Events</T>
     case 'Contact':
       return <T>Contact</T>
-    default:
-      return label
-  }
-}
-
-function getCardNavAriaLabel(label: string, gt: ReturnType<typeof useGT>) {
-  switch (label) {
-    case 'Go to home page':
-      return gt('Go to home page')
-    case 'Learn about Sitaram Seva Sansthan':
-      return gt('Learn about Sitaram Seva Sansthan')
-    case 'View upcoming events':
-      return gt('View upcoming events')
-    case 'Scroll to contact details':
-      return gt('Scroll to contact details')
     default:
       return label
   }

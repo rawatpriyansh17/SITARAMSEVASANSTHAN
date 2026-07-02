@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Poppins } from "next/font/google";
 import "@/app/globals.css";
 import { ImageKitWrapper } from "@/lib/imagekit";
 import { GTProvider } from "gt-next";
@@ -14,6 +15,11 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
+});
 
 export const metadata: Metadata = {
   title: "Sitaram Seva Sansthan",
@@ -23,6 +29,7 @@ export const metadata: Metadata = {
 
 import { ProgressBar } from "./components/progress-bar";
 import { Toaster } from "./components/ui/sonner";
+import { AIAssistant } from "./components/ai-assistant";
 
 export default async function RootLayout({
   children,
@@ -33,7 +40,7 @@ export default async function RootLayout({
   const direction = getLocaleDirection(locale);
 
   return (
-    <html lang={locale} dir={direction} data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang={locale} dir={direction} data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable}`}>
       <body className="antialiased">
         <GTProvider>
           <ImageKitWrapper>
@@ -44,6 +51,7 @@ export default async function RootLayout({
             <ProgressBar className="fixed top-0 left-0 h-1 z-60 bg-white">
               {children}
             </ProgressBar>
+            <AIAssistant />
           </ImageKitWrapper>
         </GTProvider>
       </body>

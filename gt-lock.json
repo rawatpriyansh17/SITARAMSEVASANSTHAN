@@ -4,12 +4,12 @@
   "entries": [
     {
       "fileId": "879f3a5f954ee8b75bf1e91f4ea9916b41c933e5beba7eb6362647a637c9c66d",
-      "versionId": "b84c9e0f747290fc33dd4addfb186fcc9d135e41be1f6b5e6a60ccb7f9141247",
+      "versionId": "ce80520a80ec6b12368b0e4b83e7908e6f74a19a26acfc047fc353409b8a284c",
       "translations": {
         "hi": {
-          "updatedAt": "2026-06-30T12:10:20.154Z",
+          "updatedAt": "2026-07-02T20:50:25.995Z",
           "fileName": "/Users/priyanshrawat17/Desktop/PROJECTS/NGO/NGOCODE/public/_gt/hi.json",
-          "postProcessHash": "dae778392a2cfdc4ddbb23dd36c33879ead74846920ee0861f8159e70e50e76c"
+          "postProcessHash": "032ac1cd5ef0ab53ab698bbca8dcc2b9f95df029800f84ccc64179f880112e28"
         }
       },
       "fileName": "__INTERNAL_GT_TEMPLATE_NAME__",

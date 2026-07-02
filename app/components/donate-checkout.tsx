@@ -434,7 +434,7 @@ export default function DonateCheckout() {
         </Button>
       </form>
       <div className="mt-6 flex items-center justify-center gap-2 border-t border-pink-100 pt-4 font-mono text-xs font-bold text-pink-700">
-        <span><T>Securely processed by</T></span>
+        <span><T>Powered by</T></span>
         <Image
           src="/razorpay-icon.png"
           alt="Razorpay"

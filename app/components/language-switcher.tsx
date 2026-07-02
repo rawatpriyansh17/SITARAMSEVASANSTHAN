@@ -1,7 +1,7 @@
 "use client";
 
 import { Languages } from "lucide-react";
-import { useGT, useLocaleSelector } from "gt-next/client";
+import { useLocaleSelector } from "gt-next/client";
 import { useEffect, useState, useTransition } from "react";
 import { cn } from "@/lib/utils";
 
@@ -15,7 +15,6 @@ export default function LanguageSwitcher({
   stretch?: boolean;
 }) {
   const { locale, locales, setLocale, getLocaleProperties } = useLocaleSelector();
-  const gt = useGT();
   const [isPending, startTransition] = useTransition();
   const [isSwitching, setIsSwitching] = useState(false);
 
@@ -39,7 +38,7 @@ export default function LanguageSwitcher({
     >
       <label className="flex min-w-0 items-center gap-1.5 font-mono text-xs font-extrabold md:gap-2">
         <Languages className={cn("shrink-0 text-white", compact ? "size-3.5" : "size-4")} aria-hidden="true" />
-        <span className="sr-only">{gt("Choose language")}</span>
+        <span className="sr-only">Choose language</span>
         <select
           value={locale}
           onChange={(event) => {
@@ -47,7 +46,7 @@ export default function LanguageSwitcher({
             setIsSwitching(true);
             startTransition(() => setLocale(nextLocale));
           }}
-          aria-label={gt("Choose language")}
+          aria-label="Choose language"
           disabled={showLoader}
           className={cn(
             "rounded-full border border-pink-200 bg-pink-50 font-extrabold text-pink-800 outline-none transition focus:border-pink-600 focus:ring-2 focus:ring-pink-200 disabled:cursor-wait disabled:opacity-80",

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "streamdown/styles.css";
+@source "../node_modules/streamdown/dist/*.js";
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
@@ -253,6 +255,37 @@ html, body {
   animation: language-switcher-bar 950ms ease-in-out infinite;
 }
 
+@keyframes sarthi-shimmer {
+  0% {
+    background-position: 160% 50%;
+  }
+
+  100% {
+    background-position: -60% 50%;
+  }
+}
+
+.sarthi-shimmer,
+.shimmer {
+  display: inline-block;
+  background-image: linear-gradient(
+    100deg,
+    #9d174d 0%,
+    #be185d 28%,
+    #ffffff 45%,
+    #f9a8d4 52%,
+    #db2777 64%,
+    #9d174d 100%
+  );
+  background-size: 260% 100%;
+  background-position: 160% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: sarthi-shimmer 1.15s linear infinite;
+}
+
 @keyframes post-skeleton-pulse {
   0%,
   100% {
@@ -296,7 +329,9 @@ html, body {
 
 @media (prefers-reduced-motion: reduce) {
   .post-skeleton-card,
-  .post-skeleton-shimmer::before {
+  .post-skeleton-shimmer::before,
+  .sarthi-shimmer,
+  .shimmer {
     animation: none;
   }
 }

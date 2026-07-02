@@ -10,7 +10,7 @@ import { Pagination } from './pagination'
 import { OptimizedImage } from './optimized-image'
 import { Separator } from './ui/separator'
 import { ComponentIcon } from 'lucide-react'
-import { T, useGT } from 'gt-next/client'
+import { T } from 'gt-next/client'
 
 function getThumbnailUrl(post: Post) {
   if (post.thumbnailUrl) {
@@ -33,7 +33,6 @@ function getPostImageUrl(post: Post) {
 function PostItem({ post, index }: { post: Post; index: number }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const gt = useGT()
 
   return (
     <motion.div
@@ -55,12 +54,12 @@ function PostItem({ post, index }: { post: Post; index: number }) {
               animationStyle="from-center"
               videoSrc={post.mediaUrl}
               thumbnailSrc={getThumbnailUrl(post)}
-              thumbnailAlt={post.title_en || gt('Program media')}
+              thumbnailAlt={post.title_en || 'Program media'}
             />
           ) : (
             <OptimizedImage
               src={getPostImageUrl(post)}
-              alt={post.title_en || gt('Program media')}
+              alt={post.title_en || 'Program media'}
               width={800}
               height={600}
               sizes="(max-width: 1024px) 100vw, 25vw"

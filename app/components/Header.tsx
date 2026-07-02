@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { ArrowUpRight, CalendarDays, Home, Info, Mail } from 'lucide-react'
 import { domAnimation, LazyMotion, m } from 'motion/react'
-import { T, useGT, Var } from 'gt-next/client'
+import { T, Var } from 'gt-next/client'
 import { ProgressBarLink } from '@/app/components/progress-bar'
 import {
   delayed,
@@ -94,8 +94,6 @@ function NavLabel({ label }: { label: string }) {
 }
 
 export default function Header() {
-  const gt = useGT()
-
   return (
     <LazyMotion features={domAnimation}>
       <m.header
@@ -113,7 +111,7 @@ export default function Header() {
             <ProgressBarLink href="/" className="relative block size-full overflow-hidden rounded-full">
               <Image
                 src="/logo.png"
-                alt={gt("Sitaram Seva Sansthan Logo")}
+                alt="Sitaram Seva Sansthan Logo"
                 priority
                 fill
                 sizes="(max-width: 429px) 4rem, (max-width: 768px) 5rem, 8rem"
